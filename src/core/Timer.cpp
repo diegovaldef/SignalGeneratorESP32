@@ -31,5 +31,4 @@ void vMicrosecondsdelay(uint64_t us){
 
     ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 
-
 }

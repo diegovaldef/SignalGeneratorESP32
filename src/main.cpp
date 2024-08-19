@@ -10,9 +10,9 @@ void setup()
   pinMode(dac1Pin, OUTPUT);
   pinMode(dac2Pin, OUTPUT);
 
-  SDBegin();
   screenSetup();
-
+  SDBegin();
+  
   Serial.println("Calculando valores mínimos y máximos...");
   readMinMax();
 
@@ -35,13 +35,12 @@ void setup()
   Serial.println(maxCH3, 6);
 
   createTaskInject();
+  createTaskScreen();
   
-
 }
 
 void loop()
 {
   readSignal();
-  lv_timer_handler(); /* let the GUI do its work */
-
+  
 }
