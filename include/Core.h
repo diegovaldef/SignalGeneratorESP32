@@ -7,5 +7,6 @@
 #include <MinMax.h>
 #include <SdManager.h>
 #include <Timer.h>
+#include <Screen.h>
 
 #endif

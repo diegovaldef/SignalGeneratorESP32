@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <core.h>
+#include <Core.h>
 
 void setup()
 {
@@ -11,6 +11,7 @@ void setup()
   pinMode(dac2Pin, OUTPUT);
 
   SDBegin();
+  screenSetup();
 
   Serial.println("Calculando valores mínimos y máximos...");
   readMinMax();
@@ -41,5 +42,6 @@ void setup()
 void loop()
 {
   readSignal();
+  lv_timer_handler(); /* let the GUI do its work */
 
 }
