@@ -12,7 +12,13 @@ void setup()
 
   screenSetup();
   SDBegin();
+
+  lv_roller_set_options(ui_Roller3, getFileNames(root),
+                  LV_ROLLER_MODE_NORMAL);
   
+  Serial.println(getFileNames(root));
+
+
   Serial.println("Calculando valores mínimos y máximos...");
   readMinMax();
 
@@ -42,5 +48,5 @@ void setup()
 void loop()
 {
   readSignal();
-  
+
 }

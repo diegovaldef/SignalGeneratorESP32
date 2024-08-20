@@ -83,8 +83,6 @@ void screenSetup(){
 
     ui_init();
 
-    lv_roller_set_options(ui_Roller3, options,
-                      LV_ROLLER_MODE_NORMAL);
 
     Serial.println( "LVGL Setup done" );
 

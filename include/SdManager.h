@@ -7,10 +7,12 @@
 #include <Core.h>
 
 extern File dataFile;
+extern File root;
 const byte chipSelect = 5;
 
 void openSD();
 void SDBegin();
+char* getFileNames(File dir);
 
 #endif
 

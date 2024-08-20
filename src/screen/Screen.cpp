@@ -25,7 +25,7 @@ void rollerUp(lv_event_t * e)
 {
 
   if(lv_roller_get_selected(ui_Roller3) == 0){
-    lv_roller_set_selected(ui_Roller3, 3, LV_ANIM_ON);
+    lv_roller_set_selected(ui_Roller3, 2, LV_ANIM_ON);
 
   }
   else {
@@ -39,7 +39,7 @@ void rollerUp(lv_event_t * e)
 
 void rollerDown(lv_event_t * e)
 {
-  if(lv_roller_get_selected(ui_Roller3) == 3){
+  if(lv_roller_get_selected(ui_Roller3) == 2){
     lv_roller_set_selected(ui_Roller3, 0, LV_ANIM_ON);
 
   }
