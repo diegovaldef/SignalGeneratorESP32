@@ -1,3 +1,6 @@
+#ifndef SCREEN_H
+#define SCREEN_H
+
 #include <Arduino.h>
 
 #include <lvgl.h>
@@ -21,3 +24,4 @@ void rollerDown(lv_event_t * e);
 void TaskScreen(void *pvParameters);
 void createTaskScreen();
 
+#endif

@@ -1,3 +1,8 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
 {
     "configurations": [
         {
@@ -238,8 +243,7 @@
                 "C:/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
                 "C:/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src",
                 "C:/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
-                "",
-                "${workspaceFolder}/lib/lvgl"
+                ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,

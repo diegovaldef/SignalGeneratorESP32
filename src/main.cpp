@@ -17,6 +17,7 @@ void setup()
                   LV_ROLLER_MODE_NORMAL);
   
   Serial.println(getFileNames(root));
+  Serial.println("si esta leyendo esto");
 
 
   Serial.println("Calculando valores mínimos y máximos...");
