@@ -6,6 +6,8 @@
 #include <lvgl.h>
 #include <TFT_eSPI.h>
 #include <ui.h>
+#include <Flags.h>
+#include <Inject.h>
 
 static const uint16_t screenWidth  = 480;
 static const uint16_t screenHeight = 320;

@@ -1,6 +1,7 @@
 #include <Screen.h>
 
 TaskHandle_t TaskScreenHandle;
+bool signalRunning = false;
 
 void TaskScreen(void *pvParameters){
   while(true){
@@ -48,6 +49,23 @@ void rollerDown(lv_event_t * e)
     uint32_t k = LV_KEY_DOWN;
 	  lv_event_send(ui_Roller3, LV_EVENT_KEY, &k);
 
+  }
+
+}
+
+void SignalStartStop(lv_event_t * e)
+{
+  if(signalRunning){
+    vTaskSuspend(TaskInjectHandle);
+    timerStop(My_timer);
+    signalRunning = false;
+    
+  }
+  else{
+    vTaskResume(TaskInjectHandle);
+    timerStart(My_timer);
+    signalRunning = true;
+    
   }
 
 }

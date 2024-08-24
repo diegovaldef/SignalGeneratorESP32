@@ -8,5 +8,6 @@
 #include <SdManager.h>
 #include <Timer.h>
 #include <Screen.h>
+#include <Flags.h>
 
 #endif
