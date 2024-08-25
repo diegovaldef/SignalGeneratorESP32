@@ -58,12 +58,14 @@ void SignalStartStop(lv_event_t * e)
   if(signalRunning){
     vTaskSuspend(TaskInjectHandle);
     timerStop(My_timer);
+    timerAlarmDisable(My_timer);
     signalRunning = false;
     
   }
   else{
     vTaskResume(TaskInjectHandle);
     timerStart(My_timer);
+    timerAlarmEnable(My_timer);
     signalRunning = true;
     
   }
