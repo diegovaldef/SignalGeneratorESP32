@@ -13,9 +13,12 @@ void setup()
   screenSetup();
   SDBegin();
 
-  lv_roller_set_options(ui_Roller3, getFileNames(root),
-                  LV_ROLLER_MODE_NORMAL);
-  
+   lv_roller_set_options(ui_Roller3, getFileNames(root),
+                   LV_ROLLER_MODE_NORMAL);
+
+  // lv_roller_set_options(ui_Roller3, LV_SYMBOL_DIRECTORY" DCIM\n" LV_SYMBOL_FILE" data.txt\n",
+  //                       LV_ROLLER_MODE_NORMAL);
+
   Serial.println(getFileNames(root));
 
   Serial.println("Calculando valores mínimos y máximos...");
@@ -41,11 +44,9 @@ void setup()
 
   createTaskInject();
   createTaskScreen();
-  
 }
 
 void loop()
 {
   readSignal();
-
 }

@@ -5,6 +5,8 @@ File root;
 
 char list[100];
 char name[100];
+char symbol[100];
+char space[100];
 
 void openSD()
 {
@@ -44,16 +46,30 @@ char* getFileNames(File dir) {
 
     }
 
-    if(strlen(entry.name()) && strlen(entry.name()) <= 20){
+    if(strlen(entry.name()) > 0 && strlen(entry.name()) <= 20){
 
       const char* str = entry.name();
       strcpy(name, str);
-      strcat(name, "\n");
 
-      if(name ){
-        strcat(list, name);
+      if(entry.isDirectory()){
+        strcpy(symbol, LV_SYMBOL_DIRECTORY);
+      }
+      else {
+        strcpy(symbol, LV_SYMBOL_FILE);
+
       }
 
+      strcpy(space, " ");
+      strcat(space, name);
+      strcpy(name, space);
+
+      strcat(symbol, name);
+      strcpy(name, symbol);
+      strcat(name, "\n");
+
+
+      strcat(list, name);
+      
     }
 
     entry.close();

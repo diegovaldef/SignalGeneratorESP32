@@ -23,6 +23,7 @@ void my_touchpad_read( lv_indev_drv_t * indev_driver, lv_indev_data_t * data );
 void screenSetup();
 void rollerUp(lv_event_t * e);
 void rollerDown(lv_event_t * e);
+void SignalStartStop(lv_event_t * e);
 void TaskScreen(void *pvParameters);
 void createTaskScreen();
 
