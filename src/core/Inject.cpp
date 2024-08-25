@@ -24,6 +24,7 @@ void TaskInject(void *pvParameters)
 {
 
   init_timer();
+  vTaskSuspend(TaskInjectHandle);
 
   while (true)
   {

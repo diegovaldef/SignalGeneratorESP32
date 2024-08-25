@@ -39,10 +39,10 @@ void ui_Main_screen_init(void)
     lv_obj_set_y(ui_Chart1, -97);
     lv_obj_set_align(ui_Chart1, LV_ALIGN_CENTER);
     lv_chart_set_type(ui_Chart1, LV_CHART_TYPE_LINE);
-    lv_chart_set_axis_tick(ui_Chart1, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 2, true, 50);
+    lv_chart_set_axis_tick(ui_Chart1, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 2, false, 50);
     lv_chart_set_axis_tick(ui_Chart1, LV_CHART_AXIS_PRIMARY_Y, 10, 5, 5, 2, true, 50);
     lv_chart_set_axis_tick(ui_Chart1, LV_CHART_AXIS_SECONDARY_Y, 10, 5, 5, 2, true, 25);
-    lv_chart_series_t * ui_Chart1_series_1 = lv_chart_add_series(ui_Chart1, lv_color_hex(0x808080),
+    lv_chart_series_t * ui_Chart1_series_1 = lv_chart_add_series(ui_Chart1, lv_color_hex(0x9C3030),
                                                                  LV_CHART_AXIS_PRIMARY_Y);
     static lv_coord_t ui_Chart1_series_1_array[] = { 0, 10, 20, 40, 80, 80, 40, 20, 10, 0 };
     lv_chart_set_ext_y_array(ui_Chart1, ui_Chart1_series_1, ui_Chart1_series_1_array);
@@ -56,7 +56,7 @@ void ui_Main_screen_init(void)
     lv_obj_set_y(ui_Chart2, -97);
     lv_obj_set_align(ui_Chart2, LV_ALIGN_CENTER);
     lv_chart_set_type(ui_Chart2, LV_CHART_TYPE_LINE);
-    lv_chart_set_axis_tick(ui_Chart2, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 2, true, 50);
+    lv_chart_set_axis_tick(ui_Chart2, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 2, false, 50);
     lv_chart_set_axis_tick(ui_Chart2, LV_CHART_AXIS_PRIMARY_Y, 10, 5, 5, 2, true, 50);
     lv_chart_set_axis_tick(ui_Chart2, LV_CHART_AXIS_SECONDARY_Y, 10, 5, 5, 2, true, 25);
     lv_chart_series_t * ui_Chart2_series_1 = lv_chart_add_series(ui_Chart2, lv_color_hex(0x808080),
@@ -73,7 +73,7 @@ void ui_Main_screen_init(void)
     lv_obj_set_y(ui_Chart3, -97);
     lv_obj_set_align(ui_Chart3, LV_ALIGN_CENTER);
     lv_chart_set_type(ui_Chart3, LV_CHART_TYPE_LINE);
-    lv_chart_set_axis_tick(ui_Chart3, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 2, true, 50);
+    lv_chart_set_axis_tick(ui_Chart3, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 2, false, 50);
     lv_chart_set_axis_tick(ui_Chart3, LV_CHART_AXIS_PRIMARY_Y, 10, 5, 5, 2, true, 50);
     lv_chart_set_axis_tick(ui_Chart3, LV_CHART_AXIS_SECONDARY_Y, 10, 5, 5, 2, true, 25);
     lv_chart_series_t * ui_Chart3_series_1 = lv_chart_add_series(ui_Chart3, lv_color_hex(0x808080),
@@ -90,7 +90,7 @@ void ui_Main_screen_init(void)
     lv_obj_set_y(ui_Chart4, -97);
     lv_obj_set_align(ui_Chart4, LV_ALIGN_CENTER);
     lv_chart_set_type(ui_Chart4, LV_CHART_TYPE_LINE);
-    lv_chart_set_axis_tick(ui_Chart4, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 2, true, 50);
+    lv_chart_set_axis_tick(ui_Chart4, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 2, false, 50);
     lv_chart_set_axis_tick(ui_Chart4, LV_CHART_AXIS_PRIMARY_Y, 10, 5, 5, 2, true, 50);
     lv_chart_set_axis_tick(ui_Chart4, LV_CHART_AXIS_SECONDARY_Y, 10, 5, 5, 2, true, 25);
     lv_chart_series_t * ui_Chart4_series_1 = lv_chart_add_series(ui_Chart4, lv_color_hex(0x808080),
