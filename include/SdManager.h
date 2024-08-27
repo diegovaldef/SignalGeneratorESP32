@@ -6,13 +6,17 @@
 #include <SD.h>
 #include <Core.h>
 
-extern File dataFile;
-extern File root;
+extern File SD_Root;
+extern String STR_Root;
 const byte chipSelect = 5;
 
-void openSD();
+extern char fileType[100];
+extern String fileName[100];
+
+void openFile();
 void SDBegin();
 char* getFileNames(File dir);
+void refreshRoller();
 
 #endif
 

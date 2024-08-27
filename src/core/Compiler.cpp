@@ -4,6 +4,28 @@ ReadBuffer readBuffer;
 WriteBuffer writeBuffer;
 UBaseType_t spacesAvailable;
 
+TaskHandle_t TaskCompilerHandle;
+
+void createTaskCompiler(){
+
+  xTaskCreatePinnedToCore(
+      TaskCompiler,
+      "TaskCompiler",
+      1024 * 4,
+      NULL,
+      2,
+      &TaskCompilerHandle,
+      0);
+
+  vTaskSuspend(TaskCompilerHandle);
+
+}
+
+void TaskCompiler(void *pvParameters)
+{
+  readSignal();
+}
+
 void processSignal(const char *line, double nextPeriod)
 {
   double PERIOD, CH1, CH2, CH3;
@@ -26,12 +48,12 @@ void processSignal(const char *line, double nextPeriod)
 
 void readSignal()
 {
-  openSD();
+  openFile();
   
-  int bytesRead = dataFile.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
+  int bytesRead = SD_Root.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
   readBuffer.ACTUAL_BUF[bytesRead] = '\0';
 
-  while (dataFile.available())
+  while (SD_Root.available())
   {
 
     spacesAvailable = uxQueueSpacesAvailable(writeBuffer.TIME);
@@ -39,7 +61,7 @@ void readSignal()
     if (spacesAvailable > 0)
     {
 
-      bytesRead = dataFile.readBytesUntil('\n', readBuffer.NEXT_BUF, READ_BUF_SIZE - 1);
+      bytesRead = SD_Root.readBytesUntil('\n', readBuffer.NEXT_BUF, READ_BUF_SIZE - 1);
       readBuffer.NEXT_BUF[bytesRead] = '\0';
 
       double nextPeriod;
@@ -51,21 +73,21 @@ void readSignal()
 
   }
 
-  dataFile.close();
+  SD_Root.close();
 
 }
 
 void fillBuffers()
 {
 
-  openSD();
+  openFile();
 
-  int bytesRead = dataFile.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
+  int bytesRead = SD_Root.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
   readBuffer.ACTUAL_BUF[bytesRead] = '\0';
 
-  while (dataFile.available())
+  while (SD_Root.available())
   {
-    bytesRead = dataFile.readBytesUntil('\n', readBuffer.NEXT_BUF, READ_BUF_SIZE - 1);
+    bytesRead = SD_Root.readBytesUntil('\n', readBuffer.NEXT_BUF, READ_BUF_SIZE - 1);
     readBuffer.NEXT_BUF[bytesRead] = '\0';
 
     double nextPeriod;
@@ -85,7 +107,31 @@ void fillBuffers()
     strcpy(readBuffer.ACTUAL_BUF, readBuffer.NEXT_BUF);
   }
 
-  dataFile.close();
+  SD_Root.close();
 
 }
 
+void init_Signal(){
+
+  Serial.println("Calculando valores mínimos y máximos...");
+  readMinMax();
+
+  Serial.println("Creando Buffers de datos...");
+  fillBuffers();
+
+  Serial.println("Proceso Completado");
+
+  Serial.print("Min CKP: ");
+  Serial.println(minCH1, 6);
+  Serial.print("Max CKP: ");
+  Serial.println(maxCH1, 6);
+  Serial.print("Min CMP1: ");
+  Serial.println(minCH2, 6);
+  Serial.print("Max CMP1: ");
+  Serial.println(maxCH2, 6);
+  Serial.print("Min CMP2: ");
+  Serial.println(minCH3, 6);
+  Serial.print("Max CMP2: ");
+  Serial.println(maxCH3, 6);
+
+}

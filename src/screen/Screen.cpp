@@ -3,6 +3,9 @@
 TaskHandle_t TaskScreenHandle;
 bool signalRunning = false;
 
+const char _DIRECTORY_ = '0';
+const char _FILE_ = '1';
+
 void TaskScreen(void *pvParameters){
   while(true){
     lv_timer_handler();
@@ -57,6 +60,7 @@ void SignalStartStop(lv_event_t * e)
 {
   if(signalRunning){
     vTaskSuspend(TaskInjectHandle);
+    vTaskSuspend(TaskCompilerHandle);
     timerStop(My_timer);
     timerAlarmDisable(My_timer);
     signalRunning = false;
@@ -64,10 +68,27 @@ void SignalStartStop(lv_event_t * e)
   }
   else{
     vTaskResume(TaskInjectHandle);
+    vTaskResume(TaskCompilerHandle);
     timerStart(My_timer);
     timerAlarmEnable(My_timer);
     signalRunning = true;
     
+  }
+
+}
+
+void openTarget(lv_event_t * e)
+{
+  byte selected = lv_roller_get_selected(ui_Roller3);
+  STR_Root = STR_Root + fileName[selected];
+
+	if(fileType[selected] == _DIRECTORY_){
+    refreshRoller();
+  }
+  else{
+    _ui_screen_change(&ui_Loading, LV_SCR_LOAD_ANIM_FADE_ON, 500 , 0, &ui_Loading_screen_init);
+    init_Signal();
+    _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_ON, 500 , 0, &ui_Main_screen_init);
   }
 
 }
