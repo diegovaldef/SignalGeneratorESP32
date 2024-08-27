@@ -34,6 +34,7 @@ void SDBegin()
     }
   }
 
+  xMutex = xSemaphoreCreateMutex();
   refreshRoller();
 }
 
@@ -89,9 +90,12 @@ char *getFileNames(File dir)
 
 void refreshRoller()
 {
-
-  SD_Root = SD.open(STR_Root, FILE_READ);
+  if (xSemaphoreTake(xMutex, 0) == pdTRUE) {
+    SD_Root = SD.open(STR_Root, FILE_READ);
+    xSemaphoreGive(xMutex);
+  }
 
   lv_roller_set_options(ui_Roller3, getFileNames(SD_Root),
                         LV_ROLLER_MODE_NORMAL);
+                        
 }

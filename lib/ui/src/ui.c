@@ -49,19 +49,16 @@ lv_obj_t * ui_Chart4;
 void ui_event_Button1(lv_event_t * e);
 lv_obj_t * ui_Button1;
 lv_obj_t * ui_Button5;
-void ui_event_Button6(lv_event_t * e);
 lv_obj_t * ui_Button6;
 lv_obj_t * ui_Button7;
 void ui_event_Button8(lv_event_t * e);
 lv_obj_t * ui_Button8;
 
 
-// SCREEN: ui_Config
-void ui_Config_screen_init(void);
-lv_obj_t * ui_Config;
-void ui_event_Button9(lv_event_t * e);
-lv_obj_t * ui_Button9;
-lv_obj_t * ui_Label6;
+// SCREEN: ui_Loading
+void ui_Loading_screen_init(void);
+lv_obj_t * ui_Loading;
+lv_obj_t * ui_Spinner2;
 lv_obj_t * ui____initial_actions0;
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
@@ -115,23 +112,7 @@ void ui_event_Button1(lv_event_t * e)
         SignalStartStop(e);
     }
 }
-void ui_event_Button6(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Explorador_screen_init);
-    }
-}
 void ui_event_Button8(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_Config, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Config_screen_init);
-    }
-}
-void ui_event_Button9(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
@@ -153,7 +134,7 @@ void ui_init(void)
     ui_Logo_screen_init();
     ui_Explorador_screen_init();
     ui_Main_screen_init();
-    ui_Config_screen_init();
+    ui_Loading_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_Logo);
 }

@@ -4,6 +4,8 @@ ReadBuffer readBuffer;
 WriteBuffer writeBuffer;
 UBaseType_t spacesAvailable;
 
+SemaphoreHandle_t xMutex;
+
 void processSignal(const char *line, double nextPeriod)
 {
   double PERIOD, CH1, CH2, CH3;
@@ -26,8 +28,11 @@ void processSignal(const char *line, double nextPeriod)
 
 void readSignal()
 {
-  openFile(STR_Root);
-  
+  if (xSemaphoreTake(xMutex, 0) == pdTRUE) {
+    openFile(STR_Root);
+    xSemaphoreGive(xMutex);
+  }
+
   int bytesRead = SD_ActualFile.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
   readBuffer.ACTUAL_BUF[bytesRead] = '\0';
 
@@ -58,7 +63,10 @@ void readSignal()
 void fillBuffers()
 {
 
-  openFile(STR_Root);
+  if (xSemaphoreTake(xMutex, 0) == pdTRUE) {
+    openFile(STR_Root);
+    xSemaphoreGive(xMutex);
+  }
 
   int bytesRead = SD_ActualFile.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
   readBuffer.ACTUAL_BUF[bytesRead] = '\0';
@@ -89,3 +97,14 @@ void fillBuffers()
 
 }
 
+void init_Signal(){
+
+  Serial.println("Calculando valores mínimos y máximos...");
+  readMinMax();
+
+  Serial.println("Creando Buffers de datos...");
+  fillBuffers();
+
+  Serial.println("Proceso Completado");
+
+}

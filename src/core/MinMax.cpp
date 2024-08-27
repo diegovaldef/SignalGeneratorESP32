@@ -32,7 +32,10 @@ void processMinMax(const char *line)
 
 void readMinMax()
 {
-  openFile(STR_Root);
+   if (xSemaphoreTake(xMutex, 0) == pdTRUE) {
+    openFile(STR_Root);
+    xSemaphoreGive(xMutex);
+  }
 
   while (SD_ActualFile.available())
   {

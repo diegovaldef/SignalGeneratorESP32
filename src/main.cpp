@@ -13,14 +13,6 @@ void setup()
   screenSetup();
   SDBegin();
 
-  Serial.println("Calculando valores mínimos y máximos...");
-  readMinMax();
-
-  Serial.println("Creando Buffers de datos...");
-  fillBuffers();
-
-  Serial.println("Proceso Completado");
-
   Serial.print("Min CKP: ");
   Serial.println(minCH1, 6);
   Serial.print("Max CKP: ");

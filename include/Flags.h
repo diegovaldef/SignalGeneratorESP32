@@ -6,5 +6,7 @@
 */
 
 extern bool signalRunning; // Si la señal esta ejecutandose o no
+extern SemaphoreHandle_t xMutex;
+
 
 #endif
