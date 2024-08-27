@@ -3,7 +3,7 @@ SET(SOURCES ui_comp_buttonlist.c
     ui_Logo.c
     ui_Explorador.c
     ui_Main.c
-    ui_Config.c
+    ui_Loading.c
     ui.c
     ui_comp_hook.c
     ui_helpers.c
