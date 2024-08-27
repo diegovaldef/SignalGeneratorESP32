@@ -10,10 +10,15 @@
 extern "C" {
 #endif
 
+#ifndef rollerUp
 void rollerUp(lv_event_t * e);
+#endif
+#ifndef rollerDown
 void rollerDown(lv_event_t * e);
-void openTarget(lv_event_t * e);
+#endif
+#ifndef SignalStartStop
 void SignalStartStop(lv_event_t * e);
+#endif
 
 #ifdef __cplusplus
 } /*extern "C"*/
