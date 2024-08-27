@@ -1,0 +1,19 @@
+Basic Format:
+
+Variables: thisIsTheFormat
+Constants: THIS_IS_THE_FORMAT
+
+Structures: ThisIsTheFormat
+Functions: ThisIsTheFormat
+
+Prefixes:
+
+SD - Used only for SD control
+STR - Contains a string
+
+
+
+
+
+
+

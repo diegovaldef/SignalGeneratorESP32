@@ -3,6 +3,12 @@
 TaskHandle_t TaskScreenHandle;
 bool signalRunning = false;
 
+enum fileType {
+  _DIRECTORY,
+  _FILE
+};
+
+
 void TaskScreen(void *pvParameters){
   while(true){
     lv_timer_handler();
@@ -68,6 +74,20 @@ void SignalStartStop(lv_event_t * e)
     timerAlarmEnable(My_timer);
     signalRunning = true;
     
+  }
+
+}
+
+void openTarget(lv_event_t * e)
+{
+  byte selected = lv_roller_get_selected(ui_Roller3);
+  STR_Root = STR_Root + fileNames[selected];  
+
+  if(fileTypes[selected] == _DIRECTORY){
+    refreshRoller();
+  }
+  else {
+    _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Main_screen_init);
   }
 
 }

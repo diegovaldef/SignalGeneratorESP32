@@ -32,14 +32,14 @@ void processMinMax(const char *line)
 
 void readMinMax()
 {
-  openSD();
+  openFile(STR_Root);
 
-  while (dataFile.available())
+  while (SD_ActualFile.available())
   {
-    int bytesRead = dataFile.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
+    int bytesRead = SD_ActualFile.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
     readBuffer.ACTUAL_BUF[bytesRead] = '\0';
     processMinMax(readBuffer.ACTUAL_BUF);
   }
 
-  dataFile.close();
+  SD_ActualFile.close();
 }

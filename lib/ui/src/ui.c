@@ -48,8 +48,8 @@ lv_obj_t * ui_Chart3;
 lv_obj_t * ui_Chart4;
 void ui_event_Button1(lv_event_t * e);
 lv_obj_t * ui_Button1;
-void ui_event_Button5(lv_event_t * e);
 lv_obj_t * ui_Button5;
+void ui_event_Button6(lv_event_t * e);
 lv_obj_t * ui_Button6;
 lv_obj_t * ui_Button7;
 void ui_event_Button8(lv_event_t * e);
@@ -104,7 +104,7 @@ void ui_event_Button10(lv_event_t * e)
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Main_screen_init);
+        openTarget(e);
     }
 }
 void ui_event_Button1(lv_event_t * e)
@@ -115,7 +115,7 @@ void ui_event_Button1(lv_event_t * e)
         SignalStartStop(e);
     }
 }
-void ui_event_Button5(lv_event_t * e)
+void ui_event_Button6(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);

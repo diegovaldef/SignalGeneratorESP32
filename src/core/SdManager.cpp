@@ -1,17 +1,20 @@
 #include <SdManager.h>
 
-File dataFile;
-File root;
+File SD_ActualFile;
+File SD_Root;
+String STR_Root = "/";
 
 char list[100];
 char name[100];
 char symbol[100];
 char space[100];
+char fileTypes[100];
+String fileNames[100];
 
-void openSD()
+void openFile(String file)
 {
-  dataFile = SD.open("/data.txt", FILE_READ);
-  if (!dataFile)
+  SD_ActualFile = SD.open(file, FILE_READ);
+  if (!SD_ActualFile)
   {
     Serial.println("Error abriendo el archivo");
     for (;;)
@@ -31,32 +34,40 @@ void SDBegin()
     }
   }
 
-  root = SD.open("/", FILE_READ);
+  refreshRoller();
 }
 
-char* getFileNames(File dir) {
+char *getFileNames(File dir)
+{
 
-  while (true) {
+  byte i = 0;
 
-    File entry =  dir.openNextFile();
+  while (true)
+  {
 
-    if (!entry ) {
+    File entry = dir.openNextFile();
+
+    if (!entry)
+    {
 
       return list;
-
     }
 
-    if(strlen(entry.name()) > 0 && strlen(entry.name()) <= 20){
+    if (strlen(entry.name()) > 0 && strlen(entry.name()) <= 20)
+    {
 
-      const char* str = entry.name();
+      const char *str = entry.name();
       strcpy(name, str);
 
-      if(entry.isDirectory()){
+      if (entry.isDirectory())
+      {
         strcpy(symbol, LV_SYMBOL_DIRECTORY);
+        strcat(fileTypes, "0");
       }
-      else {
+      else
+      {
         strcpy(symbol, LV_SYMBOL_FILE);
-
+        strcat(fileTypes, "1");
       }
 
       strcpy(space, " ");
@@ -67,12 +78,20 @@ char* getFileNames(File dir) {
       strcpy(name, symbol);
       strcat(name, "\n");
 
-
       strcat(list, name);
-      
+      fileNames[i] = name;
+      i++;
     }
 
     entry.close();
   }
+}
 
+void refreshRoller()
+{
+
+  SD_Root = SD.open(STR_Root, FILE_READ);
+
+  lv_roller_set_options(ui_Roller3, getFileNames(SD_Root),
+                        LV_ROLLER_MODE_NORMAL);
 }

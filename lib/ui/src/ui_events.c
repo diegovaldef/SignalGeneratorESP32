@@ -15,6 +15,11 @@ void rollerDown(lv_event_t * e)
 	// Your code here
 }
 
+void openTarget(lv_event_t * e)
+{
+	// Your code here
+}
+
 void SignalStartStop(lv_event_t * e)
 {
 	// Your code here

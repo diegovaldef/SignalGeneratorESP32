@@ -26,12 +26,12 @@ void processSignal(const char *line, double nextPeriod)
 
 void readSignal()
 {
-  openSD();
+  openFile(STR_Root);
   
-  int bytesRead = dataFile.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
+  int bytesRead = SD_ActualFile.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
   readBuffer.ACTUAL_BUF[bytesRead] = '\0';
 
-  while (dataFile.available())
+  while (SD_ActualFile.available())
   {
 
     spacesAvailable = uxQueueSpacesAvailable(writeBuffer.TIME);
@@ -39,7 +39,7 @@ void readSignal()
     if (spacesAvailable > 0)
     {
 
-      bytesRead = dataFile.readBytesUntil('\n', readBuffer.NEXT_BUF, READ_BUF_SIZE - 1);
+      bytesRead = SD_ActualFile.readBytesUntil('\n', readBuffer.NEXT_BUF, READ_BUF_SIZE - 1);
       readBuffer.NEXT_BUF[bytesRead] = '\0';
 
       double nextPeriod;
@@ -51,21 +51,21 @@ void readSignal()
 
   }
 
-  dataFile.close();
+  SD_ActualFile.close();
 
 }
 
 void fillBuffers()
 {
 
-  openSD();
+  openFile(STR_Root);
 
-  int bytesRead = dataFile.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
+  int bytesRead = SD_ActualFile.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
   readBuffer.ACTUAL_BUF[bytesRead] = '\0';
 
-  while (dataFile.available())
+  while (SD_ActualFile.available())
   {
-    bytesRead = dataFile.readBytesUntil('\n', readBuffer.NEXT_BUF, READ_BUF_SIZE - 1);
+    bytesRead = SD_ActualFile.readBytesUntil('\n', readBuffer.NEXT_BUF, READ_BUF_SIZE - 1);
     readBuffer.NEXT_BUF[bytesRead] = '\0';
 
     double nextPeriod;
@@ -85,7 +85,7 @@ void fillBuffers()
     strcpy(readBuffer.ACTUAL_BUF, readBuffer.NEXT_BUF);
   }
 
-  dataFile.close();
+  SD_ActualFile.close();
 
 }
 

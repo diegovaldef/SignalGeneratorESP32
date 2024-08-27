@@ -1,6 +1,8 @@
 #ifndef CORE_H
 #define CORE_H
 
+// Se incluyen todas las librerias del proyecto
+
 #include <Buffers.h>
 #include <Compiler.h>
 #include <Inject.h>
