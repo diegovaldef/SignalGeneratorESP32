@@ -1,13 +1,9 @@
 #include <SdManager.h>
 
 File SD_Root;
-String STR_Root = "/";
+String STR_Root;
 
 char list[100];
-char name[100];
-char symbol[100];
-char space[100];
-
 char fileType[100];
 String fileName[100];
 
@@ -34,12 +30,18 @@ void SDBegin()
     }
   }
 
+  STR_Root = "/";
   refreshRoller();
 
 }
 
 char* getFileNames(File dir) {
 
+  char name[100];
+  char symbol[100];
+  char space[100];
+  char sign[100];
+  strcpy(list, "");
   byte i = 0;
 
   while (true) {
@@ -56,7 +58,13 @@ char* getFileNames(File dir) {
 
       const char* str = entry.name();
       strcpy(name, str);
+
+      strcpy(sign, "/");
+      strcat(sign, name);
+      strcpy(name, sign);
       fileName[i] = name;
+
+      strcpy(name, str);
 
       if(entry.isDirectory()){
         strcpy(symbol, LV_SYMBOL_DIRECTORY);

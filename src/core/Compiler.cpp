@@ -6,24 +6,29 @@ UBaseType_t spacesAvailable;
 
 TaskHandle_t TaskCompilerHandle;
 
-void createTaskCompiler(){
+void createTaskCompiler()
+{
 
   xTaskCreatePinnedToCore(
       TaskCompiler,
       "TaskCompiler",
-      1024 * 4,
+      1024 * 10,
       NULL,
       2,
       &TaskCompilerHandle,
       0);
 
   vTaskSuspend(TaskCompilerHandle);
-
 }
 
 void TaskCompiler(void *pvParameters)
 {
-  readSignal();
+  init_Signal();
+
+  while (true)
+  {
+    readSignal();
+  }
 }
 
 void processSignal(const char *line, double nextPeriod)
@@ -36,20 +41,18 @@ void processSignal(const char *line, double nextPeriod)
     uint16_t ch2 = mapDouble(CH2, minCH2, maxCH2, 0, 255);
     uint16_t ch3 = mapDouble(CH3, minCH3, maxCH3, 0, 255);
     uint64_t deltaTime = (nextPeriod - PERIOD) * 1e6;
-    
+
     xQueueSend(writeBuffer.CH1, &ch1, portMAX_DELAY);
     xQueueSend(writeBuffer.CH2, &ch2, portMAX_DELAY);
     xQueueSend(writeBuffer.CH3, &ch3, portMAX_DELAY);
     xQueueSend(writeBuffer.TIME, &deltaTime, portMAX_DELAY);
-
   }
-  
 }
 
 void readSignal()
 {
   openFile();
-  
+
   int bytesRead = SD_Root.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
   readBuffer.ACTUAL_BUF[bytesRead] = '\0';
 
@@ -70,11 +73,10 @@ void readSignal()
 
       strcpy(readBuffer.ACTUAL_BUF, readBuffer.NEXT_BUF);
     }
-
+    vTaskDelay(5);
   }
 
   SD_Root.close();
-
 }
 
 void fillBuffers()
@@ -108,10 +110,10 @@ void fillBuffers()
   }
 
   SD_Root.close();
-
 }
 
-void init_Signal(){
+void init_Signal()
+{
 
   Serial.println("Calculando valores mínimos y máximos...");
   readMinMax();
@@ -133,5 +135,7 @@ void init_Signal(){
   Serial.println(minCH3, 6);
   Serial.print("Max CMP2: ");
   Serial.println(maxCH3, 6);
+
+  _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_ON, 0 , 0, &ui_Main_screen_init);
 
 }

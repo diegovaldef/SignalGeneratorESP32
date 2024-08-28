@@ -10,8 +10,10 @@ extern File SD_Root;
 extern String STR_Root;
 const byte chipSelect = 5;
 
-extern char fileType[100];
-extern String fileName[100];
+extern char fileType[];
+extern String fileName[];
+
+extern char list[];
 
 void openFile();
 void SDBegin();

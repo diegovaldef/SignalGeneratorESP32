@@ -17,9 +17,9 @@ void setup()
   createTaskCompiler();
   createTaskScreen();
 
+  vTaskDelete(NULL);
 }
 
 void loop()
 {
-  delay(1000);
 }

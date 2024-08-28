@@ -2,5 +2,6 @@
 #define FLAGS_H
 
 extern bool signalRunning;
+extern bool firstOpen;
 
 #endif

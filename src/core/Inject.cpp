@@ -12,7 +12,7 @@ void createTaskInject(){
   xTaskCreatePinnedToCore(
       TaskInject,
       "TaskInject",
-      1024 * 4,
+      1024 * 10,
       NULL,
       2,
       &TaskInjectHandle,
