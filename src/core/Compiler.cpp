@@ -24,6 +24,7 @@ void createTaskCompiler()
 void TaskCompiler(void *pvParameters)
 {
   init_Signal();
+  vTaskSuspend(TaskCompilerHandle);
 
   while (true)
   {

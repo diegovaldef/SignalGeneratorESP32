@@ -36,6 +36,7 @@ extern lv_obj_t * ui_Label7;
 void ui_Explorador_screen_init(void);
 extern lv_obj_t * ui_Explorador;
 extern lv_obj_t * ui_Container1;
+void ui_event_Button3(lv_event_t * e);
 extern lv_obj_t * ui_Button3;
 extern lv_obj_t * ui_Button4;
 extern lv_obj_t * ui_Button2;

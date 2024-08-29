@@ -5,6 +5,11 @@
 
 #include "ui.h"
 
+void backDirectory(lv_event_t * e)
+{
+	// Your code here
+}
+
 void rollerUp(lv_event_t * e)
 {
 	// Your code here

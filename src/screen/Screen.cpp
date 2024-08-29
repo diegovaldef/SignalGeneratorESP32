@@ -7,14 +7,17 @@ bool firstOpen = true;
 const char _DIRECTORY_ = '0';
 const char _FILE_ = '1';
 
-void TaskScreen(void *pvParameters){
-  while(true){
+void TaskScreen(void *pvParameters)
+{
+  while (true)
+  {
     lv_timer_handler();
     vTaskDelay(5);
   }
 }
 
-void createTaskScreen(){
+void createTaskScreen()
+{
 
   xTaskCreatePinnedToCore(
       TaskScreen,
@@ -24,79 +27,107 @@ void createTaskScreen(){
       1,
       &TaskScreenHandle,
       1);
-
 }
 
-void rollerUp(lv_event_t * e)
+void rollerUp(lv_event_t *e)
 {
 
-  if(lv_roller_get_selected(ui_Roller3) == 0){
+  if (lv_roller_get_selected(ui_Roller3) == 0)
+  {
     lv_roller_set_selected(ui_Roller3, 2, LV_ANIM_ON);
-
   }
-  else {
+  else
+  {
 
     uint32_t k = LV_KEY_UP;
     lv_event_send(ui_Roller3, LV_EVENT_KEY, &k);
-
   }
-
 }
 
-void rollerDown(lv_event_t * e)
+void rollerDown(lv_event_t *e)
 {
-  if(lv_roller_get_selected(ui_Roller3) == 2){
+  if (lv_roller_get_selected(ui_Roller3) == 2)
+  {
     lv_roller_set_selected(ui_Roller3, 0, LV_ANIM_ON);
-
   }
-  else {
+  else
+  {
 
     uint32_t k = LV_KEY_DOWN;
-	  lv_event_send(ui_Roller3, LV_EVENT_KEY, &k);
-
+    lv_event_send(ui_Roller3, LV_EVENT_KEY, &k);
   }
-
 }
 
-void SignalStartStop(lv_event_t * e)
+void SignalStartStop(lv_event_t *e)
 {
-  if(signalRunning){
+  if (signalRunning)
+  {
     vTaskSuspend(TaskInjectHandle);
     vTaskSuspend(TaskCompilerHandle);
     timerStop(My_timer);
     timerAlarmDisable(My_timer);
     signalRunning = false;
-    
   }
-  else{
+  else
+  {
     vTaskResume(TaskInjectHandle);
     vTaskResume(TaskCompilerHandle);
     timerStart(My_timer);
     timerAlarmEnable(My_timer);
     signalRunning = true;
-    
   }
-
 }
 
-void openTarget(lv_event_t * e)
-{ 
+void openTarget(lv_event_t *e)
+{
+
   byte selected = lv_roller_get_selected(ui_Roller3);
 
-  if(firstOpen){
+  if (firstOpen)
+  {
     STR_Root = fileName[selected];
     firstOpen = false;
   }
-  else{
+  else
+  {
     STR_Root = STR_Root + fileName[selected];
   }
 
-	if(fileType[selected] == _DIRECTORY_){
+  if (fileType[selected] == _DIRECTORY_)
+  {
     refreshRoller();
   }
-  else{
-    _ui_screen_change(&ui_Loading, LV_SCR_LOAD_ANIM_FADE_ON, 0 , 0, &ui_Loading_screen_init);
+  else
+  {
+    _ui_screen_change(&ui_Loading, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Loading_screen_init);
     vTaskResume(TaskCompilerHandle);
   }
+}
 
+void backDirectory(lv_event_t *e)
+{
+  String lastFileName;
+  int len = STR_Root.length();
+  for (int i = len - 1; i >= 0; i--)
+  {
+
+    lastFileName = STR_Root[i] + lastFileName;
+
+    if (STR_Root[i] == '/')
+    {
+      break;
+    }
+  }
+
+  if (!(STR_Root.length() - lastFileName.length() == 0))
+  {
+    STR_Root.remove(STR_Root.length() - lastFileName.length(), lastFileName.length());
+  }
+  else
+  {
+    STR_Root = "/";
+    firstOpen = true;
+  }
+
+  refreshRoller();
 }
