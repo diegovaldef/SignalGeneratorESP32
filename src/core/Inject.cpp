@@ -31,7 +31,7 @@ void TaskInject(void *pvParameters)
   
     spacesAvailable = uxQueueSpacesAvailable(writeBuffer.TIME);
 
-    if (spacesAvailable < 50)
+    if (spacesAvailable < WRITE_BUF_SIZE)
     {
 
       xQueueReceive(writeBuffer.CH1, &ch1 , portMAX_DELAY);

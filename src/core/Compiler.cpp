@@ -74,7 +74,7 @@ void readSignal()
 
       strcpy(readBuffer.ACTUAL_BUF, readBuffer.NEXT_BUF);
     }
-    vTaskDelay(5);
+    vTaskDelay(1);
   }
 
   SD_Root.close();
@@ -140,3 +140,4 @@ void init_Signal()
   _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_ON, 0 , 0, &ui_Main_screen_init);
 
 }
+

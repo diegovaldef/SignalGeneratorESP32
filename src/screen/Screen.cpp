@@ -62,18 +62,18 @@ void SignalStartStop(lv_event_t *e)
 {
   if (signalRunning)
   {
-    vTaskSuspend(TaskInjectHandle);
-    vTaskSuspend(TaskCompilerHandle);
-    timerStop(My_timer);
     timerAlarmDisable(My_timer);
+    timerStop(My_timer);
+    vTaskSuspend(TaskCompilerHandle);
+    vTaskSuspend(TaskInjectHandle);
     signalRunning = false;
   }
   else
   {
-    vTaskResume(TaskInjectHandle);
-    vTaskResume(TaskCompilerHandle);
-    timerStart(My_timer);
     timerAlarmEnable(My_timer);
+    timerStart(My_timer);
+    vTaskResume(TaskCompilerHandle);
+    vTaskResume(TaskInjectHandle);
     signalRunning = true;
   }
 }
@@ -130,4 +130,51 @@ void backDirectory(lv_event_t *e)
   }
 
   refreshRoller();
+}
+
+void resetSignal(lv_event_t * e)
+{
+  vTaskSuspend(TaskCompilerHandle);
+  vTaskSuspend(TaskInjectHandle);
+  
+  timerAlarmDisable(My_timer);
+  timerStop(My_timer);
+  timerDetachInterrupt(My_timer);
+  timerEnd(My_timer);
+  signalRunning = false;
+  
+  minCH1 = 0;
+  maxCH1 = 0;
+  minCH2 = 0;
+  maxCH2 = 0;
+  minCH3 = 0;
+  maxCH3 = 0;
+  minCH4 = 0;
+  maxCH4 = 0;
+
+  uint64_t data;
+
+  while (uxQueueMessagesWaiting(writeBuffer.CH1) > 0) {
+    xQueueReceive(writeBuffer.CH1, &data, 0);
+  }
+  while (uxQueueMessagesWaiting(writeBuffer.CH2) > 0) {
+    xQueueReceive(writeBuffer.CH2, &data, 0);
+  }
+  while (uxQueueMessagesWaiting(writeBuffer.CH3) > 0) {
+    xQueueReceive(writeBuffer.CH3, &data, 0);
+  }    
+  while (uxQueueMessagesWaiting(writeBuffer.CH4) > 0) {
+    xQueueReceive(writeBuffer.CH4, &data, 0);
+  }
+  while (uxQueueMessagesWaiting(writeBuffer.TIME) > 0) {
+    xQueueReceive(writeBuffer.TIME, &data, 0);
+  }
+
+  vTaskDelete(TaskInjectHandle);
+  vTaskDelete(TaskCompilerHandle);
+
+  createTaskInject();
+  createTaskCompiler();
+
+  
 }

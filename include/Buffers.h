@@ -7,7 +7,7 @@
 
 // Constantes
 const byte READ_BUF_SIZE = 128;  // Tamaño del buffer de lectura
-const byte WRITE_BUF_SIZE = 50; // Tamaño del buffer de datos
+const int WRITE_BUF_SIZE = 1000; // Tamaño del buffer de datos
 
 
 struct ReadBuffer
@@ -26,7 +26,7 @@ struct WriteBuffer
     QueueHandle_t CH3 = xQueueCreate(WRITE_BUF_SIZE, sizeof(uint16_t));
     QueueHandle_t CH4 = xQueueCreate(WRITE_BUF_SIZE, sizeof(uint16_t));
     QueueHandle_t TIME = xQueueCreate(WRITE_BUF_SIZE, sizeof(uint64_t));
-    QueueHandle_t REAL_TIME = xQueueCreate(WRITE_BUF_SIZE, sizeof(uint64_t));
+
 
 };
 

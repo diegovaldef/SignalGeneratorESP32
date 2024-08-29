@@ -29,3 +29,8 @@ void SignalStartStop(lv_event_t * e)
 {
 	// Your code here
 }
+
+void resetSignal(lv_event_t * e)
+{
+	// Your code here
+}

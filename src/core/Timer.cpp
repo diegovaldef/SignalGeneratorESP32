@@ -20,7 +20,6 @@ void init_timer() {
 
     My_timer = timerBegin(0, 80, true);
     timerAttachInterrupt(My_timer, &timer_isr, true);
-    timerStart(My_timer);
 
 }
 

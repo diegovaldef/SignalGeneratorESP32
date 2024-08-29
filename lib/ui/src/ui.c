@@ -127,6 +127,7 @@ void ui_event_Button8(lv_event_t * e)
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
         _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Explorador_screen_init);
+        resetSignal(e);
         backDirectory(e);
     }
 }
