@@ -32,31 +32,39 @@ void SDBegin()
 
   STR_Root = "/";
   refreshRoller();
-
 }
 
-char* getFileNames(File dir) {
+char *getFileNames(File dir)
+{
 
   char name[100];
   char symbol[100];
   char space[100];
   char sign[100];
   strcpy(list, "");
+  strcpy(fileType, "");
+
+  for (int i = 0; i < 100; i++) {
+      fileName[i] = "";
+  }
+
   byte i = 0;
 
-  while (true) {
+  while (true)
+  {
 
-    File entry =  dir.openNextFile();
+    File entry = dir.openNextFile();
 
-    if (!entry ) {
+    if (!entry)
+    {
 
       return list;
-
     }
 
-    if(strlen(entry.name()) > 0 && strlen(entry.name()) <= 20){
+    if (strlen(entry.name()) > 0 && strlen(entry.name()) <= 20)
+    {
 
-      const char* str = entry.name();
+      const char *str = entry.name();
       strcpy(name, str);
 
       strcpy(sign, "/");
@@ -66,11 +74,13 @@ char* getFileNames(File dir) {
 
       strcpy(name, str);
 
-      if(entry.isDirectory()){
+      if (entry.isDirectory())
+      {
         strcpy(symbol, LV_SYMBOL_DIRECTORY);
         strcat(fileType, "0");
       }
-      else {
+      else
+      {
         strcpy(symbol, LV_SYMBOL_FILE);
         strcat(fileType, "1");
       }
@@ -83,22 +93,31 @@ char* getFileNames(File dir) {
       strcpy(name, symbol);
       strcat(name, "\n");
 
-
       strcat(list, name);
       i++;
-      
     }
 
     entry.close();
   }
-
 }
 
-void refreshRoller(){
+void refreshRoller()
+{
 
   SD_Root = SD.open(STR_Root, FILE_READ);
 
   lv_roller_set_options(ui_Roller3, getFileNames(SD_Root),
-                   LV_ROLLER_MODE_NORMAL);
+                        LV_ROLLER_MODE_NORMAL);
 
+  float len = strlen(fileType);
+
+  if (int(len) % 2 == 1){
+    len = len / 2;
+    len = floor(len);
+  }
+  else{
+    len = (len / 2) - 1;
+  }
+
+  lv_roller_set_selected(ui_Roller3, len, LV_ANIM_OFF);
 }
