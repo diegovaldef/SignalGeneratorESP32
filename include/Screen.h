@@ -26,6 +26,7 @@ void rollerDown(lv_event_t * e);
 void SignalStartStop(lv_event_t * e);
 void openTarget(lv_event_t * e);
 void resetSignal(lv_event_t * e);
+void refreshRollerButton(lv_event_t * e);
 void TaskScreen(void *pvParameters);
 void createTaskScreen();
 

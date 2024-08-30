@@ -23,6 +23,7 @@ lv_obj_t * ui_Container1;
 void ui_event_Button3(lv_event_t * e);
 lv_obj_t * ui_Button3;
 lv_obj_t * ui_Button4;
+void ui_event_Button2(lv_event_t * e);
 lv_obj_t * ui_Button2;
 lv_obj_t * ui_Label1;
 lv_obj_t * ui_Container5;
@@ -60,6 +61,13 @@ lv_obj_t * ui_Button8;
 void ui_Loading_screen_init(void);
 lv_obj_t * ui_Loading;
 lv_obj_t * ui_Spinner2;
+
+
+// SCREEN: ui_SDError
+void ui_SDError_screen_init(void);
+lv_obj_t * ui_SDError;
+lv_obj_t * ui_Label3;
+lv_obj_t * ui_Label4;
 lv_obj_t * ui____initial_actions0;
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
@@ -87,6 +95,14 @@ void ui_event_Button3(lv_event_t * e)
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
         backDirectory(e);
+    }
+}
+void ui_event_Button2(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        refreshRollerButton(e);
     }
 }
 void ui_event_Button13(lv_event_t * e)
@@ -146,6 +162,7 @@ void ui_init(void)
     ui_Explorador_screen_init();
     ui_Main_screen_init();
     ui_Loading_screen_init();
+    ui_SDError_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_Logo);
 }

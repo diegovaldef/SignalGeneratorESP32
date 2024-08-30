@@ -12,7 +12,7 @@ void TaskScreen(void *pvParameters)
   while (true)
   {
     lv_timer_handler();
-    vTaskDelay(5);
+    vTaskDelay(1);
   }
 }
 
@@ -97,7 +97,7 @@ void openTarget(lv_event_t *e)
   {
     refreshRoller();
   }
-  else
+  else 
   {
     _ui_screen_change(&ui_Loading, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Loading_screen_init);
     vTaskResume(TaskCompilerHandle);
@@ -179,4 +179,9 @@ void resetSignal(lv_event_t * e)
   createTaskInject();
   createTaskCompiler();
 
+}
+
+void refreshRollerButton(lv_event_t * e)
+{
+	refreshRoller();
 }

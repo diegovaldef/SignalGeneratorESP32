@@ -10,6 +10,11 @@ void backDirectory(lv_event_t * e)
 	// Your code here
 }
 
+void refreshRollerButton(lv_event_t * e)
+{
+	// Your code here
+}
+
 void rollerUp(lv_event_t * e)
 {
 	// Your code here

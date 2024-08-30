@@ -11,11 +11,12 @@ void setup()
   pinMode(dac2Pin, OUTPUT);
 
   screenSetup();
-  SDBegin();
 
   createTaskInject();
   createTaskCompiler();
   createTaskScreen();
+
+  SDBegin();
 
   vTaskDelete(NULL);
 }

@@ -11,6 +11,7 @@ extern "C" {
 #endif
 
 void backDirectory(lv_event_t * e);
+void refreshRollerButton(lv_event_t * e);
 void rollerUp(lv_event_t * e);
 void rollerDown(lv_event_t * e);
 void openTarget(lv_event_t * e);

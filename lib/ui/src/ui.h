@@ -39,6 +39,7 @@ extern lv_obj_t * ui_Container1;
 void ui_event_Button3(lv_event_t * e);
 extern lv_obj_t * ui_Button3;
 extern lv_obj_t * ui_Button4;
+void ui_event_Button2(lv_event_t * e);
 extern lv_obj_t * ui_Button2;
 extern lv_obj_t * ui_Label1;
 extern lv_obj_t * ui_Container5;
@@ -72,6 +73,11 @@ extern lv_obj_t * ui_Button8;
 void ui_Loading_screen_init(void);
 extern lv_obj_t * ui_Loading;
 extern lv_obj_t * ui_Spinner2;
+// SCREEN: ui_SDError
+void ui_SDError_screen_init(void);
+extern lv_obj_t * ui_SDError;
+extern lv_obj_t * ui_Label3;
+extern lv_obj_t * ui_Label4;
 extern lv_obj_t * ui____initial_actions0;
 
 

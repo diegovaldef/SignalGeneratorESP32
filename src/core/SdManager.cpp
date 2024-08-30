@@ -12,26 +12,23 @@ void openFile()
   SD_Root = SD.open(STR_Root, FILE_READ);
   if (!SD_Root)
   {
-    Serial.println("Error abriendo el archivo");
-    for (;;)
-    {
-    }
+    _ui_screen_change(&ui_SDError, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_SDError_screen_init);
   }
 }
 
 void SDBegin()
 {
+  STR_Root = "/";
 
   if (!SD.begin(chipSelect))
   {
-    Serial.println("Error inicializando la tarjeta SD");
-    for (;;)
-    {
-    }
+    _ui_screen_change(&ui_SDError, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_SDError_screen_init);
   }
-
-  STR_Root = "/";
-  refreshRoller();
+  else
+  {
+    SD.begin(chipSelect);
+    refreshRoller();
+  }
 }
 
 char *getFileNames(File dir)
@@ -44,8 +41,9 @@ char *getFileNames(File dir)
   strcpy(list, "");
   strcpy(fileType, "");
 
-  for (int i = 0; i < 100; i++) {
-      fileName[i] = "";
+  for (int i = 0; i < 100; i++)
+  {
+    fileName[i] = "";
   }
 
   byte i = 0;
@@ -104,18 +102,20 @@ char *getFileNames(File dir)
 void refreshRoller()
 {
 
-  SD_Root = SD.open(STR_Root, FILE_READ);
+  openFile();
 
   lv_roller_set_options(ui_Roller3, getFileNames(SD_Root),
                         LV_ROLLER_MODE_NORMAL);
 
   float len = strlen(fileType);
 
-  if (int(len) % 2 == 1){
+  if (int(len) % 2 == 1)
+  {
     len = len / 2;
     len = floor(len);
   }
-  else{
+  else
+  {
     len = (len / 2) - 1;
   }
 
