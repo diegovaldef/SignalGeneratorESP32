@@ -41,6 +41,7 @@ extern lv_obj_t * ui_Explorador;
 extern lv_obj_t * ui_Container1;
 void ui_event_Button3(lv_event_t * e);
 extern lv_obj_t * ui_Button3;
+void ui_event_Button4(lv_event_t * e);
 extern lv_obj_t * ui_Button4;
 void ui_event_Button2(lv_event_t * e);
 extern lv_obj_t * ui_Button2;

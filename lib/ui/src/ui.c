@@ -29,6 +29,7 @@ lv_obj_t * ui_Explorador;
 lv_obj_t * ui_Container1;
 void ui_event_Button3(lv_event_t * e);
 lv_obj_t * ui_Button3;
+void ui_event_Button4(lv_event_t * e);
 lv_obj_t * ui_Button4;
 void ui_event_Button2(lv_event_t * e);
 lv_obj_t * ui_Button2;
@@ -95,6 +96,14 @@ void ui_event_Button3(lv_event_t * e)
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED) {
         backDirectory(e);
+    }
+}
+void ui_event_Button4(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        nextDirectory(e);
     }
 }
 void ui_event_Button2(lv_event_t * e)

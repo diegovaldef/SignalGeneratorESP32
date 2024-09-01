@@ -131,7 +131,14 @@ void backDirectory(lv_event_t *e)
     firstOpen = true;
   }
 
+
+
   refreshRoller();
+}
+
+void nextDirectory(lv_event_t * e)
+{
+
 }
 
 void resetSignal(lv_event_t * e)
