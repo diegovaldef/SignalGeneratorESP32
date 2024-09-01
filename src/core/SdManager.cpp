@@ -28,27 +28,28 @@ void createTaskSD()
 
 void TaskSD(void *pvParameters)
 {
+  vTaskSuspend(TaskSDHandle);
+
   while(true){
-    if(noSDFound){
-      _ui_screen_change(&ui_ErrorSD, LV_SCR_LOAD_ANIM_FADE_ON, 0, delay_time, &ui_ErrorSD_screen_init);
 
-      while(!SD.begin(chipSelect)){
-        SD.begin(chipSelect);
-        vTaskDelay(1);
-      }
+    _ui_screen_change(&ui_ErrorSD, LV_SCR_LOAD_ANIM_FADE_ON, 0, delay_time, &ui_ErrorSD_screen_init);
 
-      while (!SD_Root)
-      {
-        SD_Root = SD.open(STR_Root, FILE_READ);
-        vTaskDelay(1);
-      }
-
-      refreshRoller();
-      _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Explorador_screen_init);
-      noSDFound = false;
+    while(!SD.begin(chipSelect)){
+      SD.begin(chipSelect);
       vTaskDelay(1);
     }
-    vTaskDelay(1);
+
+    while (!SD_Root)
+    {
+      SD_Root = SD.open(STR_Root, FILE_READ);
+      vTaskDelay(1);
+    }
+
+    refreshRoller();
+    _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Explorador_screen_init);
+    noSDFound = false;
+
+    vTaskSuspend(TaskSDHandle);
   }
 
 }
@@ -60,6 +61,7 @@ void openFile()
   {
     delay_time = 0;
     noSDFound = true;
+    vTaskResume(TaskSDHandle);
   }
 }
 
@@ -71,6 +73,7 @@ void SDBegin()
   {
     delay_time = 3000;
     noSDFound = true;
+    vTaskResume(TaskSDHandle);
   }
   else
   {
