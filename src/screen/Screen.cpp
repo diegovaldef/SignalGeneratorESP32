@@ -36,7 +36,7 @@ void rollerUp(lv_event_t *e)
 
   if (lv_roller_get_selected(ui_Roller3) == 0)
   {
-    lv_roller_set_selected(ui_Roller3, 2, LV_ANIM_OFF);
+    lv_roller_set_selected(ui_Roller3, strlen(fileType) - 1, LV_ANIM_OFF);
   }
   else
   {
@@ -48,7 +48,7 @@ void rollerUp(lv_event_t *e)
 
 void rollerDown(lv_event_t *e)
 {
-  if (lv_roller_get_selected(ui_Roller3) == 2)
+  if (lv_roller_get_selected(ui_Roller3) == strlen(fileType) - 1)
   {
     lv_roller_set_selected(ui_Roller3, 0, LV_ANIM_OFF);
   }
