@@ -10,13 +10,10 @@ void setup()
   pinMode(dac1Pin, OUTPUT);
   pinMode(dac2Pin, OUTPUT);
 
-  screenSetup();
-
   createTaskInject();
   createTaskCompiler();
+  createTaskSD();
   createTaskScreen();
-
-  SDBegin();
 
   vTaskDelete(NULL);
 }

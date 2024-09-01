@@ -1,4 +1,5 @@
 #include <Screen.h>
+#include <ui.h>
 
 TaskHandle_t TaskScreenHandle;
 bool signalRunning = false;
@@ -8,7 +9,7 @@ const char _DIRECTORY_ = '0';
 const char _FILE_ = '1';
 
 void TaskScreen(void *pvParameters)
-{
+{ 
   while (true)
   {
     lv_timer_handler();
@@ -18,13 +19,14 @@ void TaskScreen(void *pvParameters)
 
 void createTaskScreen()
 {
+  screenSetup();
 
   xTaskCreatePinnedToCore(
       TaskScreen,
       "TaskScreen",
       1024 * 10,
       NULL,
-      1,
+      2,
       &TaskScreenHandle,
       1);
 }
@@ -34,7 +36,7 @@ void rollerUp(lv_event_t *e)
 
   if (lv_roller_get_selected(ui_Roller3) == 0)
   {
-    lv_roller_set_selected(ui_Roller3, 2, LV_ANIM_ON);
+    lv_roller_set_selected(ui_Roller3, 2, LV_ANIM_OFF);
   }
   else
   {
@@ -48,7 +50,7 @@ void rollerDown(lv_event_t *e)
 {
   if (lv_roller_get_selected(ui_Roller3) == 2)
   {
-    lv_roller_set_selected(ui_Roller3, 0, LV_ANIM_ON);
+    lv_roller_set_selected(ui_Roller3, 0, LV_ANIM_OFF);
   }
   else
   {
@@ -183,5 +185,15 @@ void resetSignal(lv_event_t * e)
 
 void refreshRollerButton(lv_event_t * e)
 {
-	refreshRoller();
+  refreshRoller();	
+}
+
+void exitLogo(lv_event_t * e)
+{
+  SDBegin();
+  
+  if(!noSDFound){
+    _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_ON, 0, 3000, &ui_Explorador_screen_init);
+  }
+
 }

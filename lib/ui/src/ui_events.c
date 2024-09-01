@@ -5,6 +5,11 @@
 
 #include "ui.h"
 
+void exitLogo(lv_event_t * e)
+{
+	// Your code here
+}
+
 void backDirectory(lv_event_t * e)
 {
 	// Your code here

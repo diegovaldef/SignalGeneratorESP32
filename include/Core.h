@@ -9,5 +9,8 @@
 #include <Timer.h>
 #include <Screen.h>
 #include <Flags.h>
+#include <lvgl.h>
+#include <TFT_eSPI.h>
+#include <ui.h>
 
 #endif

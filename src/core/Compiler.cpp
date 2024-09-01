@@ -18,11 +18,14 @@ void createTaskCompiler()
       &TaskCompilerHandle,
       0);
 
+  vTaskSuspend(TaskCompilerHandle);
+  
+
 }
 
 void TaskCompiler(void *pvParameters)
 {
-  vTaskSuspend(TaskCompilerHandle);
+  
   init_Signal();
   vTaskSuspend(TaskCompilerHandle);
 

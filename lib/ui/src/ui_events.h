@@ -10,6 +10,7 @@
 extern "C" {
 #endif
 
+void exitLogo(lv_event_t * e);
 void backDirectory(lv_event_t * e);
 void refreshRollerButton(lv_event_t * e);
 void rollerUp(lv_event_t * e);

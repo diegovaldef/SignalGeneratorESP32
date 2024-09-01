@@ -2,11 +2,9 @@
 #define SCREEN_H
 
 #include <Arduino.h>
-
 #include <lvgl.h>
 #include <TFT_eSPI.h>
 #include <ui.h>
-#include <Flags.h>
 #include <Core.h>
 
 static const uint16_t screenWidth  = 480;
@@ -27,6 +25,7 @@ void SignalStartStop(lv_event_t * e);
 void openTarget(lv_event_t * e);
 void resetSignal(lv_event_t * e);
 void refreshRollerButton(lv_event_t * e);
+void exitLogo(lv_event_t * e);
 void TaskScreen(void *pvParameters);
 void createTaskScreen();
 

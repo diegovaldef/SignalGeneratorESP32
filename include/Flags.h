@@ -3,5 +3,6 @@
 
 extern bool signalRunning;
 extern bool firstOpen;
+extern bool noSDFound;
 
 #endif

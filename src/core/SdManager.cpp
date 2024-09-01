@@ -1,5 +1,7 @@
 #include <SdManager.h>
 
+TaskHandle_t TaskSDHandle;
+
 File SD_Root;
 String STR_Root;
 
@@ -7,12 +9,57 @@ char list[100];
 char fileType[100];
 String fileName[100];
 
+bool noSDFound = false;
+int delay_time = 0;
+
+void createTaskSD()
+{
+
+  xTaskCreatePinnedToCore(
+      TaskSD,
+      "TaskSD",
+      1024 * 10,
+      NULL,
+      0,
+      &TaskSDHandle,
+      1);
+
+}
+
+void TaskSD(void *pvParameters)
+{
+  while(true){
+    if(noSDFound){
+      _ui_screen_change(&ui_ErrorSD, LV_SCR_LOAD_ANIM_FADE_ON, 0, delay_time, &ui_ErrorSD_screen_init);
+
+      while(!SD.begin(chipSelect)){
+        SD.begin(chipSelect);
+        vTaskDelay(1);
+      }
+
+      while (!SD_Root)
+      {
+        SD_Root = SD.open(STR_Root, FILE_READ);
+        vTaskDelay(1);
+      }
+
+      refreshRoller();
+      _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Explorador_screen_init);
+      noSDFound = false;
+      vTaskDelay(1);
+    }
+    vTaskDelay(1);
+  }
+
+}
+
 void openFile()
 {
   SD_Root = SD.open(STR_Root, FILE_READ);
   if (!SD_Root)
   {
-    _ui_screen_change(&ui_SDError, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_SDError_screen_init);
+    delay_time = 0;
+    noSDFound = true;
   }
 }
 
@@ -22,13 +69,14 @@ void SDBegin()
 
   if (!SD.begin(chipSelect))
   {
-    _ui_screen_change(&ui_SDError, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_SDError_screen_init);
+    delay_time = 3000;
+    noSDFound = true;
   }
   else
   {
-    SD.begin(chipSelect);
     refreshRoller();
   }
+
 }
 
 char *getFileNames(File dir)

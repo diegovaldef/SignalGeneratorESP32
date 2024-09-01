@@ -5,18 +5,19 @@
 
 #include "ui.h"
 
-void ui_SDError_screen_init(void)
+void ui_ErrorSD_screen_init(void)
 {
-    ui_SDError = lv_obj_create(NULL);
-    lv_obj_clear_flag(ui_SDError, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_flex_flow(ui_SDError, LV_FLEX_FLOW_COLUMN);
-    lv_obj_set_flex_align(ui_SDError, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
-    lv_obj_set_style_pad_left(ui_SDError, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_right(ui_SDError, 2, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_top(ui_SDError, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_bottom(ui_SDError, 50, LV_PART_MAIN | LV_STATE_DEFAULT);
+    ui_ErrorSD = lv_obj_create(NULL);
+    lv_obj_clear_flag(ui_ErrorSD, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_flex_flow(ui_ErrorSD, LV_FLEX_FLOW_COLUMN);
+    lv_obj_set_flex_align(ui_ErrorSD, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
+    lv_obj_add_event_cb(ui_ErrorSD, scr_unloaded_delete_cb, LV_EVENT_SCREEN_UNLOADED, &ui_ErrorSD);
+    lv_obj_set_style_pad_left(ui_ErrorSD, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui_ErrorSD, 2, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui_ErrorSD, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui_ErrorSD, 50, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Label3 = lv_label_create(ui_SDError);
+    ui_Label3 = lv_label_create(ui_ErrorSD);
     lv_obj_set_width(ui_Label3, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label3, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_Label3, LV_ALIGN_CENTER);
@@ -24,7 +25,7 @@ void ui_SDError_screen_init(void)
     lv_obj_set_style_text_align(ui_Label3, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_Label3, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_Label4 = lv_label_create(ui_SDError);
+    ui_Label4 = lv_label_create(ui_ErrorSD);
     lv_obj_set_width(ui_Label4, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label4, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_Label4, LV_ALIGN_CENTER);

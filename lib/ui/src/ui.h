@@ -23,8 +23,6 @@ extern "C" {
 #endif
 
 #include "ui_helpers.h"
-#include "ui_comp.h"
-#include "ui_comp_hook.h"
 #include "ui_events.h"
 
 // SCREEN: ui_Logo
@@ -32,6 +30,11 @@ void ui_Logo_screen_init(void);
 void ui_event_Logo(lv_event_t * e);
 extern lv_obj_t * ui_Logo;
 extern lv_obj_t * ui_Label7;
+// SCREEN: ui_ErrorSD
+void ui_ErrorSD_screen_init(void);
+extern lv_obj_t * ui_ErrorSD;
+extern lv_obj_t * ui_Label3;
+extern lv_obj_t * ui_Label4;
 // SCREEN: ui_Explorador
 void ui_Explorador_screen_init(void);
 extern lv_obj_t * ui_Explorador;
@@ -73,11 +76,6 @@ extern lv_obj_t * ui_Button8;
 void ui_Loading_screen_init(void);
 extern lv_obj_t * ui_Loading;
 extern lv_obj_t * ui_Spinner2;
-// SCREEN: ui_SDError
-void ui_SDError_screen_init(void);
-extern lv_obj_t * ui_SDError;
-extern lv_obj_t * ui_Label3;
-extern lv_obj_t * ui_Label4;
 extern lv_obj_t * ui____initial_actions0;
 
 
