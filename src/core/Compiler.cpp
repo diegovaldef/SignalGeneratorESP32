@@ -19,13 +19,11 @@ void createTaskCompiler()
       0);
 
   vTaskSuspend(TaskCompilerHandle);
-  
-
 }
 
 void TaskCompiler(void *pvParameters)
 {
-  
+
   init_Signal();
   vTaskSuspend(TaskCompilerHandle);
 
@@ -65,7 +63,7 @@ void readSignal()
 
     spacesAvailable = uxQueueSpacesAvailable(writeBuffer.TIME);
 
-    if (spacesAvailable > 0)
+    if ((WRITE_BUF_SIZE - spacesAvailable) != WRITE_BUF_SIZE)
     {
 
       bytesRead = SD_Root.readBytesUntil('\n', readBuffer.NEXT_BUF, READ_BUF_SIZE - 1);
@@ -85,35 +83,40 @@ void readSignal()
 
 void fillBuffers()
 {
-
-  openFile();
-
-  int bytesRead = SD_Root.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
-  readBuffer.ACTUAL_BUF[bytesRead] = '\0';
-
-  while (SD_Root.available())
+  spacesAvailable = uxQueueSpacesAvailable(writeBuffer.TIME);
+  while ((WRITE_BUF_SIZE - spacesAvailable) != WRITE_BUF_SIZE)
   {
-    bytesRead = SD_Root.readBytesUntil('\n', readBuffer.NEXT_BUF, READ_BUF_SIZE - 1);
-    readBuffer.NEXT_BUF[bytesRead] = '\0';
+    openFile();
 
-    double nextPeriod;
-    sscanf(readBuffer.NEXT_BUF, "%lf", &nextPeriod);
+    int bytesRead = SD_Root.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
+    readBuffer.ACTUAL_BUF[bytesRead] = '\0';
 
-    spacesAvailable = uxQueueSpacesAvailable(writeBuffer.TIME);
-
-    if (spacesAvailable > 0)
+    while (SD_Root.available())
     {
-      processSignal(readBuffer.ACTUAL_BUF, nextPeriod);
-    }
-    else
-    {
-      break;
-    }
 
-    strcpy(readBuffer.ACTUAL_BUF, readBuffer.NEXT_BUF);
+      bytesRead = SD_Root.readBytesUntil('\n', readBuffer.NEXT_BUF, READ_BUF_SIZE - 1);
+      readBuffer.NEXT_BUF[bytesRead] = '\0';
+
+      double nextPeriod;
+      sscanf(readBuffer.NEXT_BUF, "%lf", &nextPeriod);
+
+      spacesAvailable = uxQueueSpacesAvailable(writeBuffer.TIME);
+
+      Serial.println(spacesAvailable);
+
+      if ((WRITE_BUF_SIZE - spacesAvailable) != WRITE_BUF_SIZE)
+      {
+        processSignal(readBuffer.ACTUAL_BUF, nextPeriod);
+      }
+      else
+      {
+        break;
+      }
+
+      strcpy(readBuffer.ACTUAL_BUF, readBuffer.NEXT_BUF);
+    }
+    SD_Root.close();
   }
-
-  SD_Root.close();
 }
 
 void init_Signal()
@@ -140,7 +143,5 @@ void init_Signal()
   Serial.print("Max CMP2: ");
   Serial.println(maxCH3, 6);
 
-  _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_ON, 0 , 0, &ui_Main_screen_init);
-
+  _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Main_screen_init);
 }
-
