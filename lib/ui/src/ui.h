@@ -68,6 +68,7 @@ extern lv_obj_t * ui_Chart3;
 extern lv_obj_t * ui_Chart4;
 void ui_event_Button1(lv_event_t * e);
 extern lv_obj_t * ui_Button1;
+void ui_event_Button5(lv_event_t * e);
 extern lv_obj_t * ui_Button5;
 extern lv_obj_t * ui_Button6;
 extern lv_obj_t * ui_Button7;
@@ -83,6 +84,11 @@ extern lv_obj_t * ui____initial_actions0;
 LV_IMG_DECLARE(ui_img_1162731896);    // assets/simbolo-de-doble-flecha-derecha-de-avance-rapido (2).png
 LV_IMG_DECLARE(ui_img_1081796697);    // assets/simbolo-de-doble-flecha-derecha-de-avance-rapido (1).png
 LV_IMG_DECLARE(ui_img_1760988675);    // assets/actualizar-flecha.png
+LV_IMG_DECLARE(ui_img_1486996648);    // assets/up-arrow.png
+LV_IMG_DECLARE(ui_img_1407471917);    // assets/down-arrow.png
+LV_IMG_DECLARE(ui_img_1718651389);    // assets/play-and-pause-button.png
+LV_IMG_DECLARE(ui_img_restart_png);    // assets/restart.png
+LV_IMG_DECLARE(ui_img_return_png);    // assets/return.png
 
 
 

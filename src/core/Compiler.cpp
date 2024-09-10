@@ -102,8 +102,6 @@ void fillBuffers()
 
       spacesAvailable = uxQueueSpacesAvailable(writeBuffer.TIME);
 
-      Serial.println(spacesAvailable);
-
       if ((WRITE_BUF_SIZE - spacesAvailable) != WRITE_BUF_SIZE)
       {
         processSignal(readBuffer.ACTUAL_BUF, nextPeriod);
