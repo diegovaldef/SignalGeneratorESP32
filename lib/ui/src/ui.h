@@ -29,7 +29,7 @@ extern "C" {
 void ui_Logo_screen_init(void);
 void ui_event_Logo(lv_event_t * e);
 extern lv_obj_t * ui_Logo;
-extern lv_obj_t * ui_Label7;
+extern lv_obj_t * ui_Image2;
 // SCREEN: ui_ErrorSD
 void ui_ErrorSD_screen_init(void);
 extern lv_obj_t * ui_ErrorSD;
@@ -78,9 +78,15 @@ extern lv_obj_t * ui_Button8;
 void ui_Loading_screen_init(void);
 extern lv_obj_t * ui_Loading;
 extern lv_obj_t * ui_Spinner2;
+// SCREEN: ui_LogoOriginal
+void ui_LogoOriginal_screen_init(void);
+void ui_event_LogoOriginal(lv_event_t * e);
+extern lv_obj_t * ui_LogoOriginal;
+extern lv_obj_t * ui_Label7;
 extern lv_obj_t * ui____initial_actions0;
 
 
+LV_IMG_DECLARE(ui_img_423428936);    // assets/WhatsApp Image 2024-09-08 at 20.31.55_287d4613.png
 LV_IMG_DECLARE(ui_img_1162731896);    // assets/simbolo-de-doble-flecha-derecha-de-avance-rapido (2).png
 LV_IMG_DECLARE(ui_img_1081796697);    // assets/simbolo-de-doble-flecha-derecha-de-avance-rapido (1).png
 LV_IMG_DECLARE(ui_img_1760988675);    // assets/actualizar-flecha.png

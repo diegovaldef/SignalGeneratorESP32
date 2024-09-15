@@ -83,6 +83,6 @@ void screenSetup(){
 
     ui_init();
 
-    Serial.println( "LVGL Setup done" );
+    Serial.println( "Screen Setup done" );
 
 }
