@@ -7,15 +7,11 @@ void setup()
   Serial.begin(115200);
   setCpuFrequencyMhz(240);
 
-  pinMode(dac1Pin, OUTPUT);
-  pinMode(dac2Pin, OUTPUT);
-
-  pinMode(TFT_MOSI, OUTPUT);
-  pinMode(TFT_MISO, INPUT_PULLDOWN);
-  pinMode(TFT_SCLK, OUTPUT);
-  pinMode(chipSelect, OUTPUT);
+  pinMode(SD_CS, OUTPUT);
   pinMode(TFT_CS, OUTPUT);
-  pinMode(21, OUTPUT);
+  pinMode(TOUCH_CS, OUTPUT);
+
+  vspi.begin(SCK_2, MISO_2, MOSI_2, SD_CS);
 
   createTaskInject();
   createTaskCompiler();

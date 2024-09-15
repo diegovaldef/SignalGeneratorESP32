@@ -35,18 +35,20 @@ void TaskCompiler(void *pvParameters)
 
 void processSignal(const char *line, double nextPeriod)
 {
-  double PERIOD, CH1, CH2, CH3;
-  if (sscanf(line, "%lf %lf %lf %lf", &PERIOD, &CH1, &CH2, &CH3))
+  double PERIOD, CH1, CH2, CH3, CH4;
+  if (sscanf(line, "%lf %lf %lf %lf %lf", &PERIOD, &CH1, &CH2, &CH3, &CH4))
   {
 
-    uint16_t ch1 = mapDouble(CH1, minCH1, maxCH1, 0, 255);
-    uint16_t ch2 = mapDouble(CH2, minCH2, maxCH2, 0, 255);
-    uint16_t ch3 = mapDouble(CH3, minCH3, maxCH3, 0, 255);
+    uint16_t ch1 = mapDouble(CH1, minCH1, maxCH1, 0, 4095);
+    uint16_t ch2 = mapDouble(CH2, minCH2, maxCH2, 0, 4095);
+    uint16_t ch3 = mapDouble(CH3, minCH3, maxCH3, 0, 4095);
+    uint16_t ch4 = mapDouble(CH4, minCH4, maxCH4, 0, 4095);
     uint64_t deltaTime = (nextPeriod - PERIOD) * 1e6;
 
     xQueueSend(writeBuffer.CH1, &ch1, portMAX_DELAY);
     xQueueSend(writeBuffer.CH2, &ch2, portMAX_DELAY);
     xQueueSend(writeBuffer.CH3, &ch3, portMAX_DELAY);
+    xQueueSend(writeBuffer.CH4, &ch4, portMAX_DELAY);
     xQueueSend(writeBuffer.TIME, &deltaTime, portMAX_DELAY);
   }
 }
@@ -128,18 +130,24 @@ void init_Signal()
 
   Serial.println("Proceso Completado");
 
-  Serial.print("Min CKP: ");
+  Serial.print("Min CH1: ");
   Serial.println(minCH1, 6);
-  Serial.print("Max CKP: ");
+  Serial.print("Max CH1: ");
   Serial.println(maxCH1, 6);
-  Serial.print("Min CMP1: ");
+  Serial.print("Min CH2: ");
   Serial.println(minCH2, 6);
-  Serial.print("Max CMP1: ");
+  Serial.print("Max CH2: ");
   Serial.println(maxCH2, 6);
-  Serial.print("Min CMP2: ");
+  Serial.print("Min CH3: ");
   Serial.println(minCH3, 6);
-  Serial.print("Max CMP2: ");
+  Serial.print("Max CH3: ");
   Serial.println(maxCH3, 6);
+  Serial.print("Min CH4: ");
+  Serial.println(minCH4, 6);
+  Serial.print("Max CH4: ");
+  Serial.println(maxCH4, 6);
+
 
   _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Main_screen_init);
+
 }

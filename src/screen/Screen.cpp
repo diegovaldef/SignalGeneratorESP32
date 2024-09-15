@@ -196,8 +196,7 @@ void resetSignal(lv_event_t *e)
     xQueueReceive(writeBuffer.TIME, &data, 0);
   }
 
-  dacWrite(dac1Pin, 0);
-  dacWrite(dac2Pin, 0);
+  mcp.fastWrite(0, 0, 0, 0);
 
   vTaskDelete(TaskInjectHandle);
   vTaskDelete(TaskCompilerHandle);
