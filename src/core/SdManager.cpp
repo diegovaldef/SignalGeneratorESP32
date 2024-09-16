@@ -1,5 +1,6 @@
 #include <SdManager.h>
 
+SPIClass vspi(VSPI);
 TaskHandle_t TaskSDHandle;
 
 File SD_Root;
@@ -14,7 +15,6 @@ int delay_time = 0;
 
 void createTaskSD()
 {
-
   xTaskCreatePinnedToCore(
       TaskSD,
       "TaskSD",
@@ -34,8 +34,8 @@ void TaskSD(void *pvParameters)
 
     _ui_screen_change(&ui_ErrorSD, LV_SCR_LOAD_ANIM_FADE_ON, 0, delay_time, &ui_ErrorSD_screen_init);
 
-    while(!SD.begin(chipSelect)){
-      SD.begin(chipSelect);
+    while(!SD.begin(SD_CS, vspi)){
+      SD.begin(SD_CS, vspi);
       vTaskDelay(1);
     }
 
@@ -69,7 +69,7 @@ void SDBegin()
 {
   STR_Root = "/";
 
-  if (!SD.begin(chipSelect))
+  if (!SD.begin(SD_CS, vspi))
   {
     delay_time = 3000;
     noSDFound = true;

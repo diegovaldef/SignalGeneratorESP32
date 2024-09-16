@@ -28,6 +28,7 @@ void refreshRollerButton(lv_event_t * e);
 void exitLogo(lv_event_t * e);
 void nextDirectory(lv_event_t * e);
 void TaskScreen(void *pvParameters);
+void refreshLabel();
 void createTaskScreen();
 
 #endif

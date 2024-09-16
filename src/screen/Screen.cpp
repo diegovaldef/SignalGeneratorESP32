@@ -9,7 +9,7 @@ const char _DIRECTORY_ = '0';
 const char _FILE_ = '1';
 
 void TaskScreen(void *pvParameters)
-{ 
+{
   while (true)
   {
     lv_timer_handler();
@@ -98,8 +98,9 @@ void openTarget(lv_event_t *e)
   if (fileType[selected] == _DIRECTORY_)
   {
     refreshRoller();
+    refreshLabel();
   }
-  else 
+  else
   {
     _ui_screen_change(&ui_Loading, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Loading_screen_init);
     vTaskResume(TaskCompilerHandle);
@@ -131,27 +132,38 @@ void backDirectory(lv_event_t *e)
     firstOpen = true;
   }
 
-
-
   refreshRoller();
+  refreshLabel();
 }
 
-void nextDirectory(lv_event_t * e)
+void refreshLabel(){
+
+  if (STR_Root == "/")
+  {
+    lv_label_set_text(ui_Label1, "Select a File");
+  }
+  else
+  {
+    lv_label_set_text(ui_Label1, STR_Root.c_str());
+  }
+
+}
+
+void nextDirectory(lv_event_t *e)
 {
-
 }
 
-void resetSignal(lv_event_t * e)
+void resetSignal(lv_event_t *e)
 {
   vTaskSuspend(TaskCompilerHandle);
   vTaskSuspend(TaskInjectHandle);
-  
+
   timerAlarmDisable(My_timer);
   timerStop(My_timer);
   timerDetachInterrupt(My_timer);
   timerEnd(My_timer);
   signalRunning = false;
-  
+
   minCH1 = 0;
   maxCH1 = 0;
   minCH2 = 0;
@@ -163,44 +175,47 @@ void resetSignal(lv_event_t * e)
 
   uint64_t data;
 
-  while (uxQueueMessagesWaiting(writeBuffer.CH1) > 0) {
+  while (uxQueueMessagesWaiting(writeBuffer.CH1) > 0)
+  {
     xQueueReceive(writeBuffer.CH1, &data, 0);
   }
-  while (uxQueueMessagesWaiting(writeBuffer.CH2) > 0) {
+  while (uxQueueMessagesWaiting(writeBuffer.CH2) > 0)
+  {
     xQueueReceive(writeBuffer.CH2, &data, 0);
   }
-  while (uxQueueMessagesWaiting(writeBuffer.CH3) > 0) {
+  while (uxQueueMessagesWaiting(writeBuffer.CH3) > 0)
+  {
     xQueueReceive(writeBuffer.CH3, &data, 0);
-  }    
-  while (uxQueueMessagesWaiting(writeBuffer.CH4) > 0) {
+  }
+  while (uxQueueMessagesWaiting(writeBuffer.CH4) > 0)
+  {
     xQueueReceive(writeBuffer.CH4, &data, 0);
   }
-  while (uxQueueMessagesWaiting(writeBuffer.TIME) > 0) {
+  while (uxQueueMessagesWaiting(writeBuffer.TIME) > 0)
+  {
     xQueueReceive(writeBuffer.TIME, &data, 0);
   }
 
-  dacWrite(dac1Pin, 0);
-  dacWrite(dac2Pin, 0);
+  mcp.fastWrite(0, 0, 0, 0);
 
   vTaskDelete(TaskInjectHandle);
   vTaskDelete(TaskCompilerHandle);
 
   createTaskInject();
   createTaskCompiler();
-
 }
 
-void refreshRollerButton(lv_event_t * e)
+void refreshRollerButton(lv_event_t *e)
 {
-  refreshRoller();	
+  refreshRoller();
 }
 
-void exitLogo(lv_event_t * e)
+void exitLogo(lv_event_t *e)
 {
   SDBegin();
-  
-  if(!noSDFound){
+
+  if (!noSDFound)
+  {
     _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_ON, 0, 3000, &ui_Explorador_screen_init);
   }
-
 }
