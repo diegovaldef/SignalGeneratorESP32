@@ -1,9 +1,9 @@
 SET(SOURCES ui_Logo.c
+    ui_Logo0.c
     ui_ErrorSD.c
     ui_Explorador.c
     ui_Main.c
     ui_Loading.c
-    ui_LogoOriginal.c
     ui.c
     ui_comp_hook.c
     ui_helpers.c

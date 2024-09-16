@@ -95,7 +95,6 @@ void fillBuffers()
 
     while (SD_Root.available())
     {
-
       bytesRead = SD_Root.readBytesUntil('\n', readBuffer.NEXT_BUF, READ_BUF_SIZE - 1);
       readBuffer.NEXT_BUF[bytesRead] = '\0';
 
@@ -114,7 +113,9 @@ void fillBuffers()
       }
 
       strcpy(readBuffer.ACTUAL_BUF, readBuffer.NEXT_BUF);
+      vTaskDelay(1);
     }
+    
     SD_Root.close();
   }
 }

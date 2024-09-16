@@ -43,6 +43,7 @@ void readMinMax()
     int bytesRead = SD_Root.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
     readBuffer.ACTUAL_BUF[bytesRead] = '\0';
     processMinMax(readBuffer.ACTUAL_BUF);
+    vTaskDelay(1);
   }
 
   SD_Root.close();

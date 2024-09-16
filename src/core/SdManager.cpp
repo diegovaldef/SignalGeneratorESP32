@@ -34,8 +34,8 @@ void TaskSD(void *pvParameters)
 
     _ui_screen_change(&ui_ErrorSD, LV_SCR_LOAD_ANIM_FADE_ON, 0, delay_time, &ui_ErrorSD_screen_init);
 
-    while(!SD.begin(SD_CS)){
-      SD.begin(SD_CS);
+    while(!SD.begin(SD_CS, vspi)){
+      SD.begin(SD_CS, vspi);
       vTaskDelay(1);
     }
 

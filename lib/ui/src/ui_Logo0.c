@@ -5,13 +5,13 @@
 
 #include "ui.h"
 
-void ui_LogoOriginal_screen_init(void)
+void ui_Logo0_screen_init(void)
 {
-    ui_LogoOriginal = lv_obj_create(NULL);
-    lv_obj_clear_flag(ui_LogoOriginal, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_add_event_cb(ui_LogoOriginal, scr_unloaded_delete_cb, LV_EVENT_SCREEN_UNLOADED, &ui_LogoOriginal);
+    ui_Logo0 = lv_obj_create(NULL);
+    lv_obj_clear_flag(ui_Logo0, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_add_event_cb(ui_Logo0, scr_unloaded_delete_cb, LV_EVENT_SCREEN_UNLOADED, &ui_Logo0);
 
-    ui_Label7 = lv_label_create(ui_LogoOriginal);
+    ui_Label7 = lv_label_create(ui_Logo0);
     lv_obj_set_width(ui_Label7, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label7, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_Label7, 0);
@@ -20,6 +20,6 @@ void ui_LogoOriginal_screen_init(void)
     lv_label_set_text(ui_Label7, "  Mechatron \nTechnologies");
     lv_obj_set_style_text_font(ui_Label7, &lv_font_montserrat_48, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    lv_obj_add_event_cb(ui_LogoOriginal, ui_event_LogoOriginal, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_Logo0, ui_event_Logo0, LV_EVENT_ALL, NULL);
 
 }

@@ -30,6 +30,11 @@ void ui_Logo_screen_init(void);
 void ui_event_Logo(lv_event_t * e);
 extern lv_obj_t * ui_Logo;
 extern lv_obj_t * ui_Image2;
+// SCREEN: ui_Logo0
+void ui_Logo0_screen_init(void);
+void ui_event_Logo0(lv_event_t * e);
+extern lv_obj_t * ui_Logo0;
+extern lv_obj_t * ui_Label7;
 // SCREEN: ui_ErrorSD
 void ui_ErrorSD_screen_init(void);
 extern lv_obj_t * ui_ErrorSD;
@@ -78,11 +83,6 @@ extern lv_obj_t * ui_Button8;
 void ui_Loading_screen_init(void);
 extern lv_obj_t * ui_Loading;
 extern lv_obj_t * ui_Spinner2;
-// SCREEN: ui_LogoOriginal
-void ui_LogoOriginal_screen_init(void);
-void ui_event_LogoOriginal(lv_event_t * e);
-extern lv_obj_t * ui_LogoOriginal;
-extern lv_obj_t * ui_Label7;
 extern lv_obj_t * ui____initial_actions0;
 
 
