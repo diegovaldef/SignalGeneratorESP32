@@ -32,7 +32,7 @@ void TaskSD(void *pvParameters)
 
   while(true){
 
-    _ui_screen_change(&ui_ErrorSD, LV_SCR_LOAD_ANIM_FADE_ON, 0, delay_time, &ui_ErrorSD_screen_init);
+    _ui_screen_change(&ui_ErrorSD, LV_SCR_LOAD_ANIM_FADE_OUT, 0, delay_time, &ui_ErrorSD_screen_init);
 
     while(!SD.begin(SD_CS, vspi)){
       SD.begin(SD_CS, vspi);
@@ -46,7 +46,7 @@ void TaskSD(void *pvParameters)
     }
 
     refreshRoller();
-    _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Explorador_screen_init);
+    _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Explorador_screen_init);
     noSDFound = false;
 
     vTaskSuspend(TaskSDHandle);

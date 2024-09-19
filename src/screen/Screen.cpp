@@ -102,7 +102,7 @@ void openTarget(lv_event_t *e)
   }
   else
   {
-    _ui_screen_change(&ui_Loading, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Loading_screen_init);
+    _ui_screen_change(&ui_Loading, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Loading_screen_init);
     vTaskResume(TaskCompilerHandle);
   }
 }
@@ -216,6 +216,12 @@ void exitLogo(lv_event_t *e)
 
   if (!noSDFound)
   {
-    _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_ON, 0, 3000, &ui_Explorador_screen_init);
+    _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 3000, &ui_Explorador_screen_init);
   }
+}
+
+void AnimtoExplorer(lv_event_t *e)
+{
+  _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_OUT, 500, 0, &ui_Explorador_screen_init);
+
 }

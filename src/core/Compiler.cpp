@@ -149,6 +149,6 @@ void init_Signal()
   Serial.println(maxCH4, 6);
 
 
-  _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_ON, 0, 0, &ui_Main_screen_init);
+  _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Main_screen_init);
 
 }

@@ -49,3 +49,8 @@ void resetSignal(lv_event_t * e)
 {
 	// Your code here
 }
+
+void AnimtoExplorer(lv_event_t * e)
+{
+	// Your code here
+}
