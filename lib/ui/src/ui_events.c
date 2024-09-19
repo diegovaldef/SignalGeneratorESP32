@@ -5,6 +5,26 @@
 
 #include "ui.h"
 
+void exitLogo(lv_event_t * e)
+{
+	// Your code here
+}
+
+void backDirectory(lv_event_t * e)
+{
+	// Your code here
+}
+
+void nextDirectory(lv_event_t * e)
+{
+	// Your code here
+}
+
+void refreshRollerButton(lv_event_t * e)
+{
+	// Your code here
+}
+
 void rollerUp(lv_event_t * e)
 {
 	// Your code here
@@ -21,6 +41,16 @@ void openTarget(lv_event_t * e)
 }
 
 void SignalStartStop(lv_event_t * e)
+{
+	// Your code here
+}
+
+void resetSignal(lv_event_t * e)
+{
+	// Your code here
+}
+
+void AnimtoExplorer(lv_event_t * e)
 {
 	// Your code here
 }

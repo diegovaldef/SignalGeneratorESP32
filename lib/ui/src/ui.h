@@ -23,21 +23,32 @@ extern "C" {
 #endif
 
 #include "ui_helpers.h"
-#include "ui_comp.h"
-#include "ui_comp_hook.h"
 #include "ui_events.h"
 
 // SCREEN: ui_Logo
 void ui_Logo_screen_init(void);
 void ui_event_Logo(lv_event_t * e);
 extern lv_obj_t * ui_Logo;
+extern lv_obj_t * ui_Image2;
+// SCREEN: ui_Logo0
+void ui_Logo0_screen_init(void);
+void ui_event_Logo0(lv_event_t * e);
+extern lv_obj_t * ui_Logo0;
 extern lv_obj_t * ui_Label7;
+// SCREEN: ui_ErrorSD
+void ui_ErrorSD_screen_init(void);
+extern lv_obj_t * ui_ErrorSD;
+extern lv_obj_t * ui_Label3;
+extern lv_obj_t * ui_Label4;
 // SCREEN: ui_Explorador
 void ui_Explorador_screen_init(void);
 extern lv_obj_t * ui_Explorador;
 extern lv_obj_t * ui_Container1;
+void ui_event_Button3(lv_event_t * e);
 extern lv_obj_t * ui_Button3;
+void ui_event_Button4(lv_event_t * e);
 extern lv_obj_t * ui_Button4;
+void ui_event_Button2(lv_event_t * e);
 extern lv_obj_t * ui_Button2;
 extern lv_obj_t * ui_Label1;
 extern lv_obj_t * ui_Container5;
@@ -74,9 +85,15 @@ extern lv_obj_t * ui_Spinner2;
 extern lv_obj_t * ui____initial_actions0;
 
 
+LV_IMG_DECLARE(ui_img_423428936);    // assets/WhatsApp Image 2024-09-08 at 20.31.55_287d4613.png
 LV_IMG_DECLARE(ui_img_1162731896);    // assets/simbolo-de-doble-flecha-derecha-de-avance-rapido (2).png
 LV_IMG_DECLARE(ui_img_1081796697);    // assets/simbolo-de-doble-flecha-derecha-de-avance-rapido (1).png
 LV_IMG_DECLARE(ui_img_1760988675);    // assets/actualizar-flecha.png
+LV_IMG_DECLARE(ui_img_1486996648);    // assets/up-arrow.png
+LV_IMG_DECLARE(ui_img_1407471917);    // assets/down-arrow.png
+LV_IMG_DECLARE(ui_img_1718651389);    // assets/play-and-pause-button.png
+LV_IMG_DECLARE(ui_img_restart_png);    // assets/restart.png
+LV_IMG_DECLARE(ui_img_return_png);    // assets/return.png
 
 
 

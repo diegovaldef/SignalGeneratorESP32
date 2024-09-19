@@ -8,11 +8,16 @@
 #include <Arduino.h>
 #include <Core.h>
 
-extern UBaseType_t spacesAvailable; // Espacios disponibles en la estructura WriteBuffer
+extern UBaseType_t spacesAvailable;
+extern TaskHandle_t TaskCompilerHandle;
 
-void processSignal(const char *line, double nextPeriod); // Pasa los datos en texto al WriteBuffer
-void readSignal(); // Lee el archivo y envia cada linea de texto a processSignal
-void fillBuffers(); // Rellena los Buffers con los primeros 50 datos del txt
+// Declaración de funciones
+void processSignal(const char *line, double nextPeriod);
+void readSignal();
+void fillBuffers();
 void init_Signal();
+void createTaskCompiler();
+void TaskCompiler(void *pvParameters);
 
-#endif 
+
+#endif // SIGNAL_PROCESSING_H

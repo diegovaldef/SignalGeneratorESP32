@@ -10,15 +10,18 @@
 extern "C" {
 #endif
 
-#ifndef rollerUp
+void exitLogo(lv_event_t * e);
+void backDirectory(lv_event_t * e);
+void nextDirectory(lv_event_t * e);
+void refreshRollerButton(lv_event_t * e);
 void rollerUp(lv_event_t * e);
 #endif
 #ifndef rollerDown
 void rollerDown(lv_event_t * e);
-#endif
-#ifndef SignalStartStop
+void openTarget(lv_event_t * e);
 void SignalStartStop(lv_event_t * e);
-#endif
+void resetSignal(lv_event_t * e);
+void AnimtoExplorer(lv_event_t * e);
 
 #ifdef __cplusplus
 } /*extern "C"*/

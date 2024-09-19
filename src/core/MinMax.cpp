@@ -13,7 +13,7 @@ uint16_t mapDouble(double x, double in_min, double in_max, uint16_t out_min, uin
 void processMinMax(const char *line)
 {
   double PERIOD, CH1, CH2, CH3, CH4;
-  if (sscanf(line, "%lf %lf %lf %lf", &PERIOD, &CH1, &CH2, &CH3))
+  if (sscanf(line, "%lf %lf %lf %lf %lf", &PERIOD, &CH1, &CH2, &CH3, &CH4))
   {
     if (CH1 < minCH1)
       minCH1 = CH1;
@@ -27,22 +27,24 @@ void processMinMax(const char *line)
       minCH3 = CH3;
     if (CH3 > maxCH3)
       maxCH3 = CH3;
+    if (CH4 < minCH4)
+      minCH4 = CH4;
+    if (CH4 > maxCH4)
+      maxCH4 = CH4;
   }
 }
 
 void readMinMax()
 {
-   if (xSemaphoreTake(xMutex, 0) == pdTRUE) {
-    openFile(STR_Root);
-    xSemaphoreGive(xMutex);
-  }
+  openFile();
 
-  while (SD_ActualFile.available())
+  while (SD_Root.available())
   {
-    int bytesRead = SD_ActualFile.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
+    int bytesRead = SD_Root.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
     readBuffer.ACTUAL_BUF[bytesRead] = '\0';
     processMinMax(readBuffer.ACTUAL_BUF);
+    vTaskDelay(1);
   }
 
-  SD_ActualFile.close();
+  SD_Root.close();
 }

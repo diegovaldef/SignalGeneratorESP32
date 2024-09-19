@@ -7,30 +7,20 @@ void setup()
   Serial.begin(115200);
   setCpuFrequencyMhz(240);
 
-  pinMode(dac1Pin, OUTPUT);
-  pinMode(dac2Pin, OUTPUT);
+  pinMode(SD_CS, OUTPUT);
+  pinMode(TFT_CS, OUTPUT);
+  pinMode(TOUCH_CS, OUTPUT);
 
-  screenSetup();
-  SDBegin();
-
-  Serial.print("Min CKP: ");
-  Serial.println(minCH1, 6);
-  Serial.print("Max CKP: ");
-  Serial.println(maxCH1, 6);
-  Serial.print("Min CMP1: ");
-  Serial.println(minCH2, 6);
-  Serial.print("Max CMP1: ");
-  Serial.println(maxCH2, 6);
-  Serial.print("Min CMP2: ");
-  Serial.println(minCH3, 6);
-  Serial.print("Max CMP2: ");
-  Serial.println(maxCH3, 6);
+  vspi.begin(SCK_2, MISO_2, MOSI_2, SD_CS);
 
   createTaskInject();
+  createTaskCompiler();
+  createTaskSD();
   createTaskScreen();
+
+  vTaskDelete(NULL);
 }
 
 void loop()
 {
-  readSignal();
 }

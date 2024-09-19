@@ -10,7 +10,7 @@ void ui_Loading_screen_init(void)
     ui_Loading = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_Loading, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_flex_flow(ui_Loading, LV_FLEX_FLOW_ROW);
-    lv_obj_set_flex_align(ui_Loading, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_CENTER);
+    lv_obj_set_flex_align(ui_Loading, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
 
     ui_Spinner2 = lv_spinner_create(ui_Loading, 1000, 90);
     lv_obj_set_width(ui_Spinner2, 80);
@@ -18,6 +18,8 @@ void ui_Loading_screen_init(void)
     lv_obj_set_x(ui_Spinner2, 3);
     lv_obj_set_y(ui_Spinner2, -15);
     lv_obj_set_align(ui_Spinner2, LV_ALIGN_CENTER);
+    lv_obj_set_flex_flow(ui_Spinner2, LV_FLEX_FLOW_ROW);
+    lv_obj_set_flex_align(ui_Spinner2, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
     lv_obj_clear_flag(ui_Spinner2, LV_OBJ_FLAG_CLICKABLE);      /// Flags
 
 
