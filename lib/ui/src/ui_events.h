@@ -15,8 +15,6 @@ void backDirectory(lv_event_t * e);
 void nextDirectory(lv_event_t * e);
 void refreshRollerButton(lv_event_t * e);
 void rollerUp(lv_event_t * e);
-#endif
-#ifndef rollerDown
 void rollerDown(lv_event_t * e);
 void openTarget(lv_event_t * e);
 void SignalStartStop(lv_event_t * e);

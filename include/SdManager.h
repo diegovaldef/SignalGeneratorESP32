@@ -23,6 +23,7 @@ const byte SD_CS = 15;
 
 extern char fileType[];
 extern String fileName[];
+extern String fileNameStd[];
 
 extern char list[];
 

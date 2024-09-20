@@ -9,6 +9,7 @@ String STR_Root;
 char list[100];
 char fileType[100];
 String fileName[100];
+String fileNameStd[100];
 
 bool noSDFound = false;
 int delay_time = 0;
@@ -95,6 +96,7 @@ char *getFileNames(File dir)
   for (int i = 0; i < 100; i++)
   {
     fileName[i] = "";
+    fileNameStd[i] = "";
   }
 
   byte i = 0;
@@ -122,6 +124,14 @@ char *getFileNames(File dir)
       fileName[i] = name;
 
       strcpy(name, str);
+
+      char *ext = strstr(name, ".txt");  
+    
+      if (ext != NULL) {
+          *ext = '\0';
+      }
+
+      fileNameStd[i] = name;
 
       if (entry.isDirectory())
       {

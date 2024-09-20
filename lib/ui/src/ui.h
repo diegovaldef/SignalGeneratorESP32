@@ -73,6 +73,7 @@ extern lv_obj_t * ui_Chart3;
 extern lv_obj_t * ui_Chart4;
 void ui_event_Button1(lv_event_t * e);
 extern lv_obj_t * ui_Button1;
+void ui_event_Button5(lv_event_t * e);
 extern lv_obj_t * ui_Button5;
 extern lv_obj_t * ui_Button6;
 extern lv_obj_t * ui_Button7;

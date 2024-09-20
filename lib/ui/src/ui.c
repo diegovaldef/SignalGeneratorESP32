@@ -65,6 +65,7 @@ lv_obj_t * ui_Chart3;
 lv_obj_t * ui_Chart4;
 void ui_event_Button1(lv_event_t * e);
 lv_obj_t * ui_Button1;
+void ui_event_Button5(lv_event_t * e);
 lv_obj_t * ui_Button5;
 lv_obj_t * ui_Button6;
 lv_obj_t * ui_Button7;

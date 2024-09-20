@@ -13,25 +13,21 @@ void ui_Main_screen_init(void)
     ui_Container2 = lv_obj_create(ui_Main);
     lv_obj_remove_style_all(ui_Container2);
     lv_obj_set_width(ui_Container2, lv_pct(55));
-    lv_obj_set_height(ui_Container2, lv_pct(95));
+    lv_obj_set_height(ui_Container2, lv_pct(97));
     lv_obj_set_x(ui_Container2, lv_pct(3));
     lv_obj_set_y(ui_Container2, lv_pct(2));
     lv_obj_set_flex_flow(ui_Container2, LV_FLEX_FLOW_COLUMN);
-    lv_obj_set_flex_align(ui_Container2, LV_FLEX_ALIGN_SPACE_BETWEEN, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_CENTER);
+    lv_obj_set_flex_align(ui_Container2, LV_FLEX_ALIGN_SPACE_AROUND, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
     lv_obj_clear_flag(ui_Container2, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     ui_Label5 = lv_label_create(ui_Container2);
-    lv_obj_set_width(ui_Label5, 252);
-    lv_obj_set_height(ui_Label5, 15);
-    lv_obj_set_x(ui_Label5, 0);
-    lv_obj_set_y(ui_Label5, 18);
+    lv_obj_set_width(ui_Label5, LV_SIZE_CONTENT);   /// 37
+    lv_obj_set_height(ui_Label5, LV_SIZE_CONTENT);    /// 34
+    lv_obj_set_x(ui_Label5, 68);
+    lv_obj_set_y(ui_Label5, 15);
     lv_obj_set_align(ui_Label5, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label5, "Nombre del archivo");
-    lv_obj_set_style_text_font(ui_Label5, &lv_font_montserrat_14, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_left(ui_Label5, 50, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_right(ui_Label5, 50, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_top(ui_Label5, 1, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_pad_bottom(ui_Label5, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_label_set_text(ui_Label5, "ARCHIVO");
+    lv_obj_set_style_text_font(ui_Label5, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Chart1 = lv_chart_create(ui_Container2);
     lv_obj_set_width(ui_Chart1, 252);
@@ -40,10 +36,10 @@ void ui_Main_screen_init(void)
     lv_obj_set_y(ui_Chart1, -97);
     lv_obj_set_align(ui_Chart1, LV_ALIGN_CENTER);
     lv_chart_set_type(ui_Chart1, LV_CHART_TYPE_LINE);
-    lv_chart_set_axis_tick(ui_Chart1, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 2, false, 50);
-    lv_chart_set_axis_tick(ui_Chart1, LV_CHART_AXIS_PRIMARY_Y, 10, 5, 5, 2, true, 50);
-    lv_chart_set_axis_tick(ui_Chart1, LV_CHART_AXIS_SECONDARY_Y, 10, 5, 5, 2, true, 25);
-    lv_chart_series_t * ui_Chart1_series_1 = lv_chart_add_series(ui_Chart1, lv_color_hex(0x9C3030),
+    lv_chart_set_axis_tick(ui_Chart1, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 0, false, 50);
+    lv_chart_set_axis_tick(ui_Chart1, LV_CHART_AXIS_PRIMARY_Y, 10, 5, 5, 0, true, 50);
+    lv_chart_set_axis_tick(ui_Chart1, LV_CHART_AXIS_SECONDARY_Y, 10, 5, 5, 0, true, 25);
+    lv_chart_series_t * ui_Chart1_series_1 = lv_chart_add_series(ui_Chart1, lv_color_hex(0x4A19AC),
                                                                  LV_CHART_AXIS_PRIMARY_Y);
     static lv_coord_t ui_Chart1_series_1_array[] = { 0, 10, 20, 40, 80, 80, 40, 20, 10, 0 };
     lv_chart_set_ext_y_array(ui_Chart1, ui_Chart1_series_1, ui_Chart1_series_1_array);
@@ -57,10 +53,10 @@ void ui_Main_screen_init(void)
     lv_obj_set_y(ui_Chart2, -97);
     lv_obj_set_align(ui_Chart2, LV_ALIGN_CENTER);
     lv_chart_set_type(ui_Chart2, LV_CHART_TYPE_LINE);
-    lv_chart_set_axis_tick(ui_Chart2, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 2, false, 50);
-    lv_chart_set_axis_tick(ui_Chart2, LV_CHART_AXIS_PRIMARY_Y, 10, 5, 5, 2, true, 50);
-    lv_chart_set_axis_tick(ui_Chart2, LV_CHART_AXIS_SECONDARY_Y, 10, 5, 5, 2, true, 25);
-    lv_chart_series_t * ui_Chart2_series_1 = lv_chart_add_series(ui_Chart2, lv_color_hex(0x808080),
+    lv_chart_set_axis_tick(ui_Chart2, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 0, false, 50);
+    lv_chart_set_axis_tick(ui_Chart2, LV_CHART_AXIS_PRIMARY_Y, 10, 5, 5, 0, true, 50);
+    lv_chart_set_axis_tick(ui_Chart2, LV_CHART_AXIS_SECONDARY_Y, 10, 5, 5, 0, true, 25);
+    lv_chart_series_t * ui_Chart2_series_1 = lv_chart_add_series(ui_Chart2, lv_color_hex(0x2E2398),
                                                                  LV_CHART_AXIS_PRIMARY_Y);
     static lv_coord_t ui_Chart2_series_1_array[] = { 0, 10, 20, 40, 80, 80, 40, 20, 10, 0 };
     lv_chart_set_ext_y_array(ui_Chart2, ui_Chart2_series_1, ui_Chart2_series_1_array);
@@ -74,10 +70,10 @@ void ui_Main_screen_init(void)
     lv_obj_set_y(ui_Chart3, -97);
     lv_obj_set_align(ui_Chart3, LV_ALIGN_CENTER);
     lv_chart_set_type(ui_Chart3, LV_CHART_TYPE_LINE);
-    lv_chart_set_axis_tick(ui_Chart3, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 2, false, 50);
-    lv_chart_set_axis_tick(ui_Chart3, LV_CHART_AXIS_PRIMARY_Y, 10, 5, 5, 2, true, 50);
-    lv_chart_set_axis_tick(ui_Chart3, LV_CHART_AXIS_SECONDARY_Y, 10, 5, 5, 2, true, 25);
-    lv_chart_series_t * ui_Chart3_series_1 = lv_chart_add_series(ui_Chart3, lv_color_hex(0x808080),
+    lv_chart_set_axis_tick(ui_Chart3, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 0, false, 50);
+    lv_chart_set_axis_tick(ui_Chart3, LV_CHART_AXIS_PRIMARY_Y, 10, 5, 5, 0, true, 50);
+    lv_chart_set_axis_tick(ui_Chart3, LV_CHART_AXIS_SECONDARY_Y, 10, 5, 5, 0, true, 25);
+    lv_chart_series_t * ui_Chart3_series_1 = lv_chart_add_series(ui_Chart3, lv_color_hex(0x11C4BB),
                                                                  LV_CHART_AXIS_PRIMARY_Y);
     static lv_coord_t ui_Chart3_series_1_array[] = { 0, 10, 20, 40, 80, 80, 40, 20, 10, 0 };
     lv_chart_set_ext_y_array(ui_Chart3, ui_Chart3_series_1, ui_Chart3_series_1_array);
@@ -91,10 +87,10 @@ void ui_Main_screen_init(void)
     lv_obj_set_y(ui_Chart4, -97);
     lv_obj_set_align(ui_Chart4, LV_ALIGN_CENTER);
     lv_chart_set_type(ui_Chart4, LV_CHART_TYPE_LINE);
-    lv_chart_set_axis_tick(ui_Chart4, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 2, false, 50);
-    lv_chart_set_axis_tick(ui_Chart4, LV_CHART_AXIS_PRIMARY_Y, 10, 5, 5, 2, true, 50);
-    lv_chart_set_axis_tick(ui_Chart4, LV_CHART_AXIS_SECONDARY_Y, 10, 5, 5, 2, true, 25);
-    lv_chart_series_t * ui_Chart4_series_1 = lv_chart_add_series(ui_Chart4, lv_color_hex(0x808080),
+    lv_chart_set_axis_tick(ui_Chart4, LV_CHART_AXIS_PRIMARY_X, 10, 5, 5, 0, false, 50);
+    lv_chart_set_axis_tick(ui_Chart4, LV_CHART_AXIS_PRIMARY_Y, 10, 5, 5, 0, true, 50);
+    lv_chart_set_axis_tick(ui_Chart4, LV_CHART_AXIS_SECONDARY_Y, 10, 5, 5, 0, true, 25);
+    lv_chart_series_t * ui_Chart4_series_1 = lv_chart_add_series(ui_Chart4, lv_color_hex(0x1DD966),
                                                                  LV_CHART_AXIS_PRIMARY_Y);
     static lv_coord_t ui_Chart4_series_1_array[] = { 0, 10, 20, 40, 80, 80, 40, 20, 10, 0 };
     lv_chart_set_ext_y_array(ui_Chart4, ui_Chart4_series_1, ui_Chart4_series_1_array);
@@ -103,9 +99,9 @@ void ui_Main_screen_init(void)
 
     ui_Button1 = lv_btn_create(ui_Main);
     lv_obj_set_width(ui_Button1, 171);
-    lv_obj_set_height(ui_Button1, 50);
+    lv_obj_set_height(ui_Button1, 47);
     lv_obj_set_x(ui_Button1, 136);
-    lv_obj_set_y(ui_Button1, 120);
+    lv_obj_set_y(ui_Button1, 118);
     lv_obj_set_align(ui_Button1, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_Button1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(ui_Button1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
@@ -160,6 +156,7 @@ void ui_Main_screen_init(void)
     lv_obj_set_style_bg_img_src(ui_Button8, &ui_img_return_png, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_add_event_cb(ui_Button1, ui_event_Button1, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_Button5, ui_event_Button5, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_Button8, ui_event_Button8, LV_EVENT_ALL, NULL);
 
 }

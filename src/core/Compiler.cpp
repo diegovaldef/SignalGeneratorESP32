@@ -148,7 +148,7 @@ void init_Signal()
   Serial.print("Max CH4: ");
   Serial.println(maxCH4, 6);
 
-
+  lv_label_set_text(ui_Label5, fileNameStd[selected].c_str());
   _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Main_screen_init);
 
 }

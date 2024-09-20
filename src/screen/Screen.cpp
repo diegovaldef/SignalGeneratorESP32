@@ -8,6 +8,8 @@ bool firstOpen = true;
 const char _DIRECTORY_ = '0';
 const char _FILE_ = '1';
 
+byte selected;
+
 void TaskScreen(void *pvParameters)
 {
   while (true)
@@ -83,7 +85,7 @@ void SignalStartStop(lv_event_t *e)
 void openTarget(lv_event_t *e)
 {
 
-  byte selected = lv_roller_get_selected(ui_Roller3);
+  selected = lv_roller_get_selected(ui_Roller3);
 
   if (firstOpen)
   {
@@ -223,5 +225,5 @@ void exitLogo(lv_event_t *e)
 void AnimtoExplorer(lv_event_t *e)
 {
   _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_OUT, 500, 0, &ui_Explorador_screen_init);
-
+  _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_OUT, 500, 0, &ui_Explorador_screen_init);
 }
