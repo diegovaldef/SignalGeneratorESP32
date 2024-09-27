@@ -6,6 +6,14 @@ UBaseType_t spacesAvailable;
 
 TaskHandle_t TaskCompilerHandle;
 
+uint16_t ch1;
+uint16_t ch2;
+uint16_t ch3;
+uint16_t ch4;
+uint64_t deltaTime;
+
+bool filling = false;
+
 void createTaskCompiler()
 {
 
@@ -39,11 +47,13 @@ void processSignal(const char *line, double nextPeriod)
   if (sscanf(line, "%lf %lf %lf %lf %lf", &PERIOD, &CH1, &CH2, &CH3, &CH4))
   {
 
-    uint16_t ch1 = mapDouble(CH1, minCH1, maxCH1, 0, 4095);
-    uint16_t ch2 = mapDouble(CH2, minCH2, maxCH2, 0, 4095);
-    uint16_t ch3 = mapDouble(CH3, minCH3, maxCH3, 0, 4095);
-    uint16_t ch4 = mapDouble(CH4, minCH4, maxCH4, 0, 4095);
-    uint64_t deltaTime = (nextPeriod - PERIOD) * 1e6;
+    ch1 = mapDouble(CH1, minCH1, maxCH1, 0, 4095);
+    ch2 = mapDouble(CH2, minCH2, maxCH2, 0, 4095);
+    ch3 = mapDouble(CH3, minCH3, maxCH3, 0, 4095);
+    ch4 = mapDouble(CH4, minCH4, maxCH4, 0, 4095);
+    deltaTime = (nextPeriod - PERIOD) * 1e6;
+
+    showChannels();
 
     xQueueSend(writeBuffer.CH1, &ch1, portMAX_DELAY);
     xQueueSend(writeBuffer.CH2, &ch2, portMAX_DELAY);
@@ -85,6 +95,8 @@ void readSignal()
 
 void fillBuffers()
 {
+  filling = true;
+
   spacesAvailable = uxQueueSpacesAvailable(writeBuffer.TIME);
   while ((WRITE_BUF_SIZE - spacesAvailable) != WRITE_BUF_SIZE)
   {
@@ -118,6 +130,8 @@ void fillBuffers()
     
     SD_Root.close();
   }
+
+  filling = false;
 }
 
 void init_Signal()
@@ -151,4 +165,40 @@ void init_Signal()
   lv_label_set_text(ui_Label5, fileNameStd[selected].c_str());
   _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Main_screen_init);
 
+}
+
+void showChannels(){
+
+  if(filling){
+    return;
+  }
+
+  if(ch1 != 0){
+    lv_obj_set_style_bg_opa(ui_Panel1, 200, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+  else{
+    lv_obj_set_style_bg_opa(ui_Panel1, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+  
+  if(ch2 != 0){
+    lv_obj_set_style_bg_opa(ui_Panel2, 200, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+  else{
+    lv_obj_set_style_bg_opa(ui_Panel2, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+  
+  if(ch3 != 0){
+    lv_obj_set_style_bg_opa(ui_Panel3, 200, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+  else {
+    lv_obj_set_style_bg_opa(ui_Panel3, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+
+  if(ch4 != 0){
+    lv_obj_set_style_bg_opa(ui_Panel4, 200, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+  else {
+    lv_obj_set_style_bg_opa(ui_Panel4, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+  }
 }

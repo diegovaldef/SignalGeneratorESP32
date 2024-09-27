@@ -3,11 +3,6 @@
 Adafruit_MCP4728 mcp;
 TaskHandle_t TaskInjectHandle;
 
-uint16_t ch1;
-uint16_t ch2;
-uint16_t ch3;
-uint16_t ch4;
-uint64_t microseconds;
 
 void MCPBegin(){
 
@@ -52,11 +47,11 @@ void TaskInject(void *pvParameters)
       xQueueReceive(writeBuffer.CH2, &ch2 , portMAX_DELAY);
       xQueueReceive(writeBuffer.CH3, &ch3 , portMAX_DELAY);
       xQueueReceive(writeBuffer.CH4, &ch4 , portMAX_DELAY);
-      xQueueReceive(writeBuffer.TIME, &microseconds, portMAX_DELAY);
+      xQueueReceive(writeBuffer.TIME, &deltaTime, portMAX_DELAY);
 
       mcp.fastWrite(ch1, ch2, ch3, ch4);
       
-      vMicrosecondsdelay(microseconds);
+      vMicrosecondsdelay(deltaTime);
 
     }
   }

@@ -22,5 +22,7 @@ void ui_Loading_screen_init(void)
     lv_obj_set_flex_align(ui_Spinner2, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
     lv_obj_clear_flag(ui_Spinner2, LV_OBJ_FLAG_CLICKABLE);      /// Flags
 
+    lv_obj_set_style_arc_color(ui_Spinner2, lv_color_hex(0x2F71EC), LV_PART_INDICATOR | LV_STATE_DEFAULT);
+    lv_obj_set_style_arc_opa(ui_Spinner2, 255, LV_PART_INDICATOR | LV_STATE_DEFAULT);
 
 }

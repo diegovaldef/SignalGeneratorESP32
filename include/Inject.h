@@ -17,11 +17,6 @@
 extern Adafruit_MCP4728 mcp;
 extern TaskHandle_t TaskInjectHandle;
 
-extern uint16_t ch1; // Valores del canal 1
-extern uint16_t ch2; // Valores del canal 2
-extern uint16_t ch3; // Valores del canal 3
-extern uint64_t microseconds;
-
 void TaskInject(void *pvParameters);
 void createTaskInject();
 void MCPBegin();
