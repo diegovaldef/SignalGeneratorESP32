@@ -102,9 +102,9 @@ void ui_Explorador_screen_init(void)
 
     lv_obj_set_style_bg_color(ui_Roller3, lv_color_hex(0xFFFFFF), LV_PART_SELECTED | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_Roller3, 0, LV_PART_SELECTED | LV_STATE_DEFAULT);
-    lv_obj_set_style_outline_color(ui_Roller3, lv_color_hex(0x000000), LV_PART_SELECTED | LV_STATE_DEFAULT);
-    lv_obj_set_style_outline_opa(ui_Roller3, 255, LV_PART_SELECTED | LV_STATE_DEFAULT);
-    lv_obj_set_style_outline_width(ui_Roller3, 2, LV_PART_SELECTED | LV_STATE_DEFAULT);
+    lv_obj_set_style_outline_color(ui_Roller3, lv_color_hex(0xFFFFFF), LV_PART_SELECTED | LV_STATE_DEFAULT);
+    lv_obj_set_style_outline_opa(ui_Roller3, 150, LV_PART_SELECTED | LV_STATE_DEFAULT);
+    lv_obj_set_style_outline_width(ui_Roller3, 1, LV_PART_SELECTED | LV_STATE_DEFAULT);
     lv_obj_set_style_outline_pad(ui_Roller3, 0, LV_PART_SELECTED | LV_STATE_DEFAULT);
 
     ui_Container6 = lv_obj_create(ui_Container5);

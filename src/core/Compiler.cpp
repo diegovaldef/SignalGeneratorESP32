@@ -179,9 +179,9 @@ void showChannels(){
   if(ch3 < 0 || ch3 > 4095){ch3 = 0;}
   if(ch4 < 0 || ch4 > 4095){ch4 = 0;}
 
-  lv_obj_set_style_bg_opa(ui_Panel1, map(ch1, 0, 4095, 10, 200), LV_PART_MAIN | LV_STATE_DEFAULT);
-  lv_obj_set_style_bg_opa(ui_Panel2, map(ch2, 0, 4095, 10, 200), LV_PART_MAIN | LV_STATE_DEFAULT);
-  lv_obj_set_style_bg_opa(ui_Panel3, map(ch3, 0, 4095, 10, 200), LV_PART_MAIN | LV_STATE_DEFAULT);
-  lv_obj_set_style_bg_opa(ui_Panel4, map(ch4, 0, 4095, 10, 200), LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_bg_opa(ui_Panel1, map(ch1, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_bg_opa(ui_Panel2, map(ch2, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_bg_opa(ui_Panel3, map(ch3, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_bg_opa(ui_Panel4, map(ch4, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
   
 }
