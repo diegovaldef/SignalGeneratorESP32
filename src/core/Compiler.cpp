@@ -164,7 +164,7 @@ void init_Signal()
   Serial.println(maxCH4, 6);
 
   lv_label_set_text(ui_Label5, fileNameStd[selected].c_str());
-  _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Main_screen_init);
+  _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 1000, &ui_Main_screen_init);
 
 }
 
@@ -178,7 +178,6 @@ void showChannels(){
   if(ch2 < 0 || ch2 > 4095){ch2 = 0;}
   if(ch3 < 0 || ch3 > 4095){ch3 = 0;}
   if(ch4 < 0 || ch4 > 4095){ch4 = 0;}
-
 
   lv_obj_set_style_bg_opa(ui_Panel1, map(ch1, 0, 4095, 10, 200), LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_bg_opa(ui_Panel2, map(ch2, 0, 4095, 10, 200), LV_PART_MAIN | LV_STATE_DEFAULT);

@@ -17,8 +17,6 @@ extern uint16_t ch3;
 extern uint16_t ch4;
 extern uint64_t deltaTime;
 
-extern bool filling;
-
 // Declaración de funciones
 void processSignal(const char *line, double nextPeriod);
 void readSignal();

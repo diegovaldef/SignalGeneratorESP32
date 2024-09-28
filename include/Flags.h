@@ -4,5 +4,6 @@
 extern bool signalRunning;
 extern bool firstOpen;
 extern bool noSDFound;
+extern bool filling;
 
 #endif

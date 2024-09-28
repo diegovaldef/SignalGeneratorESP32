@@ -210,6 +210,7 @@ void resetSignal(lv_event_t *e)
 
   createTaskInject();
   createTaskCompiler();
+
 }
 
 void refreshRollerButton(lv_event_t *e)
@@ -229,6 +230,5 @@ void exitLogo(lv_event_t *e)
 
 void AnimtoExplorer(lv_event_t *e)
 {
-  _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_OUT, 500, 0, &ui_Explorador_screen_init);
-  _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_OUT, 500, 0, &ui_Explorador_screen_init);
+  _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Explorador_screen_init);
 }
