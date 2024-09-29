@@ -79,10 +79,20 @@ void ui_event_Button1(lv_event_t * e);
 extern lv_obj_t * ui_Button1;
 void ui_event_Button5(lv_event_t * e);
 extern lv_obj_t * ui_Button5;
+void ui_event_Button6(lv_event_t * e);
 extern lv_obj_t * ui_Button6;
+void ui_event_Button7(lv_event_t * e);
 extern lv_obj_t * ui_Button7;
 void ui_event_Button8(lv_event_t * e);
 extern lv_obj_t * ui_Button8;
+extern lv_obj_t * ui_Button9;
+extern lv_obj_t * ui_Button11;
+extern lv_obj_t * ui_Panel5;
+extern lv_obj_t * ui_Label12;
+extern lv_obj_t * ui_Panel6;
+extern lv_obj_t * ui_Label11;
+void ui_event_Button12(lv_event_t * e);
+extern lv_obj_t * ui_Button12;
 // SCREEN: ui_Loading
 void ui_Loading_screen_init(void);
 extern lv_obj_t * ui_Loading;
@@ -99,6 +109,7 @@ LV_IMG_DECLARE(ui_img_1407471917);    // assets/down-arrow.png
 LV_IMG_DECLARE(ui_img_1718651389);    // assets/play-and-pause-button.png
 LV_IMG_DECLARE(ui_img_restart_png);    // assets/restart.png
 LV_IMG_DECLARE(ui_img_return_png);    // assets/return.png
+LV_IMG_DECLARE(ui_img_config_png);    // assets/config.png
 
 
 

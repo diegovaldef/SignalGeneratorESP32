@@ -10,6 +10,9 @@ const char _FILE_ = '1';
 
 byte selected;
 
+int indexFrecuency = 0;
+float valuesFrecuency[8] = {1, 2, 3, 4, 5, 0.1, 0.25, 0.5};
+
 void TaskScreen(void *pvParameters)
 {
   while (true)
@@ -231,4 +234,30 @@ void exitLogo(lv_event_t *e)
 void AnimtoExplorer(lv_event_t *e)
 {
   _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Explorador_screen_init);
+}
+
+void upFrecuency(lv_event_t * e)
+{
+  indexFrecuency++;
+  if(indexFrecuency == 8) {indexFrecuency = 0;}
+
+  char value[5];
+  snprintf(value, sizeof(value), "%.1f", valuesFrecuency[indexFrecuency]);       
+  strcat(value, "X");
+
+  lv_label_set_text(ui_Label11, value);
+
+}
+
+void downFrecuency(lv_event_t * e)
+{
+  indexFrecuency--;
+  if(indexFrecuency == -1) {indexFrecuency = 7;}
+
+  char value[5];
+  snprintf(value, sizeof(value), "%.1f", valuesFrecuency[indexFrecuency]);       
+  strcat(value, "X");
+
+  lv_label_set_text(ui_Label11, value);
+
 }

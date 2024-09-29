@@ -71,10 +71,20 @@ void ui_event_Button1(lv_event_t * e);
 lv_obj_t * ui_Button1;
 void ui_event_Button5(lv_event_t * e);
 lv_obj_t * ui_Button5;
+void ui_event_Button6(lv_event_t * e);
 lv_obj_t * ui_Button6;
+void ui_event_Button7(lv_event_t * e);
 lv_obj_t * ui_Button7;
 void ui_event_Button8(lv_event_t * e);
 lv_obj_t * ui_Button8;
+lv_obj_t * ui_Button9;
+lv_obj_t * ui_Button11;
+lv_obj_t * ui_Panel5;
+lv_obj_t * ui_Label12;
+lv_obj_t * ui_Panel6;
+lv_obj_t * ui_Label11;
+void ui_event_Button12(lv_event_t * e);
+lv_obj_t * ui_Button12;
 
 
 // SCREEN: ui_Loading
@@ -175,6 +185,22 @@ void ui_event_Button5(lv_event_t * e)
         resetSignal(e);
     }
 }
+void ui_event_Button6(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        downFrecuency(e);
+    }
+}
+void ui_event_Button7(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        upFrecuency(e);
+    }
+}
 void ui_event_Button8(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
@@ -183,6 +209,14 @@ void ui_event_Button8(lv_event_t * e)
         resetSignal(e);
         backDirectory(e);
         AnimtoExplorer(e);
+    }
+}
+void ui_event_Button12(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_PRESSED) {
+        resetSignal(e);
     }
 }
 

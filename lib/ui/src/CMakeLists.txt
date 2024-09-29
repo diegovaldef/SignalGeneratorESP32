@@ -16,6 +16,7 @@ SET(SOURCES ui_Logo.c
     ui_img_1407471917.c
     ui_img_1718651389.c
     ui_img_restart_png.c
-    ui_img_return_png.c)
+    ui_img_return_png.c
+    ui_img_config_png.c)
 
 add_library(ui ${SOURCES})
