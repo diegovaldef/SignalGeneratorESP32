@@ -60,6 +60,11 @@ void upFrecuency(lv_event_t * e)
 	// Your code here
 }
 
+void resetSignalComplete(lv_event_t * e)
+{
+	// Your code here
+}
+
 void AnimtoExplorer(lv_event_t * e)
 {
 	// Your code here

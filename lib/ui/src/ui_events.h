@@ -21,6 +21,7 @@ void SignalStartStop(lv_event_t * e);
 void resetSignal(lv_event_t * e);
 void downFrecuency(lv_event_t * e);
 void upFrecuency(lv_event_t * e);
+void resetSignalComplete(lv_event_t * e);
 void AnimtoExplorer(lv_event_t * e);
 
 #ifdef __cplusplus

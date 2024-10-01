@@ -137,6 +137,8 @@ void ui_Main_screen_init(void)
     lv_obj_set_style_bg_color(ui_Button6, lv_color_hex(0x4455A6), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_Button6, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_img_src(ui_Button6, &ui_img_1407471917, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui_Button6, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui_Button6, 100, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Button7 = lv_btn_create(ui_Main);
     lv_obj_set_width(ui_Button7, 80);
@@ -149,6 +151,10 @@ void ui_Main_screen_init(void)
     lv_obj_set_style_bg_color(ui_Button7, lv_color_hex(0x4455A6), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_Button7, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_img_src(ui_Button7, &ui_img_1486996648, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui_Button7, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui_Button7, 100, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_outline_width(ui_Button7, 1, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_outline_pad(ui_Button7, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Button8 = lv_btn_create(ui_Main);
     lv_obj_set_width(ui_Button8, 50);
@@ -173,6 +179,8 @@ void ui_Main_screen_init(void)
     lv_obj_set_style_bg_color(ui_Button9, lv_color_hex(0x4455A6), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_Button9, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_img_src(ui_Button9, &ui_img_1486996648, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui_Button9, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui_Button9, 100, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Button11 = lv_btn_create(ui_Main);
     lv_obj_set_width(ui_Button11, 80);
@@ -185,6 +193,8 @@ void ui_Main_screen_init(void)
     lv_obj_set_style_bg_color(ui_Button11, lv_color_hex(0x4455A6), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_Button11, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_img_src(ui_Button11, &ui_img_1407471917, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_color(ui_Button11, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_opa(ui_Button11, 100, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Panel5 = lv_obj_create(ui_Main);
     lv_obj_set_width(ui_Panel5, 80);

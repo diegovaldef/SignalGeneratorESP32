@@ -69,11 +69,27 @@ void SignalStartStop(lv_event_t *e)
 {
   if (signalRunning)
   {
-    timerAlarmDisable(My_timer);
+    timerAlarmDisable(My_timer); 
     timerStop(My_timer);
     vTaskSuspend(TaskCompilerHandle);
     vTaskSuspend(TaskInjectHandle);
     signalRunning = false;
+
+    lv_obj_add_flag(ui_Button7, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_add_flag(ui_Button6, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_add_flag(ui_Button9, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_add_flag(ui_Button11, LV_OBJ_FLAG_CLICKABLE);
+
+    lv_obj_set_style_border_width(ui_Button7, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui_Button6, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui_Button9, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui_Button11, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    lv_obj_set_style_bg_opa(ui_Panel1, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_Panel2, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_Panel3, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_Panel4, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+
   }
   else
   {
@@ -82,6 +98,17 @@ void SignalStartStop(lv_event_t *e)
     vTaskResume(TaskCompilerHandle);
     vTaskResume(TaskInjectHandle);
     signalRunning = true;
+
+    lv_obj_clear_flag(ui_Button7, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_clear_flag(ui_Button6, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_clear_flag(ui_Button9, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_clear_flag(ui_Button11, LV_OBJ_FLAG_CLICKABLE);
+
+    lv_obj_set_style_border_width(ui_Button7, 50, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui_Button6, 50, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui_Button9, 50, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui_Button11, 50, LV_PART_MAIN | LV_STATE_DEFAULT);
+
   }
 }
 
@@ -158,7 +185,7 @@ void nextDirectory(lv_event_t *e)
 {
 }
 
-void resetSignal(lv_event_t *e)
+void resetSignalComplete(lv_event_t *e)
 {
   vTaskSuspend(TaskCompilerHandle);
   vTaskSuspend(TaskInjectHandle);
@@ -213,6 +240,40 @@ void resetSignal(lv_event_t *e)
 
   createTaskInject();
   createTaskCompiler();
+
+}
+
+void resetSignal(lv_event_t * e){
+
+  signalRunning = true;
+  SignalStartStop(e);
+
+  timerRestart(My_timer);
+
+  uint64_t data;
+
+  while (uxQueueMessagesWaiting(writeBuffer.CH1) > 0)
+  {
+    xQueueReceive(writeBuffer.CH1, &data, 0);
+  }
+  while (uxQueueMessagesWaiting(writeBuffer.CH2) > 0)
+  {
+    xQueueReceive(writeBuffer.CH2, &data, 0);
+  }
+  while (uxQueueMessagesWaiting(writeBuffer.CH3) > 0)
+  {
+    xQueueReceive(writeBuffer.CH3, &data, 0);
+  }
+  while (uxQueueMessagesWaiting(writeBuffer.CH4) > 0)
+  {
+    xQueueReceive(writeBuffer.CH4, &data, 0);
+  }
+  while (uxQueueMessagesWaiting(writeBuffer.TIME) > 0)
+  {
+    xQueueReceive(writeBuffer.TIME, &data, 0);
+  }
+
+  mcp.fastWrite(0, 0, 0, 0);
 
 }
 
