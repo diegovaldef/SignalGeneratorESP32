@@ -43,7 +43,12 @@ void TaskCompiler(void *pvParameters)
 
 void processSignal(const char *line, double nextPeriod)
 {
-  double PERIOD, CH1, CH2, CH3, CH4;
+  double PERIOD = 0;
+  double CH1 = 0;
+  double CH2 = 0;
+  double CH3 = 0;
+  double CH4 = 0;
+  
   if (sscanf(line, "%lf %lf %lf %lf %lf", &PERIOD, &CH1, &CH2, &CH3, &CH4))
   {
 
@@ -63,6 +68,7 @@ void processSignal(const char *line, double nextPeriod)
 
 void readSignal()
 {
+
   openFile();
 
   int bytesRead = SD_Root.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
@@ -80,13 +86,13 @@ void readSignal()
       readBuffer.NEXT_BUF[bytesRead] = '\0';
 
       double nextPeriod;
-      sscanf(readBuffer.NEXT_BUF, "%lf", &nextPeriod);
+      sscanf(readBuffer.NEXT_BUF, "%lf", &nextPeriod); 
       processSignal(readBuffer.ACTUAL_BUF, nextPeriod);
     
       strcpy(readBuffer.ACTUAL_BUF, readBuffer.NEXT_BUF);
       
     }
-    showChannels();
+    //showChannels();
     vTaskDelay(1);
   }
 
@@ -173,20 +179,16 @@ void showChannels(){
     return;
   }
 
-  if(valuesFrecuency[indexFrecuency] <= 0.1){
-    return;
+  if(signalRunning){
+    
+    lv_obj_set_style_bg_opa(ui_Panel1, map(ch1, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_Panel2, map(ch2, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_Panel3, map(ch3, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_Panel4, map(ch4, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
+
   }
 
-  if(ch1 < 0 || ch1 > 4095){ch1 = 0;}
-  if(ch2 < 0 || ch2 > 4095){ch2 = 0;}
-  if(ch3 < 0 || ch3 > 4095){ch3 = 0;}
-  if(ch4 < 0 || ch4 > 4095){ch4 = 0;}
+  //vTaskDelay(2);
 
-  vTaskDelay(2);
-
-  lv_obj_set_style_bg_opa(ui_Panel1, map(ch1, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
-  lv_obj_set_style_bg_opa(ui_Panel2, map(ch2, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
-  lv_obj_set_style_bg_opa(ui_Panel3, map(ch3, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
-  lv_obj_set_style_bg_opa(ui_Panel4, map(ch4, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
 
 }

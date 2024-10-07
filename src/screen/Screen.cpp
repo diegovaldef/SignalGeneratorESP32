@@ -18,7 +18,8 @@ void TaskScreen(void *pvParameters)
   while (true)
   {
     lv_timer_handler();
-    vTaskDelay(1);
+    showChannels();
+    //vTaskDelay(1);
   }
 }
 
@@ -270,8 +271,6 @@ void resetSignal(lv_event_t * e){
   {
     xQueueReceive(writeBuffer.TIME, &data, 0);
   }
-
-  mcp.fastWrite(0, 0, 0, 0);
 
 }
 

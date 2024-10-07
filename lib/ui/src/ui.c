@@ -173,7 +173,10 @@ void ui_event_Button1(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
-    if(event_code == LV_EVENT_CLICKED) {
+    if(event_code == LV_EVENT_PRESS_LOST) {
+        SignalStartStop(e);
+    }
+    if(event_code == LV_EVENT_PRESSED) {
         SignalStartStop(e);
     }
 }

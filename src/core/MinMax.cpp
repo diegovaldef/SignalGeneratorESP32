@@ -12,7 +12,12 @@ uint16_t mapDouble(double x, double in_min, double in_max, uint16_t out_min, uin
 
 void processMinMax(const char *line)
 {
-  double PERIOD, CH1, CH2, CH3, CH4;
+  double PERIOD = 0;
+  double CH1 = 0;
+  double CH2 = 0;
+  double CH3 = 0;
+  double CH4 = 0;
+  
   if (sscanf(line, "%lf %lf %lf %lf %lf", &PERIOD, &CH1, &CH2, &CH3, &CH4))
   {
     if (CH1 < minCH1)
