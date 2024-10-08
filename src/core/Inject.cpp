@@ -8,9 +8,9 @@ void MCPBegin(){
 
   if(!mcp.begin()){
     Serial.println("Failed to find MCP4728 chip");
-    while (1) {
-     vTaskDelay(1);
-    }
+    // while (1) {
+    //  vTaskDelay(1);
+    // }
   }
 
 }

@@ -6,11 +6,11 @@ UBaseType_t spacesAvailable;
 
 TaskHandle_t TaskCompilerHandle;
 
-uint16_t ch1;
-uint16_t ch2;
-uint16_t ch3;
-uint16_t ch4;
-uint64_t deltaTime;
+uint16_t ch1 = 0;
+uint16_t ch2 = 0;
+uint16_t ch3 = 0;
+uint16_t ch4 = 0;
+uint64_t deltaTime = 0;
 
 bool filling = false;
 
@@ -179,6 +179,11 @@ void showChannels(){
     return;
   }
 
+  if(ch1 == 65535){ch1 = 0;}
+  if(ch2 == 65535){ch2 = 0;}
+  if(ch3 == 65535){ch3 = 0;}
+  if(ch4 == 65535){ch4 = 0;}
+
   if(signalRunning){
     
     lv_obj_set_style_bg_opa(ui_Panel1, map(ch1, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -189,6 +194,5 @@ void showChannels(){
   }
 
   //vTaskDelay(2);
-
 
 }

@@ -186,6 +186,12 @@ void resetSignalComplete(lv_event_t *e)
   minCH4 = 0;
   maxCH4 = 0;
 
+  ch1 = 0;
+  ch2 = 0;
+  ch3 = 0;
+  ch4 = 0;
+  deltaTime = 0;
+
   uint64_t data;
 
   while (uxQueueMessagesWaiting(writeBuffer.CH1) > 0)
@@ -271,6 +277,12 @@ void resetSignal(lv_event_t * e){
   {
     xQueueReceive(writeBuffer.TIME, &data, 0);
   }
+
+  ch1 = 0;
+  ch2 = 0;
+  ch3 = 0;
+  ch4 = 0;
+  deltaTime = 0;
 
 }
 
