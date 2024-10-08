@@ -215,6 +215,16 @@ void resetSignalComplete(lv_event_t *e)
     xQueueReceive(writeBuffer.TIME, &data, 0);
   }
 
+  lv_obj_add_flag(ui_Button7, LV_OBJ_FLAG_CLICKABLE);
+  lv_obj_add_flag(ui_Button6, LV_OBJ_FLAG_CLICKABLE);
+  lv_obj_add_flag(ui_Button9, LV_OBJ_FLAG_CLICKABLE);
+  lv_obj_add_flag(ui_Button11, LV_OBJ_FLAG_CLICKABLE);
+
+  lv_obj_set_style_border_width(ui_Button7, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_border_width(ui_Button6, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_border_width(ui_Button9, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_border_width(ui_Button11, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
   lv_obj_set_style_bg_opa(ui_Panel1, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_bg_opa(ui_Panel2, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_bg_opa(ui_Panel3, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
