@@ -14,11 +14,11 @@
 #include <Wire.h>
 #include <Core.h>
 
-extern Adafruit_MCP4728 mcp;
-extern TaskHandle_t TaskInjectHandle;
+extern Adafruit_MCP4728 mcp; // Inicializa el objeto MCP, modulo DAC
+extern TaskHandle_t TaskInjectHandle; // Handle del TaskInject
 
-void TaskInject(void *pvParameters);
-void createTaskInject();
-void MCPBegin();
+void TaskInject(void *pvParameters); // TaskInject
+void createTaskInject(); // Crea el taskInject
+void MCPBegin(); // Inicializa el MCP, necesario para trabajar
 
 #endif

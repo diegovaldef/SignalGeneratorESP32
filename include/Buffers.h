@@ -10,7 +10,7 @@
 #include <freertos/queue.h>
 
 const byte READ_BUF_SIZE = 128;  // Tamaño del buffer de lectura
-const int WRITE_BUF_SIZE = 1000; // Tamaño del buffer de datos
+const int WRITE_BUF_SIZE = 1000; // Tamaño del buffer de escritura
 
 
 struct ReadBuffer
@@ -19,10 +19,12 @@ struct ReadBuffer
     char NEXT_BUF[READ_BUF_SIZE]; // Buffer de lectura siguiente
 };
 
-extern ReadBuffer readBuffer; // Se inicializa la estructura
+extern ReadBuffer readBuffer; // Se inicializa la estructura de lectura
 
 struct WriteBuffer // Estructura de datos para almacenar los buffers de datos de escritura
 {
+    // Buffers basados en queues del FREERTOS
+
     QueueHandle_t CH1 = xQueueCreate(WRITE_BUF_SIZE, sizeof(uint16_t));
     QueueHandle_t CH2 = xQueueCreate(WRITE_BUF_SIZE, sizeof(uint16_t));
     QueueHandle_t CH3 = xQueueCreate(WRITE_BUF_SIZE, sizeof(uint16_t));
@@ -32,7 +34,7 @@ struct WriteBuffer // Estructura de datos para almacenar los buffers de datos de
 
 };
 
-extern WriteBuffer writeBuffer; // Se inicializa la estructura
+extern WriteBuffer writeBuffer; // Se inicializa la estructura de escritura
 
 #endif
 
