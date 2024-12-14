@@ -29,7 +29,8 @@ extern String fileNameStd[]; // Arreglo para guardar los nombres de los archivos
 
 extern char list[]; // Lista de nombres
 
-void openFile(); // Abrir el archivo seleccionado
+void openFileRead(); // Abrir el archivo seleccionado en lectura
+void openFileWrite();
 void SDBegin(); // Inicializar la targeta SD
 char* getFileNames(File dir); // Obtener los nombres de los archivos SD
 void refreshRoller(); // Refrescar el Roller 

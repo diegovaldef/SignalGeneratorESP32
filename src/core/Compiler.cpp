@@ -69,7 +69,7 @@ void processSignal(const char *line, double nextPeriod)
 void readSignal()
 {
 
-  openFile();
+  openFileRead();
 
   int bytesRead = SD_Root.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
   readBuffer.ACTUAL_BUF[bytesRead] = '\0';
@@ -106,7 +106,7 @@ void fillBuffers()
   spacesAvailable = uxQueueSpacesAvailable(writeBuffer.TIME);
   while ((WRITE_BUF_SIZE - spacesAvailable) != WRITE_BUF_SIZE)
   {
-    openFile();
+    openFileRead();
 
     int bytesRead = SD_Root.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
     readBuffer.ACTUAL_BUF[bytesRead] = '\0';

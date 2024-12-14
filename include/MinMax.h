@@ -16,6 +16,8 @@ extern double minCH4, maxCH4; // Valores minimos y maximos del canal 4
 // Funcion map con double como entrada y uint16_t como salida
 uint16_t mapDouble(double x, double in_min, double in_max, uint16_t out_min, uint16_t out_max); 
 void processMinMax(const char *line); // Analiza el valor minimo y maximo de cada canal
-void readMinMax(); // Lee el archivo txt y envia cada linea al processMinMax
+void readMinMax(); // Lee el archivo txt en busca del MINMAX
+void noMinMaxWritten(); // Funcion que se ejecuta si no esta escrito el MINMAX anteriormente
+void writeMinMax(); // Escribe el MINMAX
 
 #endif 

@@ -55,9 +55,20 @@ void TaskSD(void *pvParameters)
 
 }
 
-void openFile()
+void openFileRead()
 {
   SD_Root = SD.open(STR_Root, FILE_READ);
+  if (!SD_Root)
+  {
+    delay_time = 0;
+    noSDFound = true;
+    vTaskResume(TaskSDHandle);
+  }
+}
+
+void openFileWrite()
+{
+  SD_Root = SD.open(STR_Root, FILE_WRITE);
   if (!SD_Root)
   {
     delay_time = 0;
@@ -163,7 +174,7 @@ char *getFileNames(File dir)
 void refreshRoller()
 {
 
-  openFile();
+  openFileRead();
 
   lv_roller_set_options(ui_Roller3, getFileNames(SD_Root),
                         LV_ROLLER_MODE_NORMAL);
