@@ -61,7 +61,7 @@ void readMinMax()
     size_t chunkSize = min((size_t)SD_Root.position(), (size_t)bufferSize);
     SD_Root.seek(SD_Root.position() - chunkSize); // Retroceder el tamaño del bloque
     SD_Root.readBytes(buffer, chunkSize);
-
+ 
     for (int i = chunkSize - 1; i >= 0; i--)
     { // Leer caracteres en orden inverso
       if (buffer[i] == '\n' || buffer[i] == '\r')
