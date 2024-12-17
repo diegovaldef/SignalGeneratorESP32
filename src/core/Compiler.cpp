@@ -58,10 +58,6 @@ void processSignal(const char *line, double nextPeriod)
     ch4 = mapDouble(CH4, minCH4, maxCH4, 0, 4095);
     deltaTime = ((nextPeriod - PERIOD) * 1e6) * valuesFrecuency[indexFrecuency];
 
-    Serial.printf("PERIOD: %lf \n", PERIOD);
-    Serial.printf("NEXTPERIOD: %lf \n", nextPeriod);
-    Serial.printf("delta PERIOD: %d \n", deltaTime);
-
     xQueueSend(writeBuffer.CH1, &ch1, portMAX_DELAY);
     xQueueSend(writeBuffer.CH2, &ch2, portMAX_DELAY);
     xQueueSend(writeBuffer.CH3, &ch3, portMAX_DELAY);
