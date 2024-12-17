@@ -135,9 +135,9 @@ void writeMinMax()
 
   SD_Root.seek(SD_Root.size()); // Posicionarse al final del archivo
 
-  SD_Root.print("\n");
+  SD_Root.println("");
   SD_Root.print("----- SIGNAL DETAILS ----- \n");
-  SD_Root.print("\n");
+  SD_Root.println("");
   SD_Root.printf("MIN %lf %lf %lf %lf \n", minCH1, minCH2, minCH3, minCH4);
   SD_Root.printf("MAX %lf %lf %lf %lf \n", maxCH1, maxCH2, maxCH3, maxCH4);
 
