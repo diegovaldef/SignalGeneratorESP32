@@ -48,7 +48,7 @@ void processSignal(const char *line, double nextPeriod)
   double CH2 = 0;
   double CH3 = 0;
   double CH4 = 0;
-  
+
   if (sscanf(line, "%lf %lf %lf %lf %lf", &PERIOD, &CH1, &CH2, &CH3, &CH4))
   {
 
@@ -57,6 +57,10 @@ void processSignal(const char *line, double nextPeriod)
     ch3 = mapDouble(CH3, minCH3, maxCH3, 0, 4095);
     ch4 = mapDouble(CH4, minCH4, maxCH4, 0, 4095);
     deltaTime = ((nextPeriod - PERIOD) * 1e6) * valuesFrecuency[indexFrecuency];
+
+    Serial.printf("PERIOD: %lf \n", PERIOD);
+    Serial.printf("NEXTPERIOD: %lf \n", nextPeriod);
+    Serial.printf("delta PERIOD: %d \n", deltaTime);
 
     xQueueSend(writeBuffer.CH1, &ch1, portMAX_DELAY);
     xQueueSend(writeBuffer.CH2, &ch2, portMAX_DELAY);
@@ -68,6 +72,7 @@ void processSignal(const char *line, double nextPeriod)
 
 void readSignal()
 {
+  double nextPeriod;
 
   openFileRead();
 
@@ -76,33 +81,40 @@ void readSignal()
 
   while (SD_Root.available())
   {
-
     spacesAvailable = uxQueueSpacesAvailable(writeBuffer.TIME);
 
     if ((WRITE_BUF_SIZE - spacesAvailable) != WRITE_BUF_SIZE)
     {
-
       bytesRead = SD_Root.readBytesUntil('\n', readBuffer.NEXT_BUF, READ_BUF_SIZE - 1);
       readBuffer.NEXT_BUF[bytesRead] = '\0';
 
-      double nextPeriod;
-      sscanf(readBuffer.NEXT_BUF, "%lf", &nextPeriod); 
+      // Verificar si la siguiente línea está en blanco
+      if (strlen(readBuffer.NEXT_BUF) <= 2)
+      {
+        SD_Root.seek(0);
+        bytesRead = SD_Root.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
+        readBuffer.ACTUAL_BUF[bytesRead] = '\0';
+        continue;
+      }
+
+      sscanf(readBuffer.NEXT_BUF, "%lf", &nextPeriod);
       processSignal(readBuffer.ACTUAL_BUF, nextPeriod);
-    
+
       strcpy(readBuffer.ACTUAL_BUF, readBuffer.NEXT_BUF);
-      
     }
-    //showChannels();
+
     vTaskDelay(1);
   }
 
+  vTaskDelay(1);
   SD_Root.close();
 }
 
 void fillBuffers()
 {
+  double nextPeriod;
   filling = true;
-
+  
   spacesAvailable = uxQueueSpacesAvailable(writeBuffer.TIME);
   while ((WRITE_BUF_SIZE - spacesAvailable) != WRITE_BUF_SIZE)
   {
@@ -116,7 +128,14 @@ void fillBuffers()
       bytesRead = SD_Root.readBytesUntil('\n', readBuffer.NEXT_BUF, READ_BUF_SIZE - 1);
       readBuffer.NEXT_BUF[bytesRead] = '\0';
 
-      double nextPeriod;
+      if (strlen(readBuffer.NEXT_BUF) <= 2)
+      {
+        SD_Root.seek(0);
+        bytesRead = SD_Root.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
+        readBuffer.ACTUAL_BUF[bytesRead] = '\0';
+        continue;
+      }
+
       sscanf(readBuffer.NEXT_BUF, "%lf", &nextPeriod);
 
       spacesAvailable = uxQueueSpacesAvailable(writeBuffer.TIME);
@@ -133,7 +152,8 @@ void fillBuffers()
       strcpy(readBuffer.ACTUAL_BUF, readBuffer.NEXT_BUF);
       vTaskDelay(1);
     }
-    
+
+    vTaskDelay(1);
     SD_Root.close();
   }
 
@@ -170,29 +190,41 @@ void init_Signal()
 
   lv_label_set_text(ui_Label5, fileNameStd[selected].c_str());
   _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 1000, &ui_Main_screen_init);
-
 }
 
-void showChannels(){
+void showChannels()
+{
 
-  if(filling){
+  if (filling)
+  {
     return;
   }
 
-  if(ch1 == 65535){ch1 = 0;}
-  if(ch2 == 65535){ch2 = 0;}
-  if(ch3 == 65535){ch3 = 0;}
-  if(ch4 == 65535){ch4 = 0;}
+  if (ch1 == 65535)
+  {
+    ch1 = 0;
+  }
+  if (ch2 == 65535)
+  {
+    ch2 = 0;
+  }
+  if (ch3 == 65535)
+  {
+    ch3 = 0;
+  }
+  if (ch4 == 65535)
+  {
+    ch4 = 0;
+  }
 
-  if(signalRunning){
-    
+  if (signalRunning)
+  {
+
     lv_obj_set_style_bg_opa(ui_Panel1, map(ch1, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_Panel2, map(ch2, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_Panel3, map(ch3, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_Panel4, map(ch4, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
-
   }
 
-  //vTaskDelay(2);
-
+  // vTaskDelay(2);
 }
