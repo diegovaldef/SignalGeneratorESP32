@@ -73,6 +73,10 @@ void readSignal()
   openFileRead();
 
   int bytesRead = SD_Root.readBytesUntil('\n', readBuffer.ACTUAL_BUF, READ_BUF_SIZE - 1);
+  if (bytesRead < 0) {
+    Serial.println("Error reading from SD card");
+    return;
+  }
   readBuffer.ACTUAL_BUF[bytesRead] = '\0';
 
   while (SD_Root.available())
