@@ -111,6 +111,25 @@ extern lv_obj_t * ui_Spinner2;
 extern lv_obj_t * ui_Label13;
 // CUSTOM VARIABLES
 
+// SCREEN: ui_Test
+void ui_Test_screen_init(void);
+extern lv_obj_t * ui_Test;
+void ui_event_Slider1(lv_event_t * e);
+extern lv_obj_t * ui_Slider1;
+extern lv_obj_t * ui_Spinbox1;
+void ui_event_Button15(lv_event_t * e);
+extern lv_obj_t * ui_Button15;
+void ui_event_Button16(lv_event_t * e);
+extern lv_obj_t * ui_Button16;
+// CUSTOM VARIABLES
+
+// SCREEN: ui_Plot
+void ui_Plot_screen_init(void);
+extern lv_obj_t * ui_Plot;
+extern lv_obj_t * ui_Container4;
+extern lv_obj_t * ui_Chart1;
+// CUSTOM VARIABLES
+
 // EVENTS
 
 extern lv_obj_t * ui____initial_actions0;

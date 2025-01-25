@@ -4,6 +4,8 @@ ui_ErrorSD.c
 ui_Explorador.c
 ui_Main.c
 ui_Loading.c
+ui_Test.c
+ui_Plot.c
 ui.c
 ui_comp_hook.c
 ui_helpers.c

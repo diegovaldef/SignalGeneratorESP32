@@ -100,6 +100,27 @@ lv_obj_t * ui_Spinner2;
 lv_obj_t * ui_Label13;
 // CUSTOM VARIABLES
 
+
+// SCREEN: ui_Test
+void ui_Test_screen_init(void);
+lv_obj_t * ui_Test;
+void ui_event_Slider1(lv_event_t * e);
+lv_obj_t * ui_Slider1;
+lv_obj_t * ui_Spinbox1;
+void ui_event_Button15(lv_event_t * e);
+lv_obj_t * ui_Button15;
+void ui_event_Button16(lv_event_t * e);
+lv_obj_t * ui_Button16;
+// CUSTOM VARIABLES
+
+
+// SCREEN: ui_Plot
+void ui_Plot_screen_init(void);
+lv_obj_t * ui_Plot;
+lv_obj_t * ui_Container4;
+lv_obj_t * ui_Chart1;
+// CUSTOM VARIABLES
+
 // EVENTS
 lv_obj_t * ui____initial_actions0;
 
@@ -240,8 +261,35 @@ void ui_event_Button12(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
 
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_change(&ui_Plot, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Plot_screen_init);
+    }
+}
+
+void ui_event_Slider1(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+    if(event_code == LV_EVENT_VALUE_CHANGED) {
+        _ui_spinbox_step(ui_Spinbox1, 1);
+    }
+}
+
+void ui_event_Button15(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+
     if(event_code == LV_EVENT_PRESSED) {
-        resetSignal(e);
+        _ui_spinbox_step(ui_Spinbox1, 1);
+    }
+}
+
+void ui_event_Button16(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+    if(event_code == LV_EVENT_PRESSED) {
+        _ui_spinbox_step(ui_Spinbox1, -1);
     }
 }
 
@@ -257,6 +305,8 @@ void ui_init(void)
     ui_Explorador_screen_init();
     ui_Main_screen_init();
     ui_Loading_screen_init();
+    ui_Test_screen_init();
+    ui_Plot_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_Logo);
 }

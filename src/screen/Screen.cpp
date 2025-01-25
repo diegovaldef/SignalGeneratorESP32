@@ -18,7 +18,7 @@ void TaskScreen(void *pvParameters)
   while (true)
   {
     lv_timer_handler();
-    showChannels();
+    //showChannels();
     //vTaskDelay(1);
   }
 }
