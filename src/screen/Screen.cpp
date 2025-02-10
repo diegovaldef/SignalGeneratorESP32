@@ -162,10 +162,6 @@ void refreshLabel(){
 
 }
 
-void nextDirectory(lv_event_t *e)
-{
-}
-
 void resetSignalComplete(lv_event_t *e)
 {
   vTaskSuspend(TaskCompilerHandle);
@@ -340,4 +336,15 @@ void downFrecuency(lv_event_t * e)
 
   lv_label_set_text(ui_Label11, value);
 
+}
+
+void gotoPlot(lv_event_t * e){
+
+  vTaskResume(TaskScopeHandle);
+  _ui_screen_change(&ui_Plot, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Plot_screen_init);
+}
+
+void backfromPlot(lv_event_t * e){
+  vTaskSuspend(TaskScopeHandle);
+  _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Explorador_screen_init);
 }

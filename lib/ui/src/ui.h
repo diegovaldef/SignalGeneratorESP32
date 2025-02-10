@@ -52,10 +52,10 @@ extern lv_obj_t * ui_Explorador;
 extern lv_obj_t * ui_Container1;
 void ui_event_Button3(lv_event_t * e);
 extern lv_obj_t * ui_Button3;
-void ui_event_Button4(lv_event_t * e);
-extern lv_obj_t * ui_Button4;
 void ui_event_Button2(lv_event_t * e);
 extern lv_obj_t * ui_Button2;
+void ui_event_Button4(lv_event_t * e);
+extern lv_obj_t * ui_Button4;
 extern lv_obj_t * ui_Label1;
 extern lv_obj_t * ui_Container5;
 extern lv_obj_t * ui_Roller3;
@@ -111,23 +111,14 @@ extern lv_obj_t * ui_Spinner2;
 extern lv_obj_t * ui_Label13;
 // CUSTOM VARIABLES
 
-// SCREEN: ui_Test
-void ui_Test_screen_init(void);
-extern lv_obj_t * ui_Test;
-void ui_event_Slider1(lv_event_t * e);
-extern lv_obj_t * ui_Slider1;
-extern lv_obj_t * ui_Spinbox1;
-void ui_event_Button15(lv_event_t * e);
-extern lv_obj_t * ui_Button15;
-void ui_event_Button16(lv_event_t * e);
-extern lv_obj_t * ui_Button16;
-// CUSTOM VARIABLES
-
 // SCREEN: ui_Plot
 void ui_Plot_screen_init(void);
 extern lv_obj_t * ui_Plot;
 extern lv_obj_t * ui_Container4;
 extern lv_obj_t * ui_Chart1;
+extern lv_obj_t * ui_Container8;
+void ui_event_Button15(lv_event_t * e);
+extern lv_obj_t * ui_Button15;
 // CUSTOM VARIABLES
 
 // EVENTS
@@ -137,8 +128,8 @@ extern lv_obj_t * ui____initial_actions0;
 // IMAGES AND IMAGE SETS
 LV_IMG_DECLARE(ui_img_423428936);    // assets/WhatsApp Image 2024-09-08 at 20.31.55_287d4613.png
 LV_IMG_DECLARE(ui_img_1162731896);    // assets/simbolo-de-doble-flecha-derecha-de-avance-rapido (2).png
-LV_IMG_DECLARE(ui_img_1081796697);    // assets/simbolo-de-doble-flecha-derecha-de-avance-rapido (1).png
 LV_IMG_DECLARE(ui_img_1760988675);    // assets/actualizar-flecha.png
+LV_IMG_DECLARE(ui_img_sound_png);    // assets/sound.png
 LV_IMG_DECLARE(ui_img_1486996648);    // assets/up-arrow.png
 LV_IMG_DECLARE(ui_img_1407471917);    // assets/down-arrow.png
 LV_IMG_DECLARE(ui_img_1718651389);    // assets/play-and-pause-button.png

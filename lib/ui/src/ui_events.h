@@ -12,8 +12,8 @@ extern "C" {
 
 void exitLogo(lv_event_t * e);
 void backDirectory(lv_event_t * e);
-void nextDirectory(lv_event_t * e);
 void refreshRollerButton(lv_event_t * e);
+void gotoPlot(lv_event_t * e);
 void rollerUp(lv_event_t * e);
 void rollerDown(lv_event_t * e);
 void openTarget(lv_event_t * e);
@@ -23,6 +23,7 @@ void downFrecuency(lv_event_t * e);
 void upFrecuency(lv_event_t * e);
 void resetSignalComplete(lv_event_t * e);
 void AnimtoExplorer(lv_event_t * e);
+void backfromPlot(lv_event_t * e);
 
 #ifdef __cplusplus
 } /*extern "C"*/

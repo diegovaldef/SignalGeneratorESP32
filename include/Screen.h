@@ -36,10 +36,11 @@ void resetSignalComplete(lv_event_t * e); // Reinicia la senal completamente
 void resetSignal(lv_event_t * e); // Reinicia la senal exceptuando algunos elementos
 void refreshRollerButton(lv_event_t * e); // Refresca los elementos mostrados en el roller
 void exitLogo(lv_event_t * e); // Verifica el estado de la sd para salir del logo
-void nextDirectory(lv_event_t * e); // Siguiente directorio
 void AnimtoExplorer(lv_event_t *e); // Animacion en direccion al Explorador
 void upFrecuency(lv_event_t * e); // Elevar Frecuencia
 void downFrecuency(lv_event_t * e); // Disminuir Frecuencia
+void gotoPlot(lv_event_t * e); // Ir a la pantalla de Plot
+void backfromPlot(lv_event_t * e); // Regresar de la pantalla de Plot
 void TaskScreen(void *pvParameters); // TaskScreen
 void refreshLabel(); // Refresca el texto para mostrar la ruta de directorio
 void createTaskScreen(); // Crea el TaskScreen

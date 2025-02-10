@@ -17,7 +17,8 @@ void setup()
   createTaskCompiler();
   createTaskSD();
   createTaskScreen();
-
+  createTaskScope();
+  
   vTaskDelete(NULL);
 }
 

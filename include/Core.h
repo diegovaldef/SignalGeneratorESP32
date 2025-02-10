@@ -10,6 +10,7 @@
 #include <SdManager.h>
 #include <Timer.h>
 #include <Screen.h>
+#include <Oscilloscope.h>
 #include <Flags.h>
 #include <lvgl.h>
 #include <TFT_eSPI.h>

@@ -69,3 +69,13 @@ void AnimtoExplorer(lv_event_t * e)
 {
 	// Your code here
 }
+
+void gotoPlot(lv_event_t * e)
+{
+	// Your code here
+}
+
+void backfromPlot(lv_event_t * e)
+{
+	// Your code here
+}
