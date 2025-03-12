@@ -8,7 +8,6 @@
 #include <Arduino.h>
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
-#include <driver/dac.h>
 #include <freertos/queue.h>
 #include <Adafruit_MCP4728.h>
 #include <Wire.h>

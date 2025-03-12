@@ -3,7 +3,6 @@
 
 void setup()
 {
-
   Serial.begin(115200);
   setCpuFrequencyMhz(240);
 
@@ -24,4 +23,5 @@ void setup()
 
 void loop()
 {
+  delay(1000);
 }
