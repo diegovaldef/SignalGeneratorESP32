@@ -62,7 +62,9 @@ lv_obj_t * ui_Label2;
 void ui_Main_screen_init(void);
 lv_obj_t * ui_Main;
 lv_obj_t * ui_Container2;
+lv_obj_t * ui_Container9;
 lv_obj_t * ui_Label5;
+lv_obj_t * ui_Container10;
 lv_obj_t * ui_Panel1;
 lv_obj_t * ui_Label6;
 lv_obj_t * ui_Panel2;
@@ -71,24 +73,30 @@ lv_obj_t * ui_Panel3;
 lv_obj_t * ui_Label9;
 lv_obj_t * ui_Panel4;
 lv_obj_t * ui_Label10;
-void ui_event_Button1(lv_event_t * e);
-lv_obj_t * ui_Button1;
+void ui_event_Button8(lv_event_t * e);
+lv_obj_t * ui_Button8;
 void ui_event_Button5(lv_event_t * e);
 lv_obj_t * ui_Button5;
+void ui_event_Button12(lv_event_t * e);
+lv_obj_t * ui_Button12;
+lv_obj_t * ui_Panel5;
+lv_obj_t * ui_Spinbox1;
+void ui_event_Button11(lv_event_t * e);
+lv_obj_t * ui_Button11;
+void ui_event_Button9(lv_event_t * e);
+lv_obj_t * ui_Button9;
+lv_obj_t * ui_Panel6;
+lv_obj_t * ui_Spinbox2;
 void ui_event_Button6(lv_event_t * e);
 lv_obj_t * ui_Button6;
 void ui_event_Button7(lv_event_t * e);
 lv_obj_t * ui_Button7;
-void ui_event_Button8(lv_event_t * e);
-lv_obj_t * ui_Button8;
-lv_obj_t * ui_Button9;
-lv_obj_t * ui_Button11;
-lv_obj_t * ui_Panel5;
-lv_obj_t * ui_Label12;
-lv_obj_t * ui_Panel6;
+void ui_event_Button1(lv_event_t * e);
+lv_obj_t * ui_Button1;
+lv_obj_t * ui_Switch1;
+lv_obj_t * ui_Switch2;
 lv_obj_t * ui_Label11;
-void ui_event_Button12(lv_event_t * e);
-lv_obj_t * ui_Button12;
+lv_obj_t * ui_Label12;
 // CUSTOM VARIABLES
 
 
@@ -196,17 +204,18 @@ void ui_event_Button10(lv_event_t * e)
     lv_event_code_t event_code = lv_event_get_code(e);
 
     if(event_code == LV_EVENT_CLICKED) {
-        resetSignalComplete(e);
         openTarget(e);
     }
 }
 
-void ui_event_Button1(lv_event_t * e)
+void ui_event_Button8(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
 
-    if(event_code == LV_EVENT_PRESSED) {
-        SignalStartStop(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        resetSignalComplete(e);
+        backDirectory(e);
+        AnimtoExplorer(e);
     }
 }
 
@@ -216,6 +225,33 @@ void ui_event_Button5(lv_event_t * e)
 
     if(event_code == LV_EVENT_PRESSED) {
         resetSignal(e);
+    }
+}
+
+void ui_event_Button12(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_change(&ui_Plot, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Plot_screen_init);
+    }
+}
+
+void ui_event_Button11(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+    if(event_code == LV_EVENT_CLICKED) {
+        downVoltage(e);
+    }
+}
+
+void ui_event_Button9(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+    if(event_code == LV_EVENT_CLICKED) {
+        upVoltage(e);
     }
 }
 
@@ -237,22 +273,12 @@ void ui_event_Button7(lv_event_t * e)
     }
 }
 
-void ui_event_Button8(lv_event_t * e)
+void ui_event_Button1(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
 
-    if(event_code == LV_EVENT_CLICKED) {
-        backDirectory(e);
-        AnimtoExplorer(e);
-    }
-}
-
-void ui_event_Button12(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_Plot, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Plot_screen_init);
+    if(event_code == LV_EVENT_PRESSED) {
+        SignalStartStop(e);
     }
 }
 
@@ -261,6 +287,7 @@ void ui_event_Button15(lv_event_t * e)
     lv_event_code_t event_code = lv_event_get_code(e);
 
     if(event_code == LV_EVENT_CLICKED) {
+        AnimtoExplorer(e);
         backfromPlot(e);
     }
 }

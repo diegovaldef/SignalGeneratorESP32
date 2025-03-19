@@ -74,7 +74,9 @@ extern lv_obj_t * ui_Label2;
 void ui_Main_screen_init(void);
 extern lv_obj_t * ui_Main;
 extern lv_obj_t * ui_Container2;
+extern lv_obj_t * ui_Container9;
 extern lv_obj_t * ui_Label5;
+extern lv_obj_t * ui_Container10;
 extern lv_obj_t * ui_Panel1;
 extern lv_obj_t * ui_Label6;
 extern lv_obj_t * ui_Panel2;
@@ -83,24 +85,30 @@ extern lv_obj_t * ui_Panel3;
 extern lv_obj_t * ui_Label9;
 extern lv_obj_t * ui_Panel4;
 extern lv_obj_t * ui_Label10;
-void ui_event_Button1(lv_event_t * e);
-extern lv_obj_t * ui_Button1;
+void ui_event_Button8(lv_event_t * e);
+extern lv_obj_t * ui_Button8;
 void ui_event_Button5(lv_event_t * e);
 extern lv_obj_t * ui_Button5;
+void ui_event_Button12(lv_event_t * e);
+extern lv_obj_t * ui_Button12;
+extern lv_obj_t * ui_Panel5;
+extern lv_obj_t * ui_Spinbox1;
+void ui_event_Button11(lv_event_t * e);
+extern lv_obj_t * ui_Button11;
+void ui_event_Button9(lv_event_t * e);
+extern lv_obj_t * ui_Button9;
+extern lv_obj_t * ui_Panel6;
+extern lv_obj_t * ui_Spinbox2;
 void ui_event_Button6(lv_event_t * e);
 extern lv_obj_t * ui_Button6;
 void ui_event_Button7(lv_event_t * e);
 extern lv_obj_t * ui_Button7;
-void ui_event_Button8(lv_event_t * e);
-extern lv_obj_t * ui_Button8;
-extern lv_obj_t * ui_Button9;
-extern lv_obj_t * ui_Button11;
-extern lv_obj_t * ui_Panel5;
-extern lv_obj_t * ui_Label12;
-extern lv_obj_t * ui_Panel6;
+void ui_event_Button1(lv_event_t * e);
+extern lv_obj_t * ui_Button1;
+extern lv_obj_t * ui_Switch1;
+extern lv_obj_t * ui_Switch2;
 extern lv_obj_t * ui_Label11;
-void ui_event_Button12(lv_event_t * e);
-extern lv_obj_t * ui_Button12;
+extern lv_obj_t * ui_Label12;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_Loading
@@ -132,10 +140,10 @@ LV_IMG_DECLARE(ui_img_1760988675);    // assets/actualizar-flecha.png
 LV_IMG_DECLARE(ui_img_sound_png);    // assets/sound.png
 LV_IMG_DECLARE(ui_img_1486996648);    // assets/up-arrow.png
 LV_IMG_DECLARE(ui_img_1407471917);    // assets/down-arrow.png
-LV_IMG_DECLARE(ui_img_1718651389);    // assets/play-and-pause-button.png
-LV_IMG_DECLARE(ui_img_restart_png);    // assets/restart.png
 LV_IMG_DECLARE(ui_img_return_png);    // assets/return.png
+LV_IMG_DECLARE(ui_img_restart_png);    // assets/restart.png
 LV_IMG_DECLARE(ui_img_config_png);    // assets/config.png
+LV_IMG_DECLARE(ui_img_1718651389);    // assets/play-and-pause-button.png
 
 // UI INIT
 void ui_init(void);

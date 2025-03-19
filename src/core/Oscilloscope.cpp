@@ -11,26 +11,6 @@ lv_color_t colors[] = {
     lv_palette_main(LV_PALETTE_YELLOW)
 };
 
-
-void TaskScope(void *pvParameters)
-{
-    while (true)
-    {
-
-        float adc0 = ads.computeVolts(ads.readADC_SingleEnded(0));
-        float adc1 = ads.computeVolts(ads.readADC_SingleEnded(1));
-        float adc2 = ads.computeVolts(ads.readADC_SingleEnded(2));
-        float adc3 = ads.computeVolts(ads.readADC_SingleEnded(3));
-
-        lv_chart_set_next_value(ui_Chart1, ser[0], adc0);
-        lv_chart_set_next_value(ui_Chart1, ser[1], adc1);
-        lv_chart_set_next_value(ui_Chart1, ser[2], adc2);
-        lv_chart_set_next_value(ui_Chart1, ser[3], adc3);
-
-        vTaskDelay(1);
-    }
-}
-
 void createTaskScope()
 {
     for (int i = 0; i < 4; i++)
@@ -47,10 +27,35 @@ void createTaskScope()
         TaskScope,
         "TaskScope",
         1024 * 10,
-        NULL,
+        NULL, 
         2,
         &TaskScopeHandle,
         0);
 
     vTaskSuspend(TaskScopeHandle);
 }
+
+void TaskScope(void *pvParameters)
+{
+    while (true)
+    {
+
+        float adc0 = ads.computeVolts(ads.readADC_SingleEnded(0));
+        float adc1 = ads.computeVolts(ads.readADC_SingleEnded(1));
+        float adc2 = ads.computeVolts(ads.readADC_SingleEnded(2));
+        float adc3 = ads.computeVolts(ads.readADC_SingleEnded(3));
+
+        Serial.println(adc0);
+        Serial.println(adc1);
+        Serial.println(adc2);
+        Serial.println(adc3);
+
+        lv_chart_set_next_value(ui_Chart1, ser[0], adc0);
+        lv_chart_set_next_value(ui_Chart1, ser[1], adc1);
+        lv_chart_set_next_value(ui_Chart1, ser[2], adc2);
+        lv_chart_set_next_value(ui_Chart1, ser[3], adc3);
+
+        vTaskDelay(1);
+    }
+}
+

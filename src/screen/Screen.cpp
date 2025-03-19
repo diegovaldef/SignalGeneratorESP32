@@ -8,18 +8,15 @@ bool firstOpen = true;
 const char _DIRECTORY_ = '0';
 const char _FILE_ = '1';
 
-byte selected;
-
-int indexFrecuency = 0;
-float valuesFrecuency[8] = {1, 2, 3, 4, 5, 0.1, 0.25, 0.5};
+int selected;
+byte ledsPin = 13;
+byte relePin = 12;
 
 void TaskScreen(void *pvParameters)
 {
   while (true)
   {
     lv_timer_handler();
-    //showChannels();
-    //vTaskDelay(1);
   }
 }
 
@@ -90,6 +87,7 @@ void SignalStartStop(lv_event_t *e)
     lv_obj_set_style_border_width(ui_Button9, 50, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_border_width(ui_Button11, 50, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+    showChannels();
   }
 }
 
@@ -314,37 +312,50 @@ void AnimtoExplorer(lv_event_t *e)
 
 void upFrecuency(lv_event_t * e)
 {
-  indexFrecuency++;
-  if(indexFrecuency == 8) {indexFrecuency = 0;}
-
-  char value[5];
-  snprintf(value, sizeof(value), "%.1f", valuesFrecuency[indexFrecuency]);       
-  strcat(value, "X");
-
-  lv_label_set_text(ui_Label11, value);
+  lv_spinbox_increment(ui_Spinbox2);
+  frecuencyValue = lv_spinbox_get_value(ui_Spinbox2) / 100.0f;
 
 }
 
 void downFrecuency(lv_event_t * e)
 {
-  indexFrecuency--;
-  if(indexFrecuency == -1) {indexFrecuency = 7;}
+  lv_spinbox_decrement(ui_Spinbox2);
+  frecuencyValue = lv_spinbox_get_value(ui_Spinbox2) / 100.0f;
+}
 
-  char value[5];
-  snprintf(value, sizeof(value), "%.1f", valuesFrecuency[indexFrecuency]);       
-  strcat(value, "X");
+void upVoltage(lv_event_t * e)
+{
+  lv_spinbox_increment(ui_Spinbox1);
+  voltageValue = lv_spinbox_get_value(ui_Spinbox1) / 100.0f;
 
-  lv_label_set_text(ui_Label11, value);
+}
+
+void downVoltage(lv_event_t * e)
+{
+  lv_spinbox_decrement(ui_Spinbox1);
+  voltageValue = lv_spinbox_get_value(ui_Spinbox1) / 100.0f;
+}
+
+void negativePositive(lv_event_t * e)
+{
+  bool state = lv_obj_has_state(ui_Switch1, LV_STATE_CHECKED);
+  digitalWrite(ledsPin, state);
+
+} 
+
+void voltage5or12(lv_event_t * e){
+
+  bool state = lv_obj_has_state(ui_Switch2, LV_STATE_CHECKED);
+  digitalWrite(relePin, state);
 
 }
 
 void gotoPlot(lv_event_t * e){
 
-  vTaskResume(TaskScopeHandle);
   _ui_screen_change(&ui_Plot, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Plot_screen_init);
+  vTaskResume(TaskScopeHandle);
 }
 
-void backfromPlot(lv_event_t * e){
+void backfromPlot(lv_event_t * e){ 
   vTaskSuspend(TaskScopeHandle);
-  _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Explorador_screen_init);
 }

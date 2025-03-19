@@ -499,7 +499,7 @@
                 ]
             },
             "defines": [
-                "PLATFORMIO=60117",
+                "PLATFORMIO=60118",
                 "ARDUINO_ESP32S3_DEV",
                 "BOARD_HAS_PSRAM",
                 "ARDUINO_USB_MODE=1",

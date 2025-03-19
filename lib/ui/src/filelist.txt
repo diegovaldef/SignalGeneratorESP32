@@ -15,7 +15,7 @@ ui_img_1760988675.c
 ui_img_sound_png.c
 ui_img_1486996648.c
 ui_img_1407471917.c
-ui_img_1718651389.c
-ui_img_restart_png.c
 ui_img_return_png.c
+ui_img_restart_png.c
 ui_img_config_png.c
+ui_img_1718651389.c

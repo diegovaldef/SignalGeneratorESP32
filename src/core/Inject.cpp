@@ -49,10 +49,12 @@ void TaskInject(void *pvParameters)
       xQueueReceive(writeBuffer.CH4, &ch4 , portMAX_DELAY);
       xQueueReceive(writeBuffer.TIME, &deltaTime, portMAX_DELAY);
 
-      mcp.fastWrite(ch1, ch2, ch3, ch4);
-      
+      //mcp.fastWrite(ch1, ch2, ch3, ch4);
+      mcp.setChannelValue(MCP4728_CHANNEL_A, ch1, MCP4728_VREF_VDD);
+      mcp.setChannelValue(MCP4728_CHANNEL_B, ch2, MCP4728_VREF_VDD);
+      mcp.setChannelValue(MCP4728_CHANNEL_C, ch3, MCP4728_VREF_VDD);
+      mcp.setChannelValue(MCP4728_CHANNEL_D, ch4, MCP4728_VREF_VDD);
       vMicrosecondsdelay(deltaTime);
-
     }
   }
 }

@@ -23,7 +23,10 @@ static lv_color_t buf[ screenWidth * screenHeight / 10 ]; // Buffer de color (LV
 extern TFT_eSPI tft; // Clase para controlar la pantalla TFT (LVGL)
 extern TaskHandle_t TaskScreenHandle; // Handle para la tarea Screen
 
-extern byte selected; // Numero de archivo seleccionado en la pantalla
+extern int selected; // Numero de archivo seleccionado en la pantalla
+
+extern byte ledsPin;
+extern byte relePin;
 
 void my_disp_flush( lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_p ); // LVGL
 void my_touchpad_read( lv_indev_drv_t * indev_driver, lv_indev_data_t * data ); // Lee la pantalla revisando el tacto (LVGL)

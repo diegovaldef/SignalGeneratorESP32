@@ -11,6 +11,9 @@
 extern UBaseType_t spacesAvailable; // Espacios disponibles en el buffer de escritura
 extern TaskHandle_t TaskCompilerHandle; // Handle del TaskCompiler
 
+extern float frecuencyValue;
+extern float voltageValue;
+
 // Variables para guardar los valores de cada canal
 
 extern uint16_t ch1;

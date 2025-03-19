@@ -113,7 +113,7 @@ void ui_Explorador_screen_init(void)
     lv_obj_set_height(ui_Container6, lv_pct(95));
     lv_obj_set_align(ui_Container6, LV_ALIGN_CENTER);
     lv_obj_set_flex_flow(ui_Container6, LV_FLEX_FLOW_COLUMN);
-    lv_obj_set_flex_align(ui_Container6, LV_FLEX_ALIGN_SPACE_EVENLY, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
+    lv_obj_set_flex_align(ui_Container6, LV_FLEX_ALIGN_SPACE_BETWEEN, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
     lv_obj_clear_flag(ui_Container6, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     ui_Container7 = lv_obj_create(ui_Container6);
@@ -151,7 +151,7 @@ void ui_Explorador_screen_init(void)
 
     ui_Button10 = lv_btn_create(ui_Container6);
     lv_obj_set_width(ui_Button10, lv_pct(85));
-    lv_obj_set_height(ui_Button10, lv_pct(15));
+    lv_obj_set_height(ui_Button10, lv_pct(18));
     lv_obj_set_x(ui_Button10, 178);
     lv_obj_set_y(ui_Button10, 247);
     lv_obj_set_align(ui_Button10, LV_ALIGN_CENTER);

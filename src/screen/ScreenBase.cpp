@@ -78,7 +78,8 @@ void screenSetup(){
     indev_drv.read_cb = my_touchpad_read;
     lv_indev_drv_register( &indev_drv );
 
-    uint16_t calData[5] = { 178, 3747, 218, 3587, 7 };
+
+    uint16_t calData[5] = { 293, 3589, 221, 3156, 7 };
     tft.setTouch(calData);
 
     ui_init();

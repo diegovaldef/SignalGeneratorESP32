@@ -12,10 +12,10 @@
 
 // Pines para el segundo SPI
 
-const int MISO_2 = 1;
-const int MOSI_2 = 2;
-const int SCK_2  = 42;
-const byte SD_CS = 41; 
+const int MISO_2 = 5;
+const int MOSI_2 = 4;
+const int SCK_2  = 6;
+const byte SD_CS = 7; 
 
 extern SPIClass vspi; // Se crea el objeto para segundo SPI
 extern TaskHandle_t TaskSDHandle; // Handle del TaskSD

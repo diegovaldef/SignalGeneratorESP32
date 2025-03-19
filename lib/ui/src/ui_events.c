@@ -79,3 +79,23 @@ void backfromPlot(lv_event_t * e)
 {
 	// Your code here
 }
+
+void upVoltage(lv_event_t * e)
+{
+	// Your code here
+}
+
+void downVoltage(lv_event_t * e)
+{
+	// Your code here
+}
+
+void negativePositive(lv_event_t * e)
+{
+	// Your code here
+}
+
+void voltage5or12(lv_event_t * e)
+{
+	// Your code here
+}

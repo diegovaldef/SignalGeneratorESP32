@@ -13,6 +13,8 @@ uint16_t ch4 = 0;
 uint64_t deltaTime = 0;
 
 bool filling = false;
+float frecuencyValue = 1;
+float voltageValue = 5;
 
 void createTaskCompiler()
 {
@@ -56,7 +58,7 @@ void processSignal(const char *line, double nextPeriod)
     ch2 = mapDouble(CH2, minCH2, maxCH2, 0, 4095);
     ch3 = mapDouble(CH3, minCH3, maxCH3, 0, 4095);
     ch4 = mapDouble(CH4, minCH4, maxCH4, 0, 4095);
-    deltaTime = ((nextPeriod - PERIOD) * 1e6) * valuesFrecuency[indexFrecuency];
+    deltaTime = ((nextPeriod - PERIOD) * 1e6) * frecuencyValue;
 
     xQueueSend(writeBuffer.CH1, &ch1, portMAX_DELAY);
     xQueueSend(writeBuffer.CH2, &ch2, portMAX_DELAY);
@@ -194,37 +196,28 @@ void init_Signal()
 
 void showChannels()
 {
-
-  if (filling)
-  {
-    return;
+  if(minCH1 <= 0){
+    lv_obj_set_style_opa(ui_Panel1, LV_OPA_100, LV_PART_MAIN);
   }
-
-  if (ch1 == 65535)
-  {
-    ch1 = 0;
+  else {
+    lv_obj_set_style_opa(ui_Panel1, LV_OPA_TRANSP, LV_PART_MAIN);
   }
-  if (ch2 == 65535)
-  {
-    ch2 = 0;
+  if(minCH2 <= 0){
+    lv_obj_set_style_opa(ui_Panel2, LV_OPA_100, LV_PART_MAIN);  
   }
-  if (ch3 == 65535)
-  {
-    ch3 = 0;
+  else{
+    lv_obj_set_style_opa(ui_Panel2, LV_OPA_TRANSP, LV_PART_MAIN);
   }
-  if (ch4 == 65535)
-  {
-    ch4 = 0;
+  if(minCH3 <= 0){
+    lv_obj_set_style_opa(ui_Panel3, LV_OPA_100, LV_PART_MAIN);
   }
-
-  if (signalRunning)
-  {
-
-    lv_obj_set_style_bg_opa(ui_Panel1, map(ch1, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_Panel2, map(ch2, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_Panel3, map(ch3, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_Panel4, map(ch4, 0, 4095, 10, 255), LV_PART_MAIN | LV_STATE_DEFAULT);
+  else{
+    lv_obj_set_style_opa(ui_Panel3, LV_OPA_TRANSP, LV_PART_MAIN);
   }
-
-  // vTaskDelay(2);
+  if(minCH4 <= 0){
+    lv_obj_set_style_opa(ui_Panel4, LV_OPA_100, LV_PART_MAIN);
+  }
+  else{
+    lv_obj_set_style_opa(ui_Panel4, LV_OPA_TRANSP, LV_PART_MAIN);
+  }
 }
