@@ -196,14 +196,6 @@ void init_Signal()
 
 void showChannels()
 {
-  // Serial.println("Min CH1: ");
-  // Serial.println(minCH1);
-  // Serial.println("Min CH12: ");
-  // Serial.println(minCH2);
-  // Serial.println("Min CH3: ");
-  // Serial.println(minCH3);
-  // Serial.println("Min CH4: ");
-  // Serial.println(minCH4);
 
   if(maxCH1 != 0){
     lv_obj_set_style_bg_opa(ui_Panel1, LV_OPA_100, LV_PART_MAIN | LV_STATE_DEFAULT);

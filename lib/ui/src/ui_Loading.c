@@ -11,6 +11,8 @@ void ui_Loading_screen_init(void)
     lv_obj_clear_flag(ui_Loading, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_flex_flow(ui_Loading, LV_FLEX_FLOW_ROW);
     lv_obj_set_flex_align(ui_Loading, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
+    lv_obj_set_style_bg_color(ui_Loading, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_Loading, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Container3 = lv_obj_create(ui_Loading);
     lv_obj_remove_style_all(ui_Container3);

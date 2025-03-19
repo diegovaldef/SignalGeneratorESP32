@@ -70,6 +70,14 @@ extern lv_obj_t * ui_Button10;
 extern lv_obj_t * ui_Label2;
 // CUSTOM VARIABLES
 
+// SCREEN: ui_Loading
+void ui_Loading_screen_init(void);
+extern lv_obj_t * ui_Loading;
+extern lv_obj_t * ui_Container3;
+extern lv_obj_t * ui_Spinner2;
+extern lv_obj_t * ui_Label13;
+// CUSTOM VARIABLES
+
 // SCREEN: ui_Main
 void ui_Main_screen_init(void);
 extern lv_obj_t * ui_Main;
@@ -89,7 +97,6 @@ void ui_event_Button8(lv_event_t * e);
 extern lv_obj_t * ui_Button8;
 void ui_event_Button5(lv_event_t * e);
 extern lv_obj_t * ui_Button5;
-void ui_event_Button12(lv_event_t * e);
 extern lv_obj_t * ui_Button12;
 extern lv_obj_t * ui_Panel5;
 extern lv_obj_t * ui_Spinbox1;
@@ -105,20 +112,10 @@ void ui_event_Button7(lv_event_t * e);
 extern lv_obj_t * ui_Button7;
 void ui_event_Button1(lv_event_t * e);
 extern lv_obj_t * ui_Button1;
-void ui_event_Switch1(lv_event_t * e);
 extern lv_obj_t * ui_Switch1;
-void ui_event_Switch2(lv_event_t * e);
 extern lv_obj_t * ui_Switch2;
 extern lv_obj_t * ui_Label11;
 extern lv_obj_t * ui_Label12;
-// CUSTOM VARIABLES
-
-// SCREEN: ui_Loading
-void ui_Loading_screen_init(void);
-extern lv_obj_t * ui_Loading;
-extern lv_obj_t * ui_Container3;
-extern lv_obj_t * ui_Spinner2;
-extern lv_obj_t * ui_Label13;
 // CUSTOM VARIABLES
 
 // SCREEN: ui_Plot

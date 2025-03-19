@@ -12,6 +12,8 @@ void ui_Logo_screen_init(void)
     lv_obj_set_flex_flow(ui_Logo, LV_FLEX_FLOW_ROW);
     lv_obj_set_flex_align(ui_Logo, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
     lv_obj_add_event_cb(ui_Logo, scr_unloaded_delete_cb, LV_EVENT_SCREEN_UNLOADED, &ui_Logo);
+    lv_obj_set_style_bg_color(ui_Logo, lv_color_hex(0x949594), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_Logo, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Image2 = lv_img_create(ui_Logo);
     lv_img_set_src(ui_Image2, &ui_img_423428936);

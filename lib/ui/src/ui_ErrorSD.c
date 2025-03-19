@@ -12,6 +12,8 @@ void ui_ErrorSD_screen_init(void)
     lv_obj_set_flex_flow(ui_ErrorSD, LV_FLEX_FLOW_COLUMN);
     lv_obj_set_flex_align(ui_ErrorSD, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
     lv_obj_add_event_cb(ui_ErrorSD, scr_unloaded_delete_cb, LV_EVENT_SCREEN_UNLOADED, &ui_ErrorSD);
+    lv_obj_set_style_bg_color(ui_ErrorSD, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_ErrorSD, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_left(ui_ErrorSD, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_right(ui_ErrorSD, 2, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_top(ui_ErrorSD, 0, LV_PART_MAIN | LV_STATE_DEFAULT);

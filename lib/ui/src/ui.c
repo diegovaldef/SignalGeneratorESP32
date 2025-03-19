@@ -58,6 +58,15 @@ lv_obj_t * ui_Label2;
 // CUSTOM VARIABLES
 
 
+// SCREEN: ui_Loading
+void ui_Loading_screen_init(void);
+lv_obj_t * ui_Loading;
+lv_obj_t * ui_Container3;
+lv_obj_t * ui_Spinner2;
+lv_obj_t * ui_Label13;
+// CUSTOM VARIABLES
+
+
 // SCREEN: ui_Main
 void ui_Main_screen_init(void);
 lv_obj_t * ui_Main;
@@ -77,7 +86,6 @@ void ui_event_Button8(lv_event_t * e);
 lv_obj_t * ui_Button8;
 void ui_event_Button5(lv_event_t * e);
 lv_obj_t * ui_Button5;
-void ui_event_Button12(lv_event_t * e);
 lv_obj_t * ui_Button12;
 lv_obj_t * ui_Panel5;
 lv_obj_t * ui_Spinbox1;
@@ -93,21 +101,10 @@ void ui_event_Button7(lv_event_t * e);
 lv_obj_t * ui_Button7;
 void ui_event_Button1(lv_event_t * e);
 lv_obj_t * ui_Button1;
-void ui_event_Switch1(lv_event_t * e);
 lv_obj_t * ui_Switch1;
-void ui_event_Switch2(lv_event_t * e);
 lv_obj_t * ui_Switch2;
 lv_obj_t * ui_Label11;
 lv_obj_t * ui_Label12;
-// CUSTOM VARIABLES
-
-
-// SCREEN: ui_Loading
-void ui_Loading_screen_init(void);
-lv_obj_t * ui_Loading;
-lv_obj_t * ui_Container3;
-lv_obj_t * ui_Spinner2;
-lv_obj_t * ui_Label13;
 // CUSTOM VARIABLES
 
 
@@ -230,15 +227,6 @@ void ui_event_Button5(lv_event_t * e)
     }
 }
 
-void ui_event_Button12(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-
-    if(event_code == LV_EVENT_CLICKED) {
-        _ui_screen_change(&ui_Plot, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, &ui_Plot_screen_init);
-    }
-}
-
 void ui_event_Button11(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
@@ -284,24 +272,6 @@ void ui_event_Button1(lv_event_t * e)
     }
 }
 
-void ui_event_Switch1(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-
-    if(event_code == LV_EVENT_CLICKED) {
-        negativePositive(e);
-    }
-}
-
-void ui_event_Switch2(lv_event_t * e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-
-    if(event_code == LV_EVENT_CLICKED) {
-        voltage5or12(e);
-    }
-}
-
 void ui_event_Button15(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
@@ -322,8 +292,8 @@ void ui_init(void)
     lv_disp_set_theme(dispp, theme);
     ui_Logo_screen_init();
     ui_Explorador_screen_init();
-    ui_Main_screen_init();
     ui_Loading_screen_init();
+    ui_Main_screen_init();
     ui_Plot_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_Logo);

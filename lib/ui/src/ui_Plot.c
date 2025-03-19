@@ -11,6 +11,8 @@ void ui_Plot_screen_init(void)
     lv_obj_clear_flag(ui_Plot, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_flex_flow(ui_Plot, LV_FLEX_FLOW_COLUMN);
     lv_obj_set_flex_align(ui_Plot, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
+    lv_obj_set_style_bg_color(ui_Plot, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_Plot, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Container4 = lv_obj_create(ui_Plot);
     lv_obj_remove_style_all(ui_Container4);
@@ -59,7 +61,7 @@ void ui_Plot_screen_init(void)
     lv_obj_set_flex_align(ui_Button15, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
     lv_obj_add_flag(ui_Button15, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(ui_Button15, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_Button15, lv_color_hex(0x2F71EC), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(ui_Button15, lv_color_hex(0x2E5399), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_Button15, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_img_src(ui_Button15, &ui_img_1162731896, LV_PART_MAIN | LV_STATE_DEFAULT);
 
