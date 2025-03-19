@@ -119,7 +119,7 @@ char *getFileNames(File dir)
 
     if (!entry)
     {
-
+      sort_file_list(list);
       return list;
     }
 
@@ -192,4 +192,65 @@ void refreshRoller()
   }
 
   lv_roller_set_selected(ui_Roller3, len, LV_ANIM_OFF);
+}
+
+int compare_lines(const void* a, const void* b) {
+    const char* lineA = *(const char**)a;
+    const char* lineB = *(const char**)b;
+    
+    // Saltar icono y espacio (si existen)
+    const char* nameA = strchr(lineA, ' ');
+    const char* nameB = strchr(lineB, ' ');
+    
+    nameA = nameA ? nameA + 1 : lineA;
+    nameB = nameB ? nameB + 1 : lineB;
+    
+    return strcasecmp(nameA, nameB);
+}
+
+void sort_file_list(char* list) {
+    // Primera pasada: contar líneas
+    int line_count = 0;
+    char* temp = strdup(list); // Creamos copia temporal
+    char* token = strtok(temp, "\n");
+    
+    while(token) {
+        line_count++;
+        token = strtok(NULL, "\n");
+    }
+    free(temp);
+
+    // Reservar memoria para punteros
+    char** lines = (char**)malloc(line_count * sizeof(char*));
+    if(!lines) return; // Manejo de error
+
+    // Segunda pasada: llenar el array
+    temp = strdup(list);
+    token = strtok(temp, "\n");
+    for(int i = 0; i < line_count && token; i++) {
+        lines[i] = strdup(token); // Almacenar cada línea
+        token = strtok(NULL, "\n");
+    }
+    free(temp);
+
+    // Ordenar el array
+    qsort(lines, line_count, sizeof(char*), compare_lines);
+
+    // Reconstruir cadena ordenada
+    char* ptr = list;
+    size_t remaining = strlen(list) + 1; // +1 para el null terminator
+    
+    for(int i = 0; i < line_count; i++) {
+        size_t len = strlen(lines[i]);
+        if(len + 1 > remaining) break; // Prevención de overflow
+        
+        strncpy(ptr, lines[i], remaining);
+        ptr += len;
+        *ptr++ = (i < line_count - 1) ? '\n' : '\0';
+        remaining -= (len + 1);
+        
+        free(lines[i]); // Liberar cada línea
+    }
+    
+    free(lines); // Liberar array de punteros
 }

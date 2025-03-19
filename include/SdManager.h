@@ -36,6 +36,8 @@ char* getFileNames(File dir); // Obtener los nombres de los archivos SD
 void refreshRoller(); // Refrescar el Roller 
 void TaskSD(void *pvParameters); // TaskSD
 void createTaskSD(); // Crear TaskSD
+int compare_lines(const void* a, const void* b);
+void sort_file_list(char* list);
 
 #endif
 
