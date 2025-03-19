@@ -25,6 +25,8 @@ void upVoltage(lv_event_t * e);
 void downFrecuency(lv_event_t * e);
 void upFrecuency(lv_event_t * e);
 void SignalStartStop(lv_event_t * e);
+void negativePositive(lv_event_t * e);
+void voltage5or12(lv_event_t * e);
 void backfromPlot(lv_event_t * e);
 
 #ifdef __cplusplus

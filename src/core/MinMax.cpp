@@ -5,10 +5,6 @@ double minCH2, maxCH2;
 double minCH3, maxCH3;
 double minCH4, maxCH4;
 
-bool minCH1empty = false;
-bool minCH2empty = false;
-bool minCH3empty = false;
-bool minCH4empty = false;
 
 uint16_t mapDouble(double x, double in_min, double in_max, uint16_t out_min, uint16_t out_max)
 {

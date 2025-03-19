@@ -196,28 +196,41 @@ void init_Signal()
 
 void showChannels()
 {
-  if(minCH1 <= 0){
-    lv_obj_set_style_opa(ui_Panel1, LV_OPA_100, LV_PART_MAIN);
+  // Serial.println("Min CH1: ");
+  // Serial.println(minCH1);
+  // Serial.println("Min CH12: ");
+  // Serial.println(minCH2);
+  // Serial.println("Min CH3: ");
+  // Serial.println(minCH3);
+  // Serial.println("Min CH4: ");
+  // Serial.println(minCH4);
+
+  if(maxCH1 != 0){
+    lv_obj_set_style_bg_opa(ui_Panel1, LV_OPA_100, LV_PART_MAIN | LV_STATE_DEFAULT);
   }
   else {
-    lv_obj_set_style_opa(ui_Panel1, LV_OPA_TRANSP, LV_PART_MAIN);
+    lv_obj_set_style_bg_opa(ui_Panel1, LV_OPA_TRANSP, LV_PART_MAIN | LV_STATE_DEFAULT);
   }
-  if(minCH2 <= 0){
-    lv_obj_set_style_opa(ui_Panel2, LV_OPA_100, LV_PART_MAIN);  
-  }
-  else{
-    lv_obj_set_style_opa(ui_Panel2, LV_OPA_TRANSP, LV_PART_MAIN);
-  }
-  if(minCH3 <= 0){
-    lv_obj_set_style_opa(ui_Panel3, LV_OPA_100, LV_PART_MAIN);
+
+  if(maxCH2 != 0){
+    lv_obj_set_style_bg_opa(ui_Panel2, LV_OPA_100, LV_PART_MAIN | LV_STATE_DEFAULT); 
   }
   else{
-    lv_obj_set_style_opa(ui_Panel3, LV_OPA_TRANSP, LV_PART_MAIN);
+    lv_obj_set_style_bg_opa(ui_Panel2, LV_OPA_TRANSP, LV_PART_MAIN | LV_STATE_DEFAULT);
   }
-  if(minCH4 <= 0){
-    lv_obj_set_style_opa(ui_Panel4, LV_OPA_100, LV_PART_MAIN);
+
+  if(maxCH3 != 0){
+    lv_obj_set_style_bg_opa(ui_Panel3, LV_OPA_100, LV_PART_MAIN | LV_STATE_DEFAULT);
   }
   else{
-    lv_obj_set_style_opa(ui_Panel4, LV_OPA_TRANSP, LV_PART_MAIN);
+    lv_obj_set_style_bg_opa(ui_Panel3, LV_OPA_TRANSP, LV_PART_MAIN | LV_STATE_DEFAULT);
   }
+
+  if(maxCH4 != 0){
+    lv_obj_set_style_bg_opa(ui_Panel4, LV_OPA_100, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+  else{
+    lv_obj_set_style_bg_opa(ui_Panel4, LV_OPA_TRANSP, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+
 }

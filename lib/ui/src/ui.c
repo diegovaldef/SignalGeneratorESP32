@@ -93,7 +93,9 @@ void ui_event_Button7(lv_event_t * e);
 lv_obj_t * ui_Button7;
 void ui_event_Button1(lv_event_t * e);
 lv_obj_t * ui_Button1;
+void ui_event_Switch1(lv_event_t * e);
 lv_obj_t * ui_Switch1;
+void ui_event_Switch2(lv_event_t * e);
 lv_obj_t * ui_Switch2;
 lv_obj_t * ui_Label11;
 lv_obj_t * ui_Label12;
@@ -279,6 +281,24 @@ void ui_event_Button1(lv_event_t * e)
 
     if(event_code == LV_EVENT_PRESSED) {
         SignalStartStop(e);
+    }
+}
+
+void ui_event_Switch1(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+    if(event_code == LV_EVENT_CLICKED) {
+        negativePositive(e);
+    }
+}
+
+void ui_event_Switch2(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+
+    if(event_code == LV_EVENT_CLICKED) {
+        voltage5or12(e);
     }
 }
 

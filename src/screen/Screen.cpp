@@ -9,8 +9,8 @@ const char _DIRECTORY_ = '0';
 const char _FILE_ = '1';
 
 int selected;
-byte ledsPin = 13;
-byte relePin = 12;
+byte ledsPin = 47;
+byte relePin = 48;
 
 void TaskScreen(void *pvParameters)
 {
