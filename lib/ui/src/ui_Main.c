@@ -308,26 +308,26 @@ void ui_Main_screen_init(void)
     lv_obj_set_style_bg_img_src(ui_Button1, &ui_img_1718651389, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Switch1 = lv_switch_create(ui_Main);
-    lv_obj_set_width(ui_Switch1, 50);
-    lv_obj_set_height(ui_Switch1, 25);
-    lv_obj_set_x(ui_Switch1, 174);
-    lv_obj_set_y(ui_Switch1, 2);
+    lv_obj_set_width(ui_Switch1, 83);
+    lv_obj_set_height(ui_Switch1, 37);
+    lv_obj_set_x(ui_Switch1, 175);
+    lv_obj_set_y(ui_Switch1, -9);
     lv_obj_set_align(ui_Switch1, LV_ALIGN_CENTER);
 
 
     ui_Switch2 = lv_switch_create(ui_Main);
-    lv_obj_set_width(ui_Switch2, 50);
-    lv_obj_set_height(ui_Switch2, 25);
+    lv_obj_set_width(ui_Switch2, 83);
+    lv_obj_set_height(ui_Switch2, 37);
     lv_obj_set_x(ui_Switch2, 175);
-    lv_obj_set_y(ui_Switch2, 72);
+    lv_obj_set_y(ui_Switch2, 65);
     lv_obj_set_align(ui_Switch2, LV_ALIGN_CENTER);
 
 
     ui_Label11 = lv_label_create(ui_Main);
     lv_obj_set_width(ui_Label11, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label11, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Label11, 173);
-    lv_obj_set_y(ui_Label11, -24);
+    lv_obj_set_x(ui_Label11, 175);
+    lv_obj_set_y(ui_Label11, -41);
     lv_obj_set_align(ui_Label11, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label11, "+/-");
     lv_obj_set_style_text_font(ui_Label11, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -336,7 +336,7 @@ void ui_Main_screen_init(void)
     lv_obj_set_width(ui_Label12, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label12, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_Label12, 175);
-    lv_obj_set_y(ui_Label12, 43);
+    lv_obj_set_y(ui_Label12, 32);
     lv_obj_set_align(ui_Label12, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label12, "5v/12v");
     lv_obj_set_style_text_font(ui_Label12, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
