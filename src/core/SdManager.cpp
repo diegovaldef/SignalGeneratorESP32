@@ -6,10 +6,17 @@ TaskHandle_t TaskSDHandle;
 File SD_Root;
 String STR_Root;
 
-char list[100];
+char list[2048];
 char fileType[100];
 String fileName[100];
 String fileNameStd[100];
+
+struct FileEntry {
+    char display_line[100];  // Línea completa (ej: " TEST")
+    String file_name;        // Nomme completo (ej: "/TEST")
+    String file_name_std;    // Nombre limpio (ej: "TEST")
+    char type;               // '0' o '1'
+};
 
 bool noSDFound = false;
 int delay_time = 0;
@@ -94,81 +101,80 @@ void SDBegin()
 
 }
 
-char *getFileNames(File dir)
-{
-
-  char name[100];
-  char symbol[100];
-  char space[100];
-  char sign[100];
-  strcpy(list, "");
-  strcpy(fileType, "");
-
-  for (int i = 0; i < 100; i++)
-  {
-    fileName[i] = "";
-    fileNameStd[i] = "";
-  }
-
-  byte i = 0;
-
-  while (true)
-  {
-
-    File entry = dir.openNextFile();
-
-    if (!entry)
-    {
-      sort_file_list(list);
-      return list;
-    }
-
-    if (strlen(entry.name()) > 0 && strlen(entry.name()) <= 20)
-    {
-
-      const char *str = entry.name();
-      strcpy(name, str);
-
-      strcpy(sign, "/");
-      strcat(sign, name);
-      strcpy(name, sign);
-      fileName[i] = name;
-
-      strcpy(name, str);
-
-      char *ext = strstr(name, ".txt");  
+int compare_entries(const void* a, const void* b) {
+    const struct FileEntry* entryA = (const struct FileEntry*)a;
+    const struct FileEntry* entryB = (const struct FileEntry*)b;
     
-      if (ext != NULL) {
-          *ext = '\0';
-      }
+    // Comparar ignorando ícono + espacio inicial
+    const char* nameA = strchr(entryA->display_line, ' ');
+    const char* nameB = strchr(entryB->display_line, ' ');
+    
+    nameA = nameA ? nameA + 1 : entryA->display_line;
+    nameB = nameB ? nameB + 1 : entryB->display_line;
+    
+    return strcmp(nameA, nameB);
+}
 
-      fileNameStd[i] = name;
+char *getFileNames(File dir) {
+    static struct FileEntry entries[100]; // Almacena temporalmente
+    int entry_count = 0;
+    
+    strcpy(list, "");
+    strcpy(fileType, "");
 
-      if (entry.isDirectory())
-      {
-        strcpy(symbol, LV_SYMBOL_DIRECTORY);
-        strcat(fileType, "0");
-      }
-      else
-      {
-        strcpy(symbol, LV_SYMBOL_FILE);
-        strcat(fileType, "1");
-      }
-
-      strcpy(space, " ");
-      strcat(space, name);
-      strcpy(name, space);
-
-      strcat(symbol, name);
-      strcpy(name, symbol);
-      strcat(name, "\n");
-
-      strcat(list, name);
-      i++;
+    // Resetear arrays globales
+    for(int i = 0; i < 100; i++) {
+        fileName[i] = "";
+        fileNameStd[i] = "";
+        fileType[i] = '\0'; // Asumiendo que fileType es char[100]
     }
 
-    entry.close();
-  }
+    while(true) {
+        File entry = dir.openNextFile();
+        if(!entry) break;
+
+        if(strlen(entry.name()) > 0 && strlen(entry.name()) <= 20) {
+            // Procesamiento original
+            char name[100];
+            strcpy(name, entry.name());
+            
+            // Construir nombres (modo original)
+            entries[entry_count].file_name = "/" + String(name);
+            entries[entry_count].file_name_std = String(name).substring(0, String(name).indexOf(".txt"));
+            
+            // Construir línea de visualización
+            const char* icon = entry.isDirectory() ? LV_SYMBOL_DIRECTORY : LV_SYMBOL_FILE;
+            snprintf(entries[entry_count].display_line, 
+                    sizeof(entries[entry_count].display_line),
+                    "%s %s", icon, entries[entry_count].file_name_std.c_str());
+            
+            // Tipo de archivo
+            entries[entry_count].type = entry.isDirectory() ? '0' : '1';
+            
+            entry_count++;
+        }
+        entry.close();
+    }
+
+    // Ordenar estructuras completas
+    qsort(entries, entry_count, sizeof(struct FileEntry), compare_entries);
+
+    // Reconstruir todos los elementos en orden
+    for(int i = 0; i < entry_count; i++) {
+        // Listado visual
+        strcat(list, entries[i].display_line);
+        strcat(list, "\n");
+        
+        // Arrays globales
+        fileName[i] = entries[i].file_name;
+        fileNameStd[i] = entries[i].file_name_std;
+        fileType[i] = entries[i].type;
+    }
+    
+    // Eliminar último salto de línea
+    if(strlen(list) > 0) list[strlen(list)-1] = '\0';
+    
+    return list;
 }
 
 void refreshRoller()
