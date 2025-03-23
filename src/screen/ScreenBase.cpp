@@ -1,16 +1,35 @@
 #include <Screen.h>
+#include <ui.h>
+
+TaskHandle_t TaskScreenHandle;
 
 TFT_eSPI tft = TFT_eSPI(screenWidth, screenHeight);
-const char* options = "Hola\nEstas\nSon\nOpciones";
+const char* options = "Opciones\nDe\nPrueba";
 
-#if LV_USE_LOG != 0
-/* Serial debugging */
-void my_print(const char * buf)
+void TaskScreen(void *pvParameters)
 {
-    Serial.printf(buf);
-    Serial.flush();
+  while (true)
+  {
+    lv_timer_handler();
+  }
 }
-#endif
+
+void createTaskScreen()
+{
+  screenSetup();
+
+  xTaskCreatePinnedToCore(
+      TaskScreen,
+      "TaskScreen",
+      1024 * 10,
+      NULL,
+      2,
+      &TaskScreenHandle,
+      1);
+}
+
+
+// ----------------Base de LVLGL --------------
 
 /* Display flushing */
 void my_disp_flush( lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_p )
@@ -52,10 +71,6 @@ void screenSetup(){
 
     lv_init();
 
-#if LV_USE_LOG != 0
-    lv_log_register_print_cb( my_print ); /* register print function for debugging */
-#endif
-
     tft.begin();          /* TFT init */
     tft.setRotation( 3 ); /* Landscape orientation, flipped */
 
@@ -77,7 +92,6 @@ void screenSetup(){
     indev_drv.type = LV_INDEV_TYPE_POINTER;
     indev_drv.read_cb = my_touchpad_read;
     lv_indev_drv_register( &indev_drv );
-
 
     uint16_t calData[5] = { 293, 3589, 221, 3156, 7 };
     tft.setTouch(calData);

@@ -45,10 +45,10 @@ void TaskScope(void *pvParameters)
         float adc2 = ads.computeVolts(ads.readADC_SingleEnded(2));
         float adc3 = ads.computeVolts(ads.readADC_SingleEnded(3));
 
-        Serial.println(adc0);
-        Serial.println(adc1);
-        Serial.println(adc2);
-        Serial.println(adc3);
+        // Serial.println(adc0);
+        // Serial.println(adc1);
+        // Serial.println(adc2);
+        // Serial.println(adc3);
 
         lv_chart_set_next_value(ui_Chart1, ser[0], adc0);
         lv_chart_set_next_value(ui_Chart1, ser[1], adc1);
