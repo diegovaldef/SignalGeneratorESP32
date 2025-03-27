@@ -10,6 +10,7 @@
             "includePath": [
                 "D:/Documentos/PlatformIO/Projects/SignalGeneratorESP32/include",
                 "D:/Documentos/PlatformIO/Projects/SignalGeneratorESP32/src",
+                "C:/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                 "D:/Documentos/PlatformIO/Projects/SignalGeneratorESP32/lib/TFT_eSPI",
                 "C:/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src",
                 "C:/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src",
@@ -246,7 +247,6 @@
                 "C:/.platformio/packages/framework-arduinoespressif32/libraries/USB/src",
                 "C:/.platformio/packages/framework-arduinoespressif32/libraries/Update/src",
                 "C:/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src",
-                "C:/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                 "C:/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
                 "C:/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src",
                 ""
@@ -256,6 +256,7 @@
                 "path": [
                     "D:/Documentos/PlatformIO/Projects/SignalGeneratorESP32/include",
                     "D:/Documentos/PlatformIO/Projects/SignalGeneratorESP32/src",
+                    "C:/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                     "D:/Documentos/PlatformIO/Projects/SignalGeneratorESP32/lib/TFT_eSPI",
                     "C:/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src",
                     "C:/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src",
@@ -492,7 +493,6 @@
                     "C:/.platformio/packages/framework-arduinoespressif32/libraries/USB/src",
                     "C:/.platformio/packages/framework-arduinoespressif32/libraries/Update/src",
                     "C:/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src",
-                    "C:/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                     "C:/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
                     "C:/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src",
                     ""
@@ -505,6 +505,10 @@
                 "ARDUINO_USB_MODE=1",
                 "ARDUINO_USB_CDC_ON_BOOT=1",
                 "ARDUINO_USB_CDC_ON_BOOT=0",
+                "configTICK_RATE_HZ=1000",
+                "configUSE_TRACE_FACILITY=0",
+                "configUSE_STATS_FORMATTING_FUNCTIONS=0",
+                "configASSERT=0",
                 "HAVE_CONFIG_H",
                 "MBEDTLS_CONFIG_FILE=\"mbedtls/esp_config.h\"",
                 "UNITY_INCLUDE_CONFIG_H",

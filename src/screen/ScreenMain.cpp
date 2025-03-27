@@ -181,7 +181,7 @@ void upVoltage(lv_event_t * e)
   voltageValue = lv_spinbox_get_value(ui_Spinbox1) / 100.0f;
 
 }
-
+ 
 void downVoltage(lv_event_t * e)
 {
   lv_spinbox_decrement(ui_Spinbox1);

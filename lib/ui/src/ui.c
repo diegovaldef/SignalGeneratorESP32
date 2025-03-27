@@ -103,6 +103,8 @@ void ui_event_Button1(lv_event_t * e);
 lv_obj_t * ui_Button1;
 lv_obj_t * ui_Switch1;
 lv_obj_t * ui_Switch2;
+lv_obj_t * ui_Label17;
+lv_obj_t * ui_Label15;
 lv_obj_t * ui_Label11;
 lv_obj_t * ui_Label12;
 // CUSTOM VARIABLES

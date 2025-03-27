@@ -11,8 +11,12 @@
 #include <Timer.h>
 #include <Screen.h>
 #include <Oscilloscope.h>
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
+#include <Manager.h>
 #include <Flags.h>
 #include <lvgl.h>
+#include <WiFi.h>
 #include <TFT_eSPI.h>
 #include <ui.h>
 

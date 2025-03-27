@@ -7,6 +7,8 @@ void setup()
   Wire.begin();
   Wire.setClock(400000);
   setCpuFrequencyMhz(240);
+  WiFi.mode(WIFI_OFF);
+  btStop();
 
   pinMode(SD_CS, OUTPUT);
   pinMode(TFT_CS, OUTPUT); 
@@ -20,13 +22,14 @@ void setup()
   createTaskInject();
   createTaskCompiler();
   createTaskSD();
+  createTaskManager();
   createTaskScreen();
   createTaskScope();
-  
+
   vTaskDelete(NULL);
 }
 
 void loop() 
 {
-  delay(1000);
+  vTaskDelay(1);
 }

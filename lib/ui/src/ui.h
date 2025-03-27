@@ -114,6 +114,8 @@ void ui_event_Button1(lv_event_t * e);
 extern lv_obj_t * ui_Button1;
 extern lv_obj_t * ui_Switch1;
 extern lv_obj_t * ui_Switch2;
+extern lv_obj_t * ui_Label17;
+extern lv_obj_t * ui_Label15;
 extern lv_obj_t * ui_Label11;
 extern lv_obj_t * ui_Label12;
 // CUSTOM VARIABLES
