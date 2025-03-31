@@ -35,7 +35,8 @@ void TaskCompiler(void *pvParameters)
 {
 
   init_Signal();
-  vTaskSuspend(TaskCompilerHandle);
+  globalStates.compiler = false;
+  reloadTasks();
 
   while (true)
   {

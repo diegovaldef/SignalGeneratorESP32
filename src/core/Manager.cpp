@@ -16,7 +16,7 @@ void createTaskManager()
         NULL,
         1,
         &TaskManagerHandle,
-        1);
+        0);
 }
 
 void TaskManager(void *pvParameters)
@@ -25,11 +25,17 @@ void TaskManager(void *pvParameters)
 
     while (true)
     {
-        if (!globalStates.compilerState)
+        //if (!globalStates.compiler) vTaskSuspend(TaskCompilerHandle); else vTaskResume(TaskCompilerHandle);
+        //if (!globalStates.inject) vTaskSuspend(TaskInjectHandle); else vTaskResume(TaskInjectHandle);
+        //if (!globalStates.sd) vTaskSuspend(TaskSDHandle); else vTaskResume(TaskSDHandle);
+        //if (!globalStates.scope) vTaskSuspend(TaskScopeHandle); else vTaskResume(TaskScopeHandle);
+
+        if (!globalStates.compiler)
         {
             while(eTaskGetState(TaskCompilerHandle) != eSuspended)
             {
                 vTaskSuspend(TaskCompilerHandle);
+                Serial.println("Compiler suspended");
                 vTaskDelay(1);
             }
         }
@@ -38,15 +44,17 @@ void TaskManager(void *pvParameters)
             while(eTaskGetState(TaskCompilerHandle) == eSuspended)
             {
                 vTaskResume(TaskCompilerHandle);
+                Serial.println("Compiler resumed");
                 vTaskDelay(1);
             }
         }
 
-        if (!globalStates.injectState)
+        if (!globalStates.inject)
         {
             while(eTaskGetState(TaskInjectHandle) != eSuspended)
             {
                 vTaskSuspend(TaskInjectHandle);
+                Serial.println("Inject suspended");
                 vTaskDelay(1);
             }
         }
@@ -55,15 +63,17 @@ void TaskManager(void *pvParameters)
             while(eTaskGetState(TaskInjectHandle) == eSuspended)
             {
                 vTaskResume(TaskInjectHandle);
+                Serial.println("Inject resumed");
                 vTaskDelay(1);
             }
         }
 
-        if (!globalStates.sdState)
+        if (!globalStates.sd)
         {
             while(eTaskGetState(TaskSDHandle) != eSuspended)
             {
                 vTaskSuspend(TaskSDHandle);
+                Serial.println("SD suspended");
                 vTaskDelay(1);
             }
         }
@@ -72,15 +82,17 @@ void TaskManager(void *pvParameters)
             while(eTaskGetState(TaskSDHandle) == eSuspended)
             {
                 vTaskResume(TaskSDHandle);
+                Serial.println("SD resumed");
                 vTaskDelay(1);
             }
         }
 
-        if (!globalStates.plotState)
+        if (!globalStates.scope)
         {
             while(eTaskGetState(TaskScopeHandle) != eSuspended)
             {
                 vTaskSuspend(TaskScopeHandle);
+                Serial.println("Scope suspended");
                 vTaskDelay(1);
             }
         }
@@ -89,6 +101,7 @@ void TaskManager(void *pvParameters)
             while(eTaskGetState(TaskScopeHandle) == eSuspended)
             {
                 vTaskResume(TaskScopeHandle);
+                Serial.println("Scope resumed");
                 vTaskDelay(1);
             }
         }

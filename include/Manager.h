@@ -6,10 +6,10 @@
 
 struct taskStates {
 
-    bool compilerState = false;
-    bool injectState = false;
-    bool sdState = false;
-    bool plotState = false;
+    bool compiler = false;
+    bool inject = false;
+    bool sd = false;
+    bool scope = false;
 };
 
 extern taskStates globalStates;

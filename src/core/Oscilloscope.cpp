@@ -4,6 +4,11 @@ TaskHandle_t TaskScopeHandle;
 Adafruit_ADS1015 ads;
 lv_chart_series_t *ser[4];
 
+float adc0 = 0;
+float adc1 = 0;
+float adc2 = 0;
+float adc3 = 0;
+
 lv_color_t colors[] = {
     lv_palette_main(LV_PALETTE_RED),
     lv_palette_main(LV_PALETTE_BLUE),
@@ -39,15 +44,15 @@ void TaskScope(void *pvParameters)
 {
     while (true)
     {
-        float adc0 = ads.computeVolts(ads.readADC_SingleEnded(0));
-        float adc1 = ads.computeVolts(ads.readADC_SingleEnded(1));
-        float adc2 = ads.computeVolts(ads.readADC_SingleEnded(2));
-        float adc3 = ads.computeVolts(ads.readADC_SingleEnded(3));
+        adc0 = ads.computeVolts(ads.readADC_SingleEnded(0));
+        adc1 = ads.computeVolts(ads.readADC_SingleEnded(1));
+        adc2 = ads.computeVolts(ads.readADC_SingleEnded(2));
+        adc3 = ads.computeVolts(ads.readADC_SingleEnded(3));
 
-         Serial.println(adc0);
-         Serial.println(adc1);
-         Serial.println(adc2);
-         Serial.println(adc3);
+        //Serial.println(adc0);
+        //Serial.println(adc1);
+        //Serial.println(adc2);
+        //Serial.println(adc3);
 
         lv_chart_set_next_value(ui_Chart1, ser[0], adc0);
         lv_chart_set_next_value(ui_Chart1, ser[1], adc1);

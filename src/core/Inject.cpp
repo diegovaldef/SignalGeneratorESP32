@@ -38,7 +38,7 @@ void TaskInject(void *pvParameters)
   while (true)
   {
     spacesAvailable = uxQueueSpacesAvailable(writeBuffer.TIME);
-
+ 
     if (spacesAvailable < WRITE_BUF_SIZE)
     {
 

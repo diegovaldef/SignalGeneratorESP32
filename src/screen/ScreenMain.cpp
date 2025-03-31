@@ -14,8 +14,11 @@ void SignalStartStop(lv_event_t *e)
   {
     timerAlarmEnable(My_timer);
     timerStart(My_timer);
-    vTaskResume(TaskCompilerHandle);
-    vTaskResume(TaskInjectHandle);
+
+    globalStates.compiler = true;
+    globalStates.inject = true;
+    reloadTasks();
+
     signalRunning = true;
 
     lv_obj_clear_flag(ui_Button7, LV_OBJ_FLAG_CLICKABLE);
@@ -34,13 +37,25 @@ void SignalStartStop(lv_event_t *e)
 
 void resetSignalComplete(lv_event_t *e)
 {
-  vTaskSuspend(TaskCompilerHandle);
-  vTaskSuspend(TaskInjectHandle);
+
+  globalStates.compiler = false;
+  globalStates.inject = false;
+  reloadTasks();
+
+  Serial.println("a");
 
   timerAlarmDisable(My_timer);
+  Serial.println("b");
+
   timerStop(My_timer);
+  Serial.println("c");
+
   timerDetachInterrupt(My_timer);
+  Serial.println("d");
+
   timerEnd(My_timer);
+  Serial.println("e");
+
   signalRunning = false;
 
   minCH1 = 0;
@@ -81,28 +96,44 @@ void resetSignalComplete(lv_event_t *e)
     xQueueReceive(writeBuffer.TIME, &data, 0);
   }
 
+  Serial.println("f");
+
   lv_obj_add_flag(ui_Button7, LV_OBJ_FLAG_CLICKABLE);
   lv_obj_add_flag(ui_Button6, LV_OBJ_FLAG_CLICKABLE);
   lv_obj_add_flag(ui_Button9, LV_OBJ_FLAG_CLICKABLE);
   lv_obj_add_flag(ui_Button11, LV_OBJ_FLAG_CLICKABLE);
+
+  Serial.println("g");
 
   lv_obj_set_style_border_width(ui_Button7, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_border_width(ui_Button6, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_border_width(ui_Button9, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_border_width(ui_Button11, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+  Serial.println("h");
+
   lv_obj_set_style_bg_opa(ui_Panel1, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_bg_opa(ui_Panel2, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_bg_opa(ui_Panel3, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_bg_opa(ui_Panel4, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+  Serial.println("i");
+
   mcp.fastWrite(0, 0, 0, 0);
 
+  Serial.println("j");
+
   vTaskDelete(TaskInjectHandle);
+  Serial.println("k");
+
   vTaskDelete(TaskCompilerHandle);
+  Serial.println("l");
 
   createTaskInject();
+  Serial.println("m");
+
   createTaskCompiler();
+  Serial.println("n");
 
 }
 
@@ -110,8 +141,13 @@ void resetSignal(lv_event_t * e){
 
   timerAlarmDisable(My_timer); 
   timerStop(My_timer);
-  vTaskSuspend(TaskCompilerHandle);
-  vTaskSuspend(TaskInjectHandle);
+
+  globalStates.compiler = false;
+  globalStates.inject = false;
+  reloadTasks();
+
+  Serial.println("a");
+
   signalRunning = false;
 
   lv_obj_add_flag(ui_Button7, LV_OBJ_FLAG_CLICKABLE);
@@ -119,17 +155,25 @@ void resetSignal(lv_event_t * e){
   lv_obj_add_flag(ui_Button9, LV_OBJ_FLAG_CLICKABLE);
   lv_obj_add_flag(ui_Button11, LV_OBJ_FLAG_CLICKABLE);
 
+  Serial.println("b");
+
   lv_obj_set_style_border_width(ui_Button7, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_border_width(ui_Button6, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_border_width(ui_Button9, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_border_width(ui_Button11, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+  Serial.println("c");
 
   lv_obj_set_style_bg_opa(ui_Panel1, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_bg_opa(ui_Panel2, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_bg_opa(ui_Panel3, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
   lv_obj_set_style_bg_opa(ui_Panel4, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+  Serial.println("d");
+
   timerRestart(My_timer);
+
+  Serial.println("e");
 
   uint64_t data;
 
@@ -153,6 +197,8 @@ void resetSignal(lv_event_t * e){
   {
     xQueueReceive(writeBuffer.TIME, &data, 0);
   }
+
+  Serial.println("f");
 
   ch1 = 0;
   ch2 = 0;

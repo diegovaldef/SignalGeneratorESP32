@@ -58,7 +58,8 @@ void openTarget(lv_event_t *e)
   else
   {
     _ui_screen_change(&ui_Loading, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Loading_screen_init);
-    vTaskResume(TaskCompilerHandle);
+    globalStates.compiler = true;
+    reloadTasks();
   }
 }
 
@@ -83,7 +84,8 @@ void refreshRollerButton(lv_event_t *e)
 void gotoPlot(lv_event_t * e){
 
   _ui_screen_change(&ui_Plot, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Plot_screen_init);
-  vTaskResume(TaskScopeHandle);
+  globalStates.scope = true;
+  reloadTasks();
 }
 
 

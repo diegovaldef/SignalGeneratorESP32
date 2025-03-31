@@ -57,7 +57,8 @@ void TaskSD(void *pvParameters)
     _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Explorador_screen_init);
     noSDFound = false;
 
-    vTaskSuspend(TaskSDHandle);
+    globalStates.sd = false;
+    reloadTasks();
   }
 
 }
@@ -69,7 +70,8 @@ void openFileRead()
   {
     delay_time = 0;
     noSDFound = true;
-    vTaskResume(TaskSDHandle);
+    globalStates.sd = true;
+    reloadTasks();
   }
 }
 
@@ -80,7 +82,8 @@ void openFileWrite()
   {
     delay_time = 0;
     noSDFound = true;
-    vTaskResume(TaskSDHandle);
+    globalStates.sd = true;
+    reloadTasks();
   }
 }
 
@@ -92,7 +95,8 @@ void SDBegin()
   {
     delay_time = 3000;
     noSDFound = true;
-    vTaskResume(TaskSDHandle);
+    globalStates.sd = true;
+    reloadTasks();
   }
   else
   {

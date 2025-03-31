@@ -19,17 +19,17 @@ void setup()
 
   vspi.begin(SCK_2, MISO_2, MOSI_2, SD_CS);
 
-  createTaskInject();
-  createTaskCompiler();
-  createTaskSD();
-  createTaskManager();
   createTaskScreen();
+  createTaskSD();
   createTaskScope();
-
+  createTaskCompiler();
+  createTaskInject();
+  createTaskManager();
+  
   vTaskDelete(NULL);
 }
 
 void loop() 
-{
+{ 
   vTaskDelay(1);
 }
