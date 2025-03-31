@@ -23,7 +23,7 @@ void createTaskScreen()
       "TaskScreen",
       1024 * 10,
       NULL,
-      2,
+      17,
       &TaskScreenHandle,
       1);
 }

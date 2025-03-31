@@ -14,7 +14,7 @@ void createTaskManager()
         "TaskManager",
         1024 * 10,
         NULL,
-        1,
+        10,
         &TaskManagerHandle,
         0);
 }

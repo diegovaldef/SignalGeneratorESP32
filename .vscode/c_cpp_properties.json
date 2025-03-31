@@ -508,7 +508,6 @@
                 "configTICK_RATE_HZ=1000",
                 "configUSE_TRACE_FACILITY=0",
                 "configUSE_STATS_FORMATTING_FUNCTIONS=0",
-                "configASSERT=0",
                 "HAVE_CONFIG_H",
                 "MBEDTLS_CONFIG_FILE=\"mbedtls/esp_config.h\"",
                 "UNITY_INCLUDE_CONFIG_H",

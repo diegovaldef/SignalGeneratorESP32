@@ -33,7 +33,7 @@ void createTaskScope()
         "TaskScope",
         1024 * 10,
         NULL, 
-        2,
+        14,
         &TaskScopeHandle,
         0);
 

@@ -24,7 +24,7 @@ void createTaskCompiler()
       "TaskCompiler",
       1024 * 10,
       NULL,
-      2,
+      15,
       &TaskCompilerHandle,
       0);
 

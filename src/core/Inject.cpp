@@ -23,7 +23,7 @@ void createTaskInject(){
       "TaskInject",
       1024 * 10,
       NULL,
-      2,
+      16,
       &TaskInjectHandle,
       0);
 
