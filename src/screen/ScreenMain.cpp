@@ -252,3 +252,36 @@ void AnimtoExplorer(lv_event_t *e)
 {
   _ui_screen_change(&ui_Explorador, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 0, &ui_Explorador_screen_init);
 }
+
+void showChannels()
+{
+
+  if(maxCH1 != 0){
+    lv_obj_set_style_bg_opa(ui_Panel1, LV_OPA_100, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+  else {
+    lv_obj_set_style_bg_opa(ui_Panel1, LV_OPA_TRANSP, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+
+  if(maxCH2 != 0){
+    lv_obj_set_style_bg_opa(ui_Panel2, LV_OPA_100, LV_PART_MAIN | LV_STATE_DEFAULT); 
+  }
+  else{
+    lv_obj_set_style_bg_opa(ui_Panel2, LV_OPA_TRANSP, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+
+  if(maxCH3 != 0){
+    lv_obj_set_style_bg_opa(ui_Panel3, LV_OPA_100, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+  else{
+    lv_obj_set_style_bg_opa(ui_Panel3, LV_OPA_TRANSP, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+
+  if(maxCH4 != 0){
+    lv_obj_set_style_bg_opa(ui_Panel4, LV_OPA_100, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+  else{
+    lv_obj_set_style_bg_opa(ui_Panel4, LV_OPA_TRANSP, LV_PART_MAIN | LV_STATE_DEFAULT);
+  }
+
+}

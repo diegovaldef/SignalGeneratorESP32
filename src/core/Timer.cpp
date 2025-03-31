@@ -7,7 +7,7 @@ const float factor = 45.4167;
 const uint32_t divisor = 1000000; // 1,000,000
 
 
-void IRAM_ATTR timer_isr() {
+void IRAM_ATTR timerISR() {
     
     timerRestart(My_timer);
 
@@ -16,10 +16,10 @@ void IRAM_ATTR timer_isr() {
     
 }
 
-void init_timer() {
+void initTimer() {
 
     My_timer = timerBegin(0, 80, true);
-    timerAttachInterrupt(My_timer, &timer_isr, true);
+    timerAttachInterrupt(My_timer, &timerISR, true);
 
 }
 

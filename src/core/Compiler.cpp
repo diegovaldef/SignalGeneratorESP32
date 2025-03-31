@@ -34,7 +34,7 @@ void createTaskCompiler()
 void TaskCompiler(void *pvParameters)
 {
 
-  init_Signal();
+  initSignal();
   globalStates.compiler = false;
   reloadTasks();
 
@@ -163,7 +163,7 @@ void fillBuffers()
   filling = false;
 }
 
-void init_Signal()
+void initSignal()
 {
 
   Serial.println("Calculando valores mínimos y máximos...");
@@ -195,35 +195,3 @@ void init_Signal()
   _ui_screen_change(&ui_Main, LV_SCR_LOAD_ANIM_FADE_OUT, 0, 1000, &ui_Main_screen_init);
 }
 
-void showChannels()
-{
-
-  if(maxCH1 != 0){
-    lv_obj_set_style_bg_opa(ui_Panel1, LV_OPA_100, LV_PART_MAIN | LV_STATE_DEFAULT);
-  }
-  else {
-    lv_obj_set_style_bg_opa(ui_Panel1, LV_OPA_TRANSP, LV_PART_MAIN | LV_STATE_DEFAULT);
-  }
-
-  if(maxCH2 != 0){
-    lv_obj_set_style_bg_opa(ui_Panel2, LV_OPA_100, LV_PART_MAIN | LV_STATE_DEFAULT); 
-  }
-  else{
-    lv_obj_set_style_bg_opa(ui_Panel2, LV_OPA_TRANSP, LV_PART_MAIN | LV_STATE_DEFAULT);
-  }
-
-  if(maxCH3 != 0){
-    lv_obj_set_style_bg_opa(ui_Panel3, LV_OPA_100, LV_PART_MAIN | LV_STATE_DEFAULT);
-  }
-  else{
-    lv_obj_set_style_bg_opa(ui_Panel3, LV_OPA_TRANSP, LV_PART_MAIN | LV_STATE_DEFAULT);
-  }
-
-  if(maxCH4 != 0){
-    lv_obj_set_style_bg_opa(ui_Panel4, LV_OPA_100, LV_PART_MAIN | LV_STATE_DEFAULT);
-  }
-  else{
-    lv_obj_set_style_bg_opa(ui_Panel4, LV_OPA_TRANSP, LV_PART_MAIN | LV_STATE_DEFAULT);
-  }
-
-}

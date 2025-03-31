@@ -32,7 +32,7 @@ void createTaskInject(){
 void TaskInject(void *pvParameters)
 {
 
-  init_timer();
+  initTimer();
   vTaskSuspend(TaskInjectHandle);
 
   while (true)

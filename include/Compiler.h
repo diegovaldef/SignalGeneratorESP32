@@ -25,10 +25,10 @@ extern uint64_t deltaTime;
 void processSignal(const char *line, double nextPeriod); // Recibe cada linea de texto y la pasa al buffer de escritura
 void readSignal(); // Lee el documento y envia cada linea a processSignal
 void fillBuffers(); // Rellena los buffers de escritura la primera vez, para preparar el Inject
-void init_Signal(); // Inicializa la señal, leyendo su minimo y maximo y rellenando el buffer de escritura
+void initSignal(); // Inicializa la señal, leyendo su minimo y maximo y rellenando el buffer de escritura
 void createTaskCompiler(); // Crea el TaskCompiler
 void TaskCompiler(void *pvParameters); // TaskCompiler
-void showChannels(); // Muestra al ususario el estado de cada canal en pantalla
+
 
 
 #endif

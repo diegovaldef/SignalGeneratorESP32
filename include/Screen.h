@@ -47,5 +47,7 @@ void backfromPlot(lv_event_t * e); // Regresar de la pantalla de Plot
 void TaskScreen(void *pvParameters); // TaskScreen
 void refreshLabel(); // Refresca el texto para mostrar la ruta de directorio
 void createTaskScreen(); // Crea el TaskScreen
+void showChannels(); // Muestra al ususario el estado de cada canal en pantalla
+
 
 #endif
